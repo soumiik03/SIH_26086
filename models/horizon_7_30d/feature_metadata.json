@@ -1,0 +1,71 @@
+{
+  "feature_names": [
+    "Latitude",
+    "Longitude",
+    "Rainfall_Observed_mm",
+    "Tmax_C",
+    "Tmin_C",
+    "Relative_Humidity_pct",
+    "Solar_Radiation_MJm2",
+    "MJO_Phase",
+    "MJO_Amplitude",
+    "Nino34_Anomaly",
+    "Dry_Spell_Days_Streak",
+    "Rolling_Rainfall_7d_mm",
+    "Rolling_Rainfall_30d_mm",
+    "Drought_Stress_Index",
+    "Waterlogging_Risk_Index",
+    "dtr_c",
+    "vpd_kpa",
+    "day_of_year",
+    "doy_sin",
+    "doy_cos",
+    "mjo_phase_sin",
+    "mjo_phase_cos",
+    "rolling_rain_3d_mm",
+    "rolling_rain_15d_mm",
+    "iod_dmi",
+    "iod_positive_flag",
+    "iod_negative_flag",
+    "iod_dmi_lag7",
+    "iod_dmi_lag14"
+  ],
+  "target_columns": [
+    "target_dry_spell_7_14d",
+    "target_dry_spell_15_21d",
+    "target_dry_spell_22_30d",
+    "target_severe_break_7_14d",
+    "target_severe_break_15_21d",
+    "target_severe_break_22_30d",
+    "target_heavy_rain_7_14d",
+    "target_heavy_rain_15_21d",
+    "target_heavy_rain_22_30d",
+    "target_revival_7_14d",
+    "target_revival_15_21d",
+    "target_revival_22_30d"
+  ],
+  "horizon_windows_days": {
+    "7_14d": [
+      7,
+      14
+    ],
+    "15_21d": [
+      15,
+      21
+    ],
+    "22_30d": [
+      22,
+      30
+    ]
+  },
+  "train_years": [
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "validation_year": 2024,
+  "test_year": 2025,
+  "forecast_type": "statistical_observation_climate_state_outlook",
+  "iod_publication_lag_days": 3
+}
