@@ -14,7 +14,8 @@ Scientific & Cadastral Guardrails:
   3. Zero synthetic/fabricated geometries; the 85 official missing GPs are preserved as absent.
   4. Deterministic risk categorization (LOW, MODERATE, HIGH, VERY_HIGH) using documented thresholds.
   5. Deterministic agrometeorological advisory mapping (no LLM hallucinations).
-  6. Operational Status: "EXPERIMENTAL_OBSERVATION_STATE".
+  6. Existing event heads remain "EXPERIMENTAL_OBSERVATION_STATE".
+  7. The 7-30 day section is a "STATISTICAL_7_30_DAY_OUTLOOK", not NWP/S2S.
 
 DISCLAIMER:
   This engine operates from the available observation/feature state.
@@ -36,7 +37,13 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import shape, mapping
 
-from src.forecast_engine import ForecastEngine, predict_monsoon_events, ENGINE_VERSION
+from src.forecast_engine import (
+    ForecastEngine,
+    predict_monsoon_events,
+    ENGINE_VERSION,
+    HORIZON_OUTLOOK_STATUS,
+    HORIZON_OUTLOOK_DISCLAIMER,
+)
 from src.spatial.spatial_loader import SpatialDataLoader, DISTRICT_CENTROIDS
 
 logger = logging.getLogger("varshasentinel.spatial_forecast")
@@ -51,6 +58,15 @@ OPERATIONAL_STATUS = "EXPERIMENTAL_OBSERVATION_STATE"
 OPERATIONAL_DISCLAIMER = (
     "This engine operates from the available observation/feature state. "
     "It is not yet an operational 7-30 day dynamical forecast."
+)
+STATISTICAL_OUTLOOK_STATUS = HORIZON_OUTLOOK_STATUS
+STATISTICAL_OUTLOOK_DISCLAIMER = HORIZON_OUTLOOK_DISCLAIMER
+STATISTICAL_OUTLOOK_HORIZONS = ("7_14d", "15_21d", "22_30d")
+STATISTICAL_OUTLOOK_EVENTS = (
+    "dry_spell_probability",
+    "severe_break_probability",
+    "heavy_rain_probability",
+    "revival_probability",
 )
 
 # Risk color tokens for MapLibre / Leaflet visualization
@@ -230,6 +246,8 @@ def get_agricultural_advisory(probabilities: Dict[str, float]) -> Tuple[str, str
             "High risk of inundation. Clear drainage channels in aman paddy nurseries and vegetable plots. "
             "Postpone urea top-dressing and chemical pesticide applications until rainfall intensity subsides."
         )
+
+
     elif p_break >= 0.60 or p_dry5 >= 0.70:
         return (
             "Prolonged Dry Spell / Break Warning",
@@ -260,6 +278,41 @@ def get_agricultural_advisory(probabilities: Dict[str, float]) -> Tuple[str, str
             "Normal seasonal monsoon state. Continue standard agronomic intercultural operations, "
             "maintain field bunds, and monitor district weather bulletins for localized changes."
         )
+
+
+def get_statistical_outlook_properties(forecast: Dict[str, Any]) -> Dict[str, Any]:
+    """Return the verified engine outlook in the spatial property contract.
+
+    Values are inherited at district level for now. They are deliberately
+    carried as an outlook section rather than represented as local downscaled
+    probabilities until a validated local downscaling model exists.
+    """
+    source = forecast.get("statistical_7_30_day_outlook")
+    if not source or source.get("forecast_status") != STATISTICAL_OUTLOOK_STATUS:
+        raise ValueError("Forecast is missing the validated statistical 7-30 day outlook section")
+
+    horizons = source.get("horizons", {})
+    result: Dict[str, Any] = {
+        "forecast_status": STATISTICAL_OUTLOOK_STATUS,
+        "disclaimer": STATISTICAL_OUTLOOK_DISCLAIMER,
+    }
+    for horizon in STATISTICAL_OUTLOOK_HORIZONS:
+        source_horizon = horizons.get(horizon)
+        if source_horizon is None:
+            raise ValueError(f"Statistical outlook is missing horizon {horizon}")
+        missing = [event for event in STATISTICAL_OUTLOOK_EVENTS if event not in source_horizon]
+        if missing:
+            raise ValueError(f"Statistical outlook {horizon} is missing fields: {missing}")
+        values = {}
+        for event in STATISTICAL_OUTLOOK_EVENTS:
+            probability = float(source_horizon[event])
+            if not 0.0 <= probability <= 1.0:
+                raise ValueError(f"Statistical outlook probability out of bounds: {horizon}.{event}")
+            values[event] = probability
+        values["forecast_status"] = STATISTICAL_OUTLOOK_STATUS
+        values["model_versions"] = source_horizon.get("model_versions", {})
+        result[horizon] = values
+    return result
 
 
 class SpatialForecastEngine:
@@ -362,6 +415,7 @@ class SpatialForecastEngine:
             fc = district_forecasts[model_dist]
             probs = fc["summary_probabilities"]
             pcts = fc["summary_percentages"]
+            statistical_outlook = get_statistical_outlook_properties(fc)
 
             overall_risk, head_risks, risk_color = evaluate_risk_level(probs)
             advisory_hl, advisory_action = get_agricultural_advisory(probs)
@@ -424,6 +478,9 @@ class SpatialForecastEngine:
                     "forecast_status": OPERATIONAL_STATUS,
                     "disclaimer": OPERATIONAL_DISCLAIMER,
                     "data_timestamp": timestamp_str,
+                    # Statistical outlook is district-inherited until a
+                    # validated local downscaling model is available.
+                    "statistical_7_30_day_outlook": statistical_outlook,
                     "geometry": geom
                 }
                 records.append(rec)
@@ -456,6 +513,7 @@ class SpatialForecastEngine:
             fc = district_forecasts[model_dist]
             probs = fc["summary_probabilities"]
             pcts = fc["summary_percentages"]
+            statistical_outlook = get_statistical_outlook_properties(fc)
 
             overall_risk, head_risks, risk_color = evaluate_risk_level(probs)
             advisory_hl, advisory_action = get_agricultural_advisory(probs)
@@ -523,6 +581,9 @@ class SpatialForecastEngine:
                     "forecast_status": OPERATIONAL_STATUS,
                     "disclaimer": OPERATIONAL_DISCLAIMER,
                     "data_timestamp": timestamp_str,
+                    # Geometry remains official safe-layer geometry; the
+                    # outlook values are explicitly not called downscaled.
+                    "statistical_7_30_day_outlook": statistical_outlook,
                     "geometry": geom
                 }
                 records.append(rec)
@@ -573,6 +634,18 @@ class SpatialForecastEngine:
         summary = {
             "forecast_status": OPERATIONAL_STATUS,
             "disclaimer": OPERATIONAL_DISCLAIMER,
+            "statistical_7_30_day_outlook": {
+                "forecast_status": STATISTICAL_OUTLOOK_STATUS,
+                "disclaimer": STATISTICAL_OUTLOOK_DISCLAIMER,
+                "horizons": list(STATISTICAL_OUTLOOK_HORIZONS),
+                "events": [
+                    "dry_spell_probability",
+                    "severe_break_probability",
+                    "heavy_rain_probability",
+                    "revival_probability",
+                ],
+                "downscaling_method": "NONE_DISTRICT_INHERITED",
+            },
             "data_timestamp": timestamp,
             "districts_forecasted": len(dist_forecasts),
             "blocks_forecasted": len(block_gdf),

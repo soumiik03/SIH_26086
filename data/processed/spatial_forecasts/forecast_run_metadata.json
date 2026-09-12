@@ -1,6 +1,22 @@
 {
   "forecast_status": "EXPERIMENTAL_OBSERVATION_STATE",
   "disclaimer": "This engine operates from the available observation/feature state. It is not yet an operational 7-30 day dynamical forecast.",
+  "statistical_7_30_day_outlook": {
+    "forecast_status": "STATISTICAL_7_30_DAY_OUTLOOK",
+    "disclaimer": "This is a statistical probabilistic outlook based on the observation and climate state available on the reference date. It is not an NWP or S2S forecast and does not claim operational 7-30 day dynamical forecasting.",
+    "horizons": [
+      "7_14d",
+      "15_21d",
+      "22_30d"
+    ],
+    "events": [
+      "dry_spell_probability",
+      "severe_break_probability",
+      "heavy_rain_probability",
+      "revival_probability"
+    ],
+    "downscaling_method": "NONE_DISTRICT_INHERITED"
+  },
   "data_timestamp": "2025-12-31T00:00:00Z",
   "districts_forecasted": 12,
   "blocks_forecasted": 187,

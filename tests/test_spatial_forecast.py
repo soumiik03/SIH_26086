@@ -19,7 +19,10 @@ from src.spatial_forecast import (
     evaluate_risk_level,
     get_agricultural_advisory,
     OPERATIONAL_STATUS,
-    OPERATIONAL_DISCLAIMER
+    OPERATIONAL_DISCLAIMER,
+    STATISTICAL_OUTLOOK_STATUS,
+    STATISTICAL_OUTLOOK_HORIZONS,
+    STATISTICAL_OUTLOOK_EVENTS,
 )
 from src.spatial.spatial_validation import WB_BBOX
 
@@ -231,6 +234,32 @@ class TestSpatialForecastLayer(unittest.TestCase):
             self.assertTrue((gdf["forecast_status"] == OPERATIONAL_STATUS).all())
             self.assertTrue((gdf["disclaimer"] == OPERATIONAL_DISCLAIMER).all())
             self.assertTrue((gdf["forecast_status"] == "EXPERIMENTAL_OBSERVATION_STATE").all())
+
+    def test_statistical_7_30_day_outlook_contract(self):
+        """Every block and safe Panchayat carries all horizon/event outlook fields."""
+        for gdf in [self.block_gdf, self.panchayat_gdf]:
+            for outlook in gdf["statistical_7_30_day_outlook"]:
+                self.assertEqual(outlook["forecast_status"], STATISTICAL_OUTLOOK_STATUS)
+                self.assertIn("not an NWP or S2S forecast", outlook["disclaimer"])
+                for horizon in STATISTICAL_OUTLOOK_HORIZONS:
+                    self.assertIn(horizon, outlook)
+                    self.assertEqual(outlook[horizon]["forecast_status"], STATISTICAL_OUTLOOK_STATUS)
+                    for event in STATISTICAL_OUTLOOK_EVENTS:
+                        self.assertIn(event, outlook[horizon])
+                        self.assertGreaterEqual(outlook[horizon][event], 0.0)
+                        self.assertLessEqual(outlook[horizon][event], 1.0)
+
+    def test_forecast_metadata_records_outlook_and_coverage(self):
+        metadata_path = os.path.join(self.output_dir, "forecast_run_metadata.json")
+        with open(metadata_path, "r", encoding="utf-8") as handle:
+            metadata = json.load(handle)
+        outlook = metadata["statistical_7_30_day_outlook"]
+        self.assertEqual(outlook["forecast_status"], STATISTICAL_OUTLOOK_STATUS)
+        self.assertEqual(outlook["horizons"], list(STATISTICAL_OUTLOOK_HORIZONS))
+        self.assertEqual(outlook["downscaling_method"], "NONE_DISTRICT_INHERITED")
+        self.assertEqual(metadata["blocks_forecasted"], 187)
+        self.assertEqual(metadata["safe_panchayats_forecasted"], 1710)
+        self.assertEqual(metadata["official_gps_intentionally_excluded"], 85)
 
 
 if __name__ == "__main__":
