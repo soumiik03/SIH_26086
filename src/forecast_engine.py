@@ -12,9 +12,10 @@ Model Selection (Ensemble Best-of-Breed based on out-of-sample 2025 benchmark):
   - 5-Day Dry Spell / Break             -> models/ (baseline, avoids validation-fold overfitting)
   - 7-Day Severe Break (21-Day Lead)    -> models/ (baseline, sharper Brier calibration)
 
-DISCLAIMER:
-  This engine currently operates from the available observation / feature state.
-  It is not yet an operational 7-30 day dynamical forecast.
+STATUS:
+  The original event heads remain in EXPERIMENTAL_OBSERVATION_STATE.
+  The additional 7-30 day heads are STATISTICAL_7_30_DAY_OUTLOOK models,
+  not NWP or subseasonal dynamical forecasts.
 """
 
 import os
@@ -29,7 +30,14 @@ logger = logging.getLogger("varshasentinel.forecast_engine")
 
 BASELINE_MODELS_DIR = "models"
 IOD_MODELS_DIR = "models/iod_enhanced"
+HORIZON_MODELS_DIR = "models/horizon_7_30d"
 ENGINE_VERSION = "VARSHASENTINEL_FORECAST_ENGINE_v1.1"
+HORIZON_OUTLOOK_STATUS = "STATISTICAL_7_30_DAY_OUTLOOK"
+HORIZON_OUTLOOK_DISCLAIMER = (
+    "This is a statistical probabilistic outlook based on the observation and climate state "
+    "available on the reference date. It is not an NWP or S2S forecast and does not claim "
+    "operational 7-30 day dynamical forecasting."
+)
 
 DISTRICT_ZONE_MAP = {
     "Purba_Bardhaman": "gangetic_alluvial",
@@ -71,17 +79,23 @@ class ForecastEngine:
     def __init__(
         self,
         baseline_dir: str = BASELINE_MODELS_DIR,
-        iod_dir: str = IOD_MODELS_DIR
+        iod_dir: str = IOD_MODELS_DIR,
+        horizon_dir: str = HORIZON_MODELS_DIR
     ):
         self.baseline_dir = baseline_dir
         self.iod_dir = iod_dir
+        self.horizon_dir = horizon_dir
         self.models: Dict[str, Any] = {}
         self.model_metadata: Dict[str, Dict[str, Any]] = {}
+        self.horizon_models: Dict[str, Any] = {}
+        self.horizon_model_metadata: Dict[str, Dict[str, Any]] = {}
         self.baseline_feature_metadata: Optional[Dict[str, Any]] = None
         self.iod_feature_metadata: Optional[Dict[str, Any]] = None
+        self.horizon_feature_metadata: Optional[Dict[str, Any]] = None
 
         self._load_feature_schemas()
         self._load_benchmark_models()
+        self._load_horizon_models()
 
     def _load_feature_schemas(self):
         """Loads and parses feature metadata for baseline and IOD models."""
@@ -98,6 +112,18 @@ class ForecastEngine:
             self.iod_feature_metadata = json.load(f)
 
         logger.info(f"Loaded baseline schema ({len(self.baseline_feature_metadata['feature_names'])} features) and IOD schema ({len(self.iod_feature_metadata['feature_names'])} features).")
+
+        horizon_meta_path = os.path.join(self.horizon_dir, "feature_metadata.json")
+        if not os.path.exists(horizon_meta_path):
+            raise FileNotFoundError(f"Horizon feature metadata not found at: {horizon_meta_path}")
+        with open(horizon_meta_path, "r", encoding="utf-8") as f:
+            self.horizon_feature_metadata = json.load(f)
+
+        logger.info(
+            "Loaded horizon schema (%d features) from %s",
+            len(self.horizon_feature_metadata["feature_names"]),
+            horizon_meta_path,
+        )
 
     def _load_benchmark_models(self):
         """Loads the six models selected by the out-of-sample 2025 benchmark."""
@@ -171,6 +197,59 @@ class ForecastEngine:
                 "feature_count": 31 if cfg["schema"] == "iod" else 26
             }
             logger.info(f"Loaded head '{head_key}' [{cfg['version']}] from {path}")
+
+    def _load_horizon_models(self):
+        """Load the 12 calibrated statistical outlook heads without altering old heads."""
+        target_columns = self.horizon_feature_metadata.get("target_columns", [])
+        expected_targets = [
+            f"target_{event}_{window}"
+            for event in ("dry_spell", "severe_break", "heavy_rain", "revival")
+            for window in ("7_14d", "15_21d", "22_30d")
+        ]
+        if target_columns != expected_targets:
+            raise ValueError(
+                "Horizon target metadata does not match the required event/window ordering: "
+                f"expected {expected_targets}, got {target_columns}"
+            )
+
+        feature_names = self.horizon_feature_metadata["feature_names"]
+        for target_col in expected_targets:
+            filename = f"{target_col}_calibrated_xgb.joblib"
+            path = os.path.join(self.horizon_dir, filename)
+            if not os.path.exists(path):
+                raise FileNotFoundError(f"Calibrated horizon model not found for {target_col} at: {path}")
+
+            loaded_obj = joblib.load(path)
+            if not isinstance(loaded_obj, dict) or "model" not in loaded_obj:
+                raise ValueError(f"Invalid calibrated horizon artifact for {target_col}: {path}")
+            estimator = loaded_obj["model"]
+            artifact_features = loaded_obj.get("feature_cols")
+            if artifact_features != feature_names:
+                raise ValueError(
+                    f"Feature ordering mismatch for {target_col}: artifact metadata does not "
+                    "match horizon feature_metadata.json"
+                )
+
+            target_without_prefix = target_col.removeprefix("target_")
+            window = next(
+                (candidate for candidate in ("7_14d", "15_21d", "22_30d")
+                 if target_without_prefix.endswith(f"_{candidate}")),
+                None,
+            )
+            if window is None:
+                raise ValueError(f"Unrecognized horizon label in target column: {target_col}")
+            event = target_without_prefix[:-(len(window) + 1)]
+            self.horizon_models[target_col] = estimator
+            self.horizon_model_metadata[target_col] = {
+                "target_col": target_col,
+                "event": event,
+                "horizon": window,
+                "model_version": "horizon_7_30d_calibrated_platt_sigmoid",
+                "model_path": path,
+                "artifact_calibration_method": loaded_obj.get("calibration_method", "platt_sigmoid"),
+                "feature_count": len(feature_names),
+            }
+            logger.info("Loaded horizon head '%s' from %s", target_col, path)
 
     def prepare_feature_vectors(self, observation: Dict[str, Any]):
         """
@@ -290,6 +369,49 @@ class ForecastEngine:
 
         return df_base, df_iod
 
+    def prepare_horizon_feature_vector(self, observation: Dict[str, Any]) -> pd.DataFrame:
+        """Build the exact 29-column horizon matrix in artifact metadata order."""
+        df_base, df_iod = self.prepare_feature_vectors(observation)
+        horizon_cols = self.horizon_feature_metadata["feature_names"]
+        missing_horizon = [col for col in horizon_cols if col not in df_iod.columns]
+        if missing_horizon:
+            raise ValueError(f"Observation missing mandatory horizon features: {missing_horizon}")
+        horizon_df = df_iod.loc[:, horizon_cols].copy()
+        if list(horizon_df.columns) != horizon_cols:
+            raise ValueError("Horizon feature ordering does not match feature metadata")
+        return horizon_df
+
+    def _predict_horizon_outlook(self, horizon_features: pd.DataFrame) -> Dict[str, Any]:
+        """Predict all new heads and return the explicitly labelled outlook section."""
+        horizons: Dict[str, Dict[str, Any]] = {
+            "7_14d": {}, "15_21d": {}, "22_30d": {}
+        }
+        event_order = ("dry_spell", "severe_break", "heavy_rain", "revival")
+        for target_col, model in self.horizon_models.items():
+            meta = self.horizon_model_metadata[target_col]
+            horizon = meta["horizon"]
+            event = meta["event"]
+            probability_raw = float(model.predict_proba(horizon_features)[0, 1])
+            probability = max(0.0, min(1.0, probability_raw))
+            horizons[horizon][f"{event}_probability"] = round(probability, 4)
+            horizons[horizon].setdefault("model_versions", {})[event] = {
+                "target_col": target_col,
+                "model_version": meta["model_version"],
+                "artifact_path": meta["model_path"],
+                "calibration_method": meta["artifact_calibration_method"],
+                "features_evaluated": meta["feature_count"],
+            }
+
+        for horizon, values in horizons.items():
+            missing_events = [f"{event}_probability" for event in event_order if f"{event}_probability" not in values]
+            if missing_events:
+                raise RuntimeError(f"Horizon {horizon} is missing predictions: {missing_events}")
+        return {
+            "forecast_status": HORIZON_OUTLOOK_STATUS,
+            "disclaimer": HORIZON_OUTLOOK_DISCLAIMER,
+            "horizons": horizons,
+        }
+
     def predict(self, observation: Union[Dict[str, Any], pd.Series]) -> Dict[str, Any]:
         """
         Computes calibrated probability outputs for all six monsoon event heads.
@@ -337,6 +459,8 @@ class ForecastEngine:
             summary_probs[head_key] = prob_clean
             summary_pcts[head_key] = prob_pct
 
+        horizon_outlook = self._predict_horizon_outlook(self.prepare_horizon_feature_vector(obs_dict))
+
         return {
             "engine_version": ENGINE_VERSION,
             "operational_status": "EXPERIMENTAL_OBSERVATION_STATE",
@@ -344,9 +468,20 @@ class ForecastEngine:
                 "This engine operates from the available observation/feature state. "
                 "It is not yet an operational 7-30 day dynamical forecast."
             ),
+            "forecast_sections": {
+                "existing_short_horizon_event_forecasts": {
+                    "forecast_status": "EXPERIMENTAL_OBSERVATION_STATE",
+                    "description": "Existing six calibrated event heads.",
+                },
+                "statistical_7_30_day_outlook": {
+                    "forecast_status": HORIZON_OUTLOOK_STATUS,
+                    "description": "Statistical probabilistic outlook; not NWP/S2S.",
+                },
+            },
             "summary_probabilities": summary_probs,
             "summary_percentages": summary_pcts,
-            "head_details": results_by_head
+            "head_details": results_by_head,
+            "statistical_7_30_day_outlook": horizon_outlook,
         }
 
 

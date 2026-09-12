@@ -194,6 +194,61 @@ class TestForecastEngine(unittest.TestCase):
             for head, p in result["summary_probabilities"].items():
                 self.assertTrue(0.0 <= p <= 1.0, f"Row {idx} head {head} probability {p} out of bounds")
 
+    def test_all_twelve_horizon_models_load_in_isolated_namespace(self):
+        """All calibrated 7-30 day heads load without changing the six-head namespace."""
+        self.assertEqual(len(self.engine.models), 6)
+        self.assertEqual(len(self.engine.horizon_models), 12)
+        self.assertEqual(len(self.engine.horizon_model_metadata), 12)
+        for target, model in self.engine.horizon_models.items():
+            self.assertTrue(hasattr(model, "predict_proba"))
+            metadata = self.engine.horizon_model_metadata[target]
+            self.assertIn(metadata["horizon"], {"7_14d", "15_21d", "22_30d"})
+            self.assertTrue(metadata["model_path"].replace("\\", "/").startswith("models/horizon_7_30d/"))
+            self.assertEqual(metadata["model_version"], "horizon_7_30d_calibrated_platt_sigmoid")
+
+    def test_horizon_feature_schema_exact_ordering(self):
+        """The horizon vector exactly matches the separately saved 29-column schema."""
+        horizon = self.engine.prepare_horizon_feature_vector(self.valid_obs)
+        expected = self.engine.horizon_feature_metadata["feature_names"]
+        self.assertEqual(len(expected), 29)
+        self.assertEqual(list(horizon.columns), expected)
+        self.assertNotIn("District_Encoded", expected)
+        self.assertNotIn("Zone_Encoded", expected)
+
+    def test_statistical_outlook_has_all_horizons_and_events(self):
+        result = self.engine.predict(self.valid_obs)
+        outlook = result["statistical_7_30_day_outlook"]
+        self.assertEqual(outlook["forecast_status"], "STATISTICAL_7_30_DAY_OUTLOOK")
+        self.assertIn("not an NWP or S2S forecast", outlook["disclaimer"])
+        expected_events = {
+            "dry_spell_probability", "severe_break_probability",
+            "heavy_rain_probability", "revival_probability",
+        }
+        self.assertEqual(set(outlook["horizons"]), {"7_14d", "15_21d", "22_30d"})
+        for horizon, values in outlook["horizons"].items():
+            self.assertTrue(expected_events.issubset(values))
+            self.assertEqual(set(values["model_versions"]), {"dry_spell", "severe_break", "heavy_rain", "revival"})
+            for event in expected_events:
+                self.assertGreaterEqual(values[event], 0.0)
+                self.assertLessEqual(values[event], 1.0)
+
+        self.assertEqual(result["forecast_sections"]["existing_short_horizon_event_forecasts"]["forecast_status"], "EXPERIMENTAL_OBSERVATION_STATE")
+        self.assertEqual(result["forecast_sections"]["statistical_7_30_day_outlook"]["forecast_status"], "STATISTICAL_7_30_DAY_OUTLOOK")
+
+    def test_horizon_missing_features_raise_without_zero_fill(self):
+        missing_iod = dict(self.valid_obs)
+        del missing_iod["iod_dmi"]
+        with self.assertRaises(ValueError) as ctx:
+            self.engine.predict(missing_iod)
+        self.assertIn("iod", str(ctx.exception).lower())
+
+    def test_existing_six_head_output_remains_backward_compatible(self):
+        result = self.engine.predict(self.valid_obs)
+        self.assertEqual(len(result["summary_probabilities"]), 6)
+        self.assertEqual(len(result["summary_percentages"]), 6)
+        self.assertEqual(len(result["head_details"]), 6)
+        self.assertEqual(result["operational_status"], "EXPERIMENTAL_OBSERVATION_STATE")
+
 
 if __name__ == "__main__":
     unittest.main()
