@@ -1,0 +1,370 @@
+Village_LGD_Code,Village_Name,District,Block,Num_GP_Codes,GP_LGD_Codes,GP_Names,Survey_Geometry_Count,Duplication_Category
+306226,Icha Khasmahal,Kalimpong,Kalimpong -I,2,261006; 261016,Lower Echhay; Upper Echhay,1,B: Single SOI Geometry to Multiple GPs
+306343,Gorubathan Khasmahal,Kalimpong,Gorubathan,3,260972; 260973; 260974,Aahaley; Dalim; Garubathan-I,1,B: Single SOI Geometry to Multiple GPs
+306397,Bukim Tea Garden (Tharbu) (P),Darjeeling,Mirik,2,261049; 261050,Paheligaon School Dara-I; Paheligaon School Dara-Ii,1,B: Single SOI Geometry to Multiple GPs
+306400,Saurinibasti,Darjeeling,Mirik,2,261051; 261052,Soureni-I; Soureni-Ii,1,B: Single SOI Geometry to Multiple GPs
+306401,Mirik Khasmahal (P),Darjeeling,Mirik,2,261049; 261050,Paheligaon School Dara-I; Paheligaon School Dara-Ii,1,B: Single SOI Geometry to Multiple GPs
+306405,Purba Phuguri Tea Garden,Darjeeling,Mirik,2,261051; 261052,Soureni-I; Soureni-Ii,1,B: Single SOI Geometry to Multiple GPs
+306407,New Fallodi Tea Garden(Ghyabari),Darjeeling,Mirik,2,261051; 261052,Soureni-I; Soureni-Ii,1,B: Single SOI Geometry to Multiple GPs
+306446,Mahanadi Forest,Darjeeling,Kurseong,2,261040; 261045,Settong-Iii; Sukna,1,B: Single SOI Geometry to Multiple GPs
+306489,Cart Road (Ct),Darjeeling,Kurseong,2,261042; 261043,St. Marrys-I; St. Marrys-Ii,1,B: Single SOI Geometry to Multiple GPs
+306563,Tari (Ct),Darjeeling,Matigara,2,109148; 109151,Atharakhai; Matigara-Ii,1,B: Single SOI Geometry to Multiple GPs
+306565,Jitu (Ct),Darjeeling,Matigara,2,109148; 109151,Atharakhai; Matigara-Ii,1,B: Single SOI Geometry to Multiple GPs
+306856,Junglee Mohal,Jalpaiguri,Rajganj,3,109845; 109846; 109851,Dabgram-I; Dabgram-Ii; Mantadari,1,B: Single SOI Geometry to Multiple GPs
+306862,Ambari Falakata,Jalpaiguri,Rajganj,2,109844; 109850,Binnaguri; Majhiali,1,B: Single SOI Geometry to Multiple GPs
+306864,Jugibhita,Jalpaiguri,Rajganj,2,109844; 109850,Binnaguri; Majhiali,1,B: Single SOI Geometry to Multiple GPs
+306879,Sannyasikata,Jalpaiguri,Rajganj,2,109850; 109853,Majhiali; Sannyasikata,1,B: Single SOI Geometry to Multiple GPs
+306880,Sukani,Jalpaiguri,Rajganj,2,109849; 109855,Kukurjan; Sukhani,1,B: Single SOI Geometry to Multiple GPs
+306882,Dabgram (P) (Ct),Jalpaiguri,Rajganj,3,109845; 109846; 109847,Dabgram-I; Dabgram-Ii; Fulbari-I,1,B: Single SOI Geometry to Multiple GPs
+306883,Binnaguri (Ct),Jalpaiguri,Rajganj,2,109844; 109848,Binnaguri; Fulbari-Ii,1,B: Single SOI Geometry to Multiple GPs
+307019,Matialihat (Ct),Jalpaiguri,Matiali,2,109819; 109820,Indong-Matiali; Matiali Hat,1,B: Single SOI Geometry to Multiple GPs
+307030,Bhagatpur Tea Garden,Jalpaiguri,Nagrakata,2,109841; 109843,Champaguri; Sulkapara,1,B: Single SOI Geometry to Multiple GPs
+307063,Birpara Tea Garden,Alipurduar,Madarihat,2,109797; 109804,Birpara-I; Shishujhumra,1,B: Single SOI Geometry to Multiple GPs
+307240,Paschim Salbari,Alipurduar,Alipurduar - I,2,109718; 109719,Tapsikhata; Vivekanda-I,1,B: Single SOI Geometry to Multiple GPs
+307244,Uttar Paitkapara,Alipurduar,Alipurduar - I,2,109718; 109719,Tapsikhata; Vivekanda-I,1,B: Single SOI Geometry to Multiple GPs
+307245,Paitkapara Tea Garden,Alipurduar,Alipurduar - I,2,109718; 109719,Tapsikhata; Vivekanda-I,2,A: Multiple SOI Geometries
+307249,Chapatali,Alipurduar,Alipurduar - I,2,109710; 109713,Banchukamari; Parorpar,1,B: Single SOI Geometry to Multiple GPs
+307562,Padamati,Jalpaiguri,Maynaguri,2,109834; 109835,Padamoti-I; Padamoti-Ii,1,B: Single SOI Geometry to Multiple GPs
+307587,Saptibari,Jalpaiguri,Maynaguri,2,109837; 109838,Saptibari-I; Saptibari-Ii,1,B: Single SOI Geometry to Multiple GPs
+307593,Mainaguri (Ct),Jalpaiguri,Maynaguri,2,109829; 109833,Khagrabari-I; Maynaguri,1,B: Single SOI Geometry to Multiple GPs
+307598,Bahadur,Jalpaiguri,Jalpaiguri,2,109760; 109761,Arabinda; Bahadur,1,B: Single SOI Geometry to Multiple GPs
+307599,Patkata,Jalpaiguri,Jalpaiguri,4,109760; 109763; 109771; 109772,Arabinda; Belakoba; Paharpur; Patkata,1,B: Single SOI Geometry to Multiple GPs
+307601,Mandalghat,Jalpaiguri,Jalpaiguri,2,109766; 109769,Kharia; Mondalghat,1,B: Single SOI Geometry to Multiple GPs
+307602,Garalbari,Jalpaiguri,Jalpaiguri,2,109765; 109769,Garalbari; Mondalghat,1,B: Single SOI Geometry to Multiple GPs
+307616,Berubari,Jalpaiguri,Jalpaiguri,4,109767; 109768; 109770; 109773,Kharija-Berubari-I; Kharija-Berubari-Ii; Nagar Berubari; South Berubari,1,B: Single SOI Geometry to Multiple GPs
+307620,Kharija Berubari,Jalpaiguri,Jalpaiguri,2,109767; 109768,Kharija-Berubari-I; Kharija-Berubari-Ii,1,B: Single SOI Geometry to Multiple GPs
+307623,Kharia (P) (Ct),Jalpaiguri,Jalpaiguri,3,109760; 109766; 109771,Arabinda; Kharia; Paharpur,1,B: Single SOI Geometry to Multiple GPs
+307624,Bara Haldibari (P),Cooch Behar,Haldibari,2,108980; 108984,Dakshin Bara Haldibari; Uttar Bara Haldibari,1,B: Single SOI Geometry to Multiple GPs
+307692,Tista Nadir Payasti,Cooch Behar,Mekliganj,2,109009; 109010,Kuchlibari; Niztarof,1,B: Single SOI Geometry to Multiple GPs
+307707,Fulkardabri,Cooch Behar,Mekliganj,2,109005; 109010,Bagdogra-Fulkadabri; Niztarof,1,B: Single SOI Geometry to Multiple GPs
+307709,Bhotbari,Cooch Behar,Mekliganj,3,109005; 109006; 109010,Bagdogra-Fulkadabri; Bhotbari; Niztarof,1,B: Single SOI Geometry to Multiple GPs
+307745,Uchal Pukhari,Cooch Behar,Mekliganj,2,109008; 109012,Jamaldaha; Uchalpukuri,1,B: Single SOI Geometry to Multiple GPs
+307818,Chhota Nijtaraf,Cooch Behar,Mekliganj,2,109006; 109010,Bhotbari; Niztarof,1,B: Single SOI Geometry to Multiple GPs
+307834,Mekliganj (P),Cooch Behar,Mekliganj,2,109005; 109010,Bagdogra-Fulkadabri; Niztarof,1,B: Single SOI Geometry to Multiple GPs
+308166,Rashidanga Dwitia Khanda,Cooch Behar,Cooch Behar - I,2,108944; 108950,Haribhanga; Sutkabari,1,B: Single SOI Geometry to Multiple GPs
+308212,Guriahati (Ct),Cooch Behar,Cooch Behar - I,2,108942; 108943,Guriahati-I; Guriahati-Ii,1,B: Single SOI Geometry to Multiple GPs
+308221,Sakunibala,Cooch Behar,Cooch Behar - II,2,108925; 108933,Bararangras; Patlakhawa,1,B: Single SOI Geometry to Multiple GPs
+308222,Kalarayerkuthi,Cooch Behar,Cooch Behar - II,2,108933; 108934,Patlakhawa; Pundibari,1,B: Single SOI Geometry to Multiple GPs
+308243,Kaljani,Cooch Behar,Cooch Behar - II,2,108924; 108930,Baneswar; Khapaidanga,1,B: Single SOI Geometry to Multiple GPs
+308357,Jaigir Chilakhana,Cooch Behar,Tufanganj - I,2,109031; 109039,Chilkhana-I; Natabari-Ii,1,B: Single SOI Geometry to Multiple GPs
+308367,Andaran Phulbari (P),Cooch Behar,Tufanganj - I,2,109026; 109027,Andaran-Fulbari-I; Andaran-Fulbari-Ii,1,B: Single SOI Geometry to Multiple GPs
+308384,Balarampur,Cooch Behar,Tufanganj - I,3,109029; 109030; 109033,Balarampur-I; Balarampur-Ii; Deocharai,1,B: Single SOI Geometry to Multiple GPs
+308409,Rampur,Cooch Behar,Tufanganj - II,2,109047; 109048,Rampur-I; Rampur-Ii,1,B: Single SOI Geometry to Multiple GPs
+308413,Jaldhoa,Cooch Behar,Tufanganj - II,2,109046; 109048,Mahiskuchi-I; Rampur-Ii,1,B: Single SOI Geometry to Multiple GPs
+308623,Dashgram Gobra,Cooch Behar,Dinhata - II,2,108973; 108974,Gobra Chhara Nayarhat; Kishamat Dasgram,1,B: Single SOI Geometry to Multiple GPs
+308784,Chotta Salbari,Cooch Behar,Sitalkuchi,2,109019; 109020,Bhawerthana; Chhotosalbari,1,B: Single SOI Geometry to Multiple GPs
+308790,Khengchi,Cooch Behar,Sitalkuchi,2,109019; 109022,Bhawerthana; Gosairhat,1,B: Single SOI Geometry to Multiple GPs
+308802,Sitalkuchi,Cooch Behar,Sitalkuchi,3,109021; 109022; 109025,Golenowhati; Gosairhat; Sitalkuchi,1,B: Single SOI Geometry to Multiple GPs
+308830,Chitalghata,Uttar Dinajpur,Chopra,2,109252; 109255,Haptiagachh; Sonapur,1,B: Single SOI Geometry to Multiple GPs
+308846,Bhagalpur Khas,Uttar Dinajpur,Chopra,2,109254; 109255,Majhiali; Sonapur,1,B: Single SOI Geometry to Multiple GPs
+308861,Paschim Chutiakhor,Uttar Dinajpur,Chopra,2,109248; 109249,Chopra; Chutiakhore,1,B: Single SOI Geometry to Multiple GPs
+308867,Paschim Ariangaon,Uttar Dinajpur,Chopra,2,109254; 109255,Majhiali; Sonapur,1,B: Single SOI Geometry to Multiple GPs
+308950,Phulhara,Uttar Dinajpur,Islampur,2,109297; 109298,Ramganj-I; Ramganj-Ii,1,B: Single SOI Geometry to Multiple GPs
+308972,Dohaso,Uttar Dinajpur,Islampur,2,109289; 109298,Gobindapur; Ramganj-Ii,1,B: Single SOI Geometry to Multiple GPs
+308980,Bhagmahima,Uttar Dinajpur,Islampur,2,109286; 109292,Agdimti-Khanti; Kamalgaon-Sujali,1,B: Single SOI Geometry to Multiple GPs
+308997,Iluabari,Uttar Dinajpur,Islampur,2,109291; 109293,Islampur; Matikunda-I,1,B: Single SOI Geometry to Multiple GPs
+308998,Bolhanja,Uttar Dinajpur,Islampur,2,109291; 109293,Islampur; Matikunda-I,1,B: Single SOI Geometry to Multiple GPs
+309061,Teliapokhar,Uttar Dinajpur,Goalpokher - I,2,109277; 109278,Panjipara; Pokharia,1,B: Single SOI Geometry to Multiple GPs
+309103,Bara Singhanath,Uttar Dinajpur,Goalpokher - I,2,109267; 109274,Dharampur-I; Khagore,1,B: Single SOI Geometry to Multiple GPs
+309108,Athiala,Uttar Dinajpur,Goalpokher - I,2,109267; 109272,Dharampur-I; Goti,1,B: Single SOI Geometry to Multiple GPs
+309144,Pachra,Uttar Dinajpur,Goalpokher - I,2,109272; 109279,Goti; Sahapur-I,1,B: Single SOI Geometry to Multiple GPs
+309151,Unatiagachh,Uttar Dinajpur,Goalpokher - I,2,109272; 109279,Goti; Sahapur-I,1,B: Single SOI Geometry to Multiple GPs
+309189,Koimari,Uttar Dinajpur,Goalpokher - I,2,109270; 109279,Goagaon-Ii; Sahapur-I,1,B: Single SOI Geometry to Multiple GPs
+311997,Daula,Malda,Harischandrapur - I,2,109914; 109917,Barui; Kusidha,1,B: Single SOI Geometry to Multiple GPs
+312079,Mali Pakar,Malda,Harischandrapur - II,2,109921; 109926,Daulatpur; Mashaldaha,1,B: Single SOI Geometry to Multiple GPs
+312080,Daulatpur,Malda,Harischandrapur - II,2,109921; 109926,Daulatpur; Mashaldaha,1,B: Single SOI Geometry to Multiple GPs
+312126,Daulat Nagar,Malda,Harischandrapur - II,2,109922; 109929,Doulatnagar; Valuka,1,B: Single SOI Geometry to Multiple GPs
+312276,Kashimpur,Malda,Chanchal - II,2,109872; 109875,Dhangara-Bishanpur; Kshempur,1,B: Single SOI Geometry to Multiple GPs
+312349,Bajitpur,Malda,Ratua - I,2,109989; 109991,Debipur; Mahanandatola,1,B: Single SOI Geometry to Multiple GPs
+312382,Bahirkap,Malda,Ratua - I,2,109985; 109989,Bhado; Debipur,1,B: Single SOI Geometry to Multiple GPs
+312384,Bhado,Malda,Ratua - I,3,109985; 109992; 109993,Bhado; Ratua; Samsi,1,B: Single SOI Geometry to Multiple GPs
+312386,Arazi Balarampur,Malda,Ratua - I,2,109984; 109992,Baharal; Ratua,1,B: Single SOI Geometry to Multiple GPs
+312459,Purbba Balarampur,Malda,Ratua - II,2,109995; 109999,Maharajpur; Sambalpur,1,B: Single SOI Geometry to Multiple GPs
+312481,Gobarjana,Malda,Ratua - II,2,109994; 109998,Araidanga; Pukhuria,1,B: Single SOI Geometry to Multiple GPs
+312482,Pukhuria,Malda,Ratua - II,2,109997; 109998,Peerganj; Pukhuria,1,B: Single SOI Geometry to Multiple GPs
+312483,Nasipur,Malda,Ratua - II,2,109995; 109998,Maharajpur; Pukhuria,1,B: Single SOI Geometry to Multiple GPs
+312513,Bahirgachhi,Malda,Gazole,2,109890; 109891,Bairgachhi-I; Bairgachhi-Ii,1,B: Single SOI Geometry to Multiple GPs
+312830,Saranda,Malda,Bamangola,2,109856; 109858,Bamongola; Gobindapur-Maheshpur,1,B: Single SOI Geometry to Multiple GPs
+313002,Palashdanga,Malda,Habibpur,2,109904; 109905,Aktail; Baidyapur,1,B: Single SOI Geometry to Multiple GPs
+313102,Pathar Oltara,Malda,Habibpur,2,109908; 109911,Habibpur; Mangalpur,1,B: Single SOI Geometry to Multiple GPs
+313336,Bhabanipur,Malda,English Bazar,2,109885; 109887,Milki; Sovanagar,1,B: Single SOI Geometry to Multiple GPs
+313337,Khaskol Chandipur,Malda,English Bazar,2,109885; 109887,Milki; Sovanagar,1,B: Single SOI Geometry to Multiple GPs
+313353,Basudebpur,Malda,English Bazar,2,109878; 109885,Binodpur; Milki,1,B: Single SOI Geometry to Multiple GPs
+313355,Niamatpur,Malda,English Bazar,3,109877; 109878; 109879,Amriti; Binodpur; Fulbaria,1,B: Single SOI Geometry to Multiple GPs
+313432,Byaspur Arazi Inlis,Malda,English Bazar,2,109880; 109884,Jadupur-I; Mahadipur,1,B: Single SOI Geometry to Multiple GPs
+313470,Kesarpur,Malda,Manikchak,2,109972; 109977,Heeranandapur; Uttar Chandipur,1,B: Single SOI Geometry to Multiple GPs
+313472,Chandipurmal,Malda,Manikchak,2,109968; 109977,Dakshin Chandipur; Uttar Chandipur,1,B: Single SOI Geometry to Multiple GPs
+313473,Paschim Chandipur,Malda,Manikchak,2,109968; 109972,Dakshin Chandipur; Heeranandapur,1,B: Single SOI Geometry to Multiple GPs
+313485,Chandipur Tafir,Malda,Manikchak,2,109968; 109972,Dakshin Chandipur; Heeranandapur,1,B: Single SOI Geometry to Multiple GPs
+313496,Talim Nagar,Malda,Manikchak,2,109974; 109977,Mathurapur; Uttar Chandipur,1,B: Single SOI Geometry to Multiple GPs
+313498,Mahabbatpur,Malda,Manikchak,2,109975; 109977,Nazeerpur; Uttar Chandipur,1,B: Single SOI Geometry to Multiple GPs
+313503,Nazirpur,Malda,Manikchak,2,109975; 109977,Nazeerpur; Uttar Chandipur,1,B: Single SOI Geometry to Multiple GPs
+313517,Lalbathani,Malda,Manikchak,2,109975; 109976,Nazeerpur; Nurpur,1,B: Single SOI Geometry to Multiple GPs
+313530,Nawada,Malda,Manikchak,2,109969; 109973,Dharampur; Manikchak,1,B: Single SOI Geometry to Multiple GPs
+313531,Enayetpur,Malda,Manikchak,2,109969; 109970,Dharampur; Enayetpur,1,B: Single SOI Geometry to Multiple GPs
+313548,Khanpur,Malda,Manikchak,2,109969; 109971,Dharampur; Gopalpur,1,B: Single SOI Geometry to Multiple GPs
+313558,Sultanganj (P),Malda,Kaliachak - I,3,109956; 109957; 109937,Beernagar-I; Beernagar-Ii; Kaliachak-I,1,B: Single SOI Geometry to Multiple GPs
+313564,Bahadurpur,Malda,Kaliachak - I,2,109941; 109942,Silampur-I; Silampur-Ii,1,B: Single SOI Geometry to Multiple GPs
+313565,Krishnapur,Malda,Kaliachak - I,2,109941; 109942,Silampur-I; Silampur-Ii,1,B: Single SOI Geometry to Multiple GPs
+313622,Alipur (Ct),Malda,Kaliachak - I,3,109931; 109932; 109938,Alipur-I; Alipur-Ii; Kaliachak-Ii,1,B: Single SOI Geometry to Multiple GPs
+313623,Karari Chandpur (Ct),Malda,Kaliachak - I,3,109931; 109932; 109938,Alipur-I; Alipur-Ii; Kaliachak-Ii,1,B: Single SOI Geometry to Multiple GPs
+313628,Panchanandapur,Malda,Kaliachak - II,2,109951; 109952,Uttar Pachanandapur-Ii; Uttar Panchanandapur-I,1,B: Single SOI Geometry to Multiple GPs
+313649,Bishnuprosad,Malda,Kaliachak - II,2,109945; 109950,Gangaprasad; Uttar Lakshmipur,1,B: Single SOI Geometry to Multiple GPs
+313650,Dharampur,Malda,Kaliachak - II,2,109945; 109950,Gangaprasad; Uttar Lakshmipur,1,B: Single SOI Geometry to Multiple GPs
+313665,Jot Doman,Malda,Kaliachak - II,2,109945; 109949,Gangaprasad; Rathbari,1,B: Single SOI Geometry to Multiple GPs
+313675,Tap Protappur,Malda,Kaliachak - II,2,109945; 109947,Gangaprasad; Mothabari,1,B: Single SOI Geometry to Multiple GPs
+313678,Mathabari,Malda,Kaliachak - II,2,109947; 109950,Mothabari; Uttar Lakshmipur,1,B: Single SOI Geometry to Multiple GPs
+313679,Purbba Hosenabad,Malda,Kaliachak - II,2,109947; 109950,Mothabari; Uttar Lakshmipur,1,B: Single SOI Geometry to Multiple GPs
+313683,Dakshin Debipur,Malda,Kaliachak - II,2,109947; 109950,Mothabari; Uttar Lakshmipur,1,B: Single SOI Geometry to Multiple GPs
+313692,Chari Anantapur,Malda,Kaliachak - III,2,109959; 109960,Charianantapur; Golapganj,1,B: Single SOI Geometry to Multiple GPs
+313716,Baishnabnagar,Malda,Kaliachak - III,2,109956; 109957,Beernagar-I; Beernagar-Ii,1,B: Single SOI Geometry to Multiple GPs
+313718,Palgachhi,Malda,Kaliachak - III,2,109956; 109963,Beernagar-I; Lakshmipur,1,B: Single SOI Geometry to Multiple GPs
+313740,Kalinagar,Malda,Kaliachak - III,2,109960; 109966,Golapganj; Sahabanchak,1,B: Single SOI Geometry to Multiple GPs
+313743,Bedrabad,Malda,Kaliachak - III,2,109955; 109966,Bedrabad; Sahabanchak,1,B: Single SOI Geometry to Multiple GPs
+313809,Jafar Ganj,Murshidabad,Farakka,2,110611; 110612,Bahadurpur; Beniagram,1,B: Single SOI Geometry to Multiple GPs
+313836,Paranpara (Ct),Murshidabad,Farakka,2,110610; 110617,Arjunpur; Maheshpur,1,B: Single SOI Geometry to Multiple GPs
+313842,Ghoramara,Murshidabad,Samserganj,2,110744; 110751,Bogdadnagar; Tinpukuria,1,B: Single SOI Geometry to Multiple GPs
+313848,Dogachhi,Murshidabad,Samserganj,2,110743; 110746,Bhasaipaikar; Dogachhi Napara,1,B: Single SOI Geometry to Multiple GPs
+313871,Anup Nagar (Ct),Murshidabad,Samserganj,2,110748; 110751,Kanchantala; Tinpukuria,1,B: Single SOI Geometry to Multiple GPs
+313872,Jafrabad (Ct),Murshidabad,Samserganj,2,110748; 110751,Kanchantala; Tinpukuria,1,B: Single SOI Geometry to Multiple GPs
+313898,Hilora,Murshidabad,Suti - I,2,110754; 110755,Bansabati; Harua,1,B: Single SOI Geometry to Multiple GPs
+313918,Fatullapur,Murshidabad,Suti - I,2,110756; 110757,Nurpur; Sadikpur,1,B: Single SOI Geometry to Multiple GPs
+313934,Ajagarpara,Murshidabad,Suti - I,2,110752; 110754,Ahiran; Bansabati,1,B: Single SOI Geometry to Multiple GPs
+313981,Aurangabad (Ct),Murshidabad,Suti - II,2,110758; 110759,Aurangabad-I; Aurangabad-Ii,1,B: Single SOI Geometry to Multiple GPs
+313984,Dafahat(Ct),Murshidabad,Suti - II,2,110761; 110762,Jagtai-I; Jagtai-Ii,1,B: Single SOI Geometry to Multiple GPs
+313985,Paschim Punropara (Ct),Murshidabad,Suti - II,2,110760; 110764,Bajitpur; Laxmipur,1,B: Single SOI Geometry to Multiple GPs
+314040,Chakbahala,Murshidabad,Raghunathganj - I,2,110705; 110706,Mirjapur; Raninagar,1,B: Single SOI Geometry to Multiple GPs
+314055,Dafarpur (Ct),Murshidabad,Raghunathganj - I,2,110701; 110706,Dafarpur; Raninagar,1,B: Single SOI Geometry to Multiple GPs
+314141,Donalia (Ct),Murshidabad,Raghunathganj - II,2,110709; 110713,Jotkamal; Sammatinagar,1,B: Single SOI Geometry to Multiple GPs
+314147,Bayra,Murshidabad,Lalgola,2,110663; 110668,Bilborakopra; Maiya,1,B: Single SOI Geometry to Multiple GPs
+314151,Sahabazpur,Murshidabad,Lalgola,2,110663; 110667,Bilborakopra; Lalgola,1,B: Single SOI Geometry to Multiple GPs
+314161,Deoan Sarai,Murshidabad,Lalgola,2,110664; 110666,Dewansarai; Kalmegha,1,B: Single SOI Geometry to Multiple GPs
+314168,Amarkunda,Murshidabad,Lalgola,2,110664; 110668,Dewansarai; Maiya,1,B: Single SOI Geometry to Multiple GPs
+314220,Karttikpur,Murshidabad,Lalgola,2,110666; 110672,Kalmegha; Ramchandrapur,1,B: Single SOI Geometry to Multiple GPs
+314221,Kaimegha,Murshidabad,Lalgola,2,110666; 110672,Kalmegha; Ramchandrapur,1,B: Single SOI Geometry to Multiple GPs
+314224,Lalgola,Murshidabad,Lalgola,3,110662; 110663; 110667,Bahadurpur; Bilborakopra; Lalgola,1,B: Single SOI Geometry to Multiple GPs
+314230,Krishnapur,Murshidabad,Lalgola,4,110661; 110662; 110666; 110669,Airmari Krishnapur; Bahadurpur; Kalmegha; Manikchak,1,B: Single SOI Geometry to Multiple GPs
+314233,Krishnapur Dinurpara,Murshidabad,Lalgola,2,110661; 110669,Airmari Krishnapur; Manikchak,1,B: Single SOI Geometry to Multiple GPs
+314235,Bajupur Madhupur,Murshidabad,Lalgola,2,110665; 110672,Jasaitala; Ramchandrapur,1,B: Single SOI Geometry to Multiple GPs
+314404,Chargachhi,Murshidabad,Sagardighi,2,110734; 110742,Barala; Sagardighi,1,B: Single SOI Geometry to Multiple GPs
+314436,Dakshin Hanumanta Nagar,Murshidabad,Bhagawangola - I,2,110563; 110564,Hanumantanagar; Kantanagar,1,B: Single SOI Geometry to Multiple GPs
+314437,Kantanagar,Murshidabad,Bhagawangola - I,2,110562; 110564,Habaspur; Kantanagar,1,B: Single SOI Geometry to Multiple GPs
+314440,Mahishasthali,Murshidabad,Bhagawangola - I,2,110561; 110567,Bhagawangola; Mahisasthali,1,B: Single SOI Geometry to Multiple GPs
+314441,Belia Syampur,Murshidabad,Bhagawangola - I,2,110561; 110562,Bhagawangola; Habaspur,1,B: Single SOI Geometry to Multiple GPs
+314456,Naodapara,Murshidabad,Bhagawangola - I,2,110561; 110565,Bhagawangola; Kuthirampur,1,B: Single SOI Geometry to Multiple GPs
+314468,Bhundar Kismat,Murshidabad,Bhagawangola - I,2,110566; 110567,Mahammadpur; Mahisasthali,1,B: Single SOI Geometry to Multiple GPs
+314487,Habaspur,Murshidabad,Bhagawangola - I,2,110562; 110566,Habaspur; Mahammadpur,1,B: Single SOI Geometry to Multiple GPs
+314502,Nasipur,Murshidabad,Bhagawangola - II,2,110558; 110559,Kharibona; Nashipur,1,B: Single SOI Geometry to Multiple GPs
+314569,Malibari,Murshidabad,Raninagar - II,2,110727; 110728,Malibari-I; Malibari-Ii,1,B: Single SOI Geometry to Multiple GPs
+314578,Ramnagar Doemkanun,Murshidabad,Raninagar - II,2,110723; 110724,Kalinagar-I; Kalinagar-Ii,1,B: Single SOI Geometry to Multiple GPs
+314579,Ramnagar Chhoemkanun,Murshidabad,Raninagar - II,2,110723; 110724,Kalinagar-I; Kalinagar-Ii,1,B: Single SOI Geometry to Multiple GPs
+314581,Godhanpara,Murshidabad,Raninagar - II,2,110730; 110731,Raninagar-I; Raninagar-Ii,1,B: Single SOI Geometry to Multiple GPs
+314583,Babaltali,Murshidabad,Raninagar - II,2,110730; 110731,Raninagar-I; Raninagar-Ii,1,B: Single SOI Geometry to Multiple GPs
+314589,Katlamari,Murshidabad,Raninagar - II,2,110725; 110726,Katlamari-I; Katlamari-Ii,1,B: Single SOI Geometry to Multiple GPs
+314605,Debipur,Murshidabad,Jalangi,2,110630; 110634,Debipur; Katabari,1,B: Single SOI Geometry to Multiple GPs
+314611,Sagarpara,Murshidabad,Jalangi,2,110637; 110638,Sagarpara; Sahebnagar,1,B: Single SOI Geometry to Multiple GPs
+314626,Bara Bil Raghunathpur,Murshidabad,Jalangi,3,110632; 110633; 110636,Ghoshpara; Jalangi; Sadikhanderah,1,B: Single SOI Geometry to Multiple GPs
+314627,Muradpur Arazi,Murshidabad,Jalangi,2,110632; 110633,Ghoshpara; Jalangi,1,B: Single SOI Geometry to Multiple GPs
+314628,Nandalalpur Arazi,Murshidabad,Jalangi,2,110632; 110633,Ghoshpara; Jalangi,1,B: Single SOI Geometry to Multiple GPs
+314631,Muradpur Jalangi,Murshidabad,Jalangi,3,110629; 110632; 110633,Choapara; Ghoshpara; Jalangi,1,B: Single SOI Geometry to Multiple GPs
+314634,Paschim Sahebrampur,Murshidabad,Jalangi,2,110629; 110636,Choapara; Sadikhanderah,1,B: Single SOI Geometry to Multiple GPs
+314641,Faridpur,Murshidabad,Jalangi,2,110631; 110635,Faridpur; Khayramari,1,B: Single SOI Geometry to Multiple GPs
+314710,Garibpur,Murshidabad,Domkal,2,110602; 110606,Garibpur; Juranpur,1,B: Single SOI Geometry to Multiple GPs
+314734,Garaimari,Murshidabad,Domkal,2,110601; 110603,Garaimari; Ghoramara,1,B: Single SOI Geometry to Multiple GPs
+314800,Goas Kalikapur,Murshidabad,Raninagar - I,2,110717; 110722,Herampur; Tenkaraipur Balumati,1,B: Single SOI Geometry to Multiple GPs
+315179,Bil Patan,Murshidabad,Khargram,3,110649; 110656; 110657,Balia; Mahisar; Margram,1,B: Single SOI Geometry to Multiple GPs
+315323,Andar Manik,Murshidabad,Berhampore,2,110549; 110550,Radharghat-I; Radharghat-Ii,1,B: Single SOI Geometry to Multiple GPs
+315382,Bairgachhi,Murshidabad,Berhampore,2,110539; 110543,Bhakuri-Ii; Haridasmati,1,B: Single SOI Geometry to Multiple GPs
+315436,Kaladanga,Murshidabad,Berhampore,2,110540; 110545,Chhaighari; Madanpur,1,B: Single SOI Geometry to Multiple GPs
+315447,Gopjan (Ct),Murshidabad,Berhampore,2,110549; 110550,Radharghat-I; Radharghat-Ii,1,B: Single SOI Geometry to Multiple GPs
+315450,Chaltia (Ct),Murshidabad,Berhampore,2,110538; 110539,Bhakuri-I; Bhakuri-Ii,1,B: Single SOI Geometry to Multiple GPs
+315524,Bali,Murshidabad,Nawda,2,110691; 110692,Bali-I; Bali-Ii,1,B: Single SOI Geometry to Multiple GPs
+315560,Bhabta,Murshidabad,Beldanga - I,2,110515; 110522,Bhabta-I; Mahula-I,1,B: Single SOI Geometry to Multiple GPs
+315565,Gopinathpur,Murshidabad,Beldanga - I,2,110522; 110523,Mahula-I; Mahula-Ii,1,B: Single SOI Geometry to Multiple GPs
+315597,Kumarpur,Murshidabad,Beldanga - I,2,110525; 110526,Mirjapur-Ii; Sujapur-Kumarpur,1,B: Single SOI Geometry to Multiple GPs
+315605,Bishannagar,Murshidabad,Beldanga - I,2,110514; 110521,Begunbari; Madda,1,B: Single SOI Geometry to Multiple GPs
+315615,Mirzapur,Murshidabad,Beldanga - I,2,110524; 110525,Mirjapur-I; Mirjapur-Ii,1,B: Single SOI Geometry to Multiple GPs
+315781,Ruha Palisa,Murshidabad,Bharatpur - I,2,110573; 110574,Gundiria; Jajan,1,B: Single SOI Geometry to Multiple GPs
+316219,Barla,Birbhum,Nalhati - I,2,108850; 108855,Barla; Kalitha,1,B: Single SOI Geometry to Multiple GPs
+316410,Karkaria (Part),Birbhum,Rampurhat - I,2,108885; 108897,Kharun; Sahapur,1,B: Single SOI Geometry to Multiple GPs
+316437,Margram,Birbhum,Rampurhat - II,3,108895; 108896; 108897,Margram-I; Margram-Ii; Sahapur,1,B: Single SOI Geometry to Multiple GPs
+317119,Karidhya (Ct),Birbhum,Suri - I,2,108912; 108916,Karidhya; Tilpara,1,B: Single SOI Geometry to Multiple GPs
+317133,Bhagabanbati,Birbhum,Suri - II,2,108919; 108920,Domdama; Kendua,1,B: Single SOI Geometry to Multiple GPs
+317229,Laliapur,Birbhum,Sainthia,2,108902; 108905,Deriapur; Horisara,1,B: Single SOI Geometry to Multiple GPs
+317737,Nawada Palandi,Birbhum,Nanoor,2,108869; 108873,Jalundi; Thupsara,1,B: Single SOI Geometry to Multiple GPs
+318540,Hindusthan Cables Town (Ct),Paschim Bardhaman,Salanpur,2,108750; 108753,Jitpur-Uttarrampur; Rupnarayanpur,1,B: Single SOI Geometry to Multiple GPs
+318620,Jote Janaki,Paschim Bardhaman,Jamuria,2,108575; 108577,Kenda; Parasia,1,B: Single SOI Geometry to Multiple GPs
+318640,Kenda (Ct),Paschim Bardhaman,Jamuria,2,108573; 108575,Dobrana; Kenda,1,B: Single SOI Geometry to Multiple GPs
+318641,Parasia (Ct),Paschim Bardhaman,Jamuria,3,108573; 108575; 108577,Dobrana; Kenda; Parasia,1,B: Single SOI Geometry to Multiple GPs
+318642,Kendra Khottamdi (Ct) (Part),Paschim Bardhaman,Jamuria,2,108704; 108578,Kendra; Shyamla,1,B: Single SOI Geometry to Multiple GPs
+318683,Chak Bankola (Ct) (Part),Paschim Bardhaman,Andal,3,108702; 108705; 108699,Chhora; Nabagram; Ukhra,1,B: Single SOI Geometry to Multiple GPs
+318695,Banbahal,Paschim Bardhaman,Pandabeswar,2,108702; 108703,Chhora; Haripura,1,B: Single SOI Geometry to Multiple GPs
+318719,Chhora (Ct),Paschim Bardhaman,Pandabeswar,2,108702; 108703,Chhora; Haripura,1,B: Single SOI Geometry to Multiple GPs
+319067,Taldanga,Purba Bardhaman,Mangolkote,2,108653; 108657,Lakhuria; Paligram,1,B: Single SOI Geometry to Multiple GPs
+319097,Mangalkot,Purba Bardhaman,Mangolkote,2,108648; 108655,Jhilu-I; Mongalkot,1,B: Single SOI Geometry to Multiple GPs
+319258,Nabagram,Purba Bardhaman,Ketugram - II,2,108620; 108624,Billeswar; Nabagram,1,B: Single SOI Geometry to Multiple GPs
+319767,Orgram,Purba Bardhaman,Bhatar,2,108511; 108514,Mahata; Sahebganj-Ii,1,B: Single SOI Geometry to Multiple GPs
+319791,Debpur,Purba Bardhaman,Bhatar,2,108509; 108511,Eruar; Mahata,1,B: Single SOI Geometry to Multiple GPs
+319796,Kapshor,Purba Bardhaman,Bhatar,2,108503; 108507,Bamunara; Bhatar,1,B: Single SOI Geometry to Multiple GPs
+319825,Usha,Purba Bardhaman,Bhatar,2,108507; 108512,Bhatar; Nityanandapur,1,B: Single SOI Geometry to Multiple GPs
+319827,Balgana,Purba Bardhaman,Bhatar,2,108508; 108512,Bolgona; Nityanandapur,1,B: Single SOI Geometry to Multiple GPs
+319987,Omarpur,Purba Bardhaman,Galsi - II,2,108549; 108554,Bhunri; Maszidpur,1,B: Single SOI Geometry to Multiple GPs
+320011,Kishorkona,Purba Bardhaman,Galsi - II,2,108552; 108556,Khano; Satinandi,1,B: Single SOI Geometry to Multiple GPs
+320012,Satinandi,Purba Bardhaman,Galsi - II,2,108552; 108556,Khano; Satinandi,1,B: Single SOI Geometry to Multiple GPs
+320060,Kamnara,Purba Bardhaman,Burdwan - I,2,108519; 108523,Kshetia; Saraitikar,1,B: Single SOI Geometry to Multiple GPs
+320061,Simdali,Purba Bardhaman,Burdwan - I,2,108516; 108519,Baghar-Ii; Kshetia,1,B: Single SOI Geometry to Multiple GPs
+320167,Saktigar,Purba Bardhaman,Burdwan - II,2,108527; 108528,Barasul-I; Barasul-Ii,1,B: Single SOI Geometry to Multiple GPs
+320643,Balarampur,Purba Bardhaman,Jamalpur,2,108560; 108562,Berugram; Jamalpur-I,1,B: Single SOI Geometry to Multiple GPs
+320644,Kalera,Purba Bardhaman,Jamalpur,2,108562; 108563,Jamalpur-I; Jamalpur-Ii,1,B: Single SOI Geometry to Multiple GPs
+321054,Uttar Krishnapur,Nadia,Karimpur - I,2,110833; 110835,Harekrishnapur; Jamasherpur,1,B: Single SOI Geometry to Multiple GPs
+321106,Kechua Danga,Nadia,Karimpur - I,2,110834; 110840,Hogolberia; Shikarpur,1,B: Single SOI Geometry to Multiple GPs
+321124,Karimpur (Ct),Nadia,Karimpur - I,2,110836; 110837,Karimpur-I; Karimpur-Ii,1,B: Single SOI Geometry to Multiple GPs
+321126,Dogachhi,Nadia,Karimpur - II,2,110841; 110842,Dhoradaha-I; Dhoradaha-Ii,1,B: Single SOI Geometry to Multiple GPs
+321140,Narayanpur,Nadia,Karimpur - II,2,110846; 110847,Narayanpur-I; Narayanpur-Ii,1,B: Single SOI Geometry to Multiple GPs
+321255,Puthimari,Nadia,Tehatta - I,2,110940; 110941,Patharghata-I; Pathatghata-Ii,1,B: Single SOI Geometry to Multiple GPs
+321296,Palasi,Nadia,Kaliganj,2,110830; 110831,Plassey-I; Plassey-Ii,1,B: Single SOI Geometry to Multiple GPs
+321302,Erardanga,Nadia,Kaliganj,2,110824; 110830,Kaliganj; Plassey-I,1,B: Single SOI Geometry to Multiple GPs
+321320,Chak Gobindapur,Nadia,Kaliganj,2,110826; 110827,Mira-I; Mira-Ii,1,B: Single SOI Geometry to Multiple GPs
+321338,Gobra,Nadia,Kaliganj,2,110821; 110823,Gobra; Juranpur,1,B: Single SOI Geometry to Multiple GPs
+321365,Rautara,Nadia,Kaliganj,2,110822; 110828,Hatgachha; Palitbegia,1,B: Single SOI Geometry to Multiple GPs
+321401,Ghorai Khetra,Nadia,Kaliganj,2,110828; 110832,Palitbegia; Rajarmpur Ghoraikhetra,1,B: Single SOI Geometry to Multiple GPs
+321418,Mira (Ct),Nadia,Kaliganj,2,110826; 110827,Mira-I; Mira-Ii,1,B: Single SOI Geometry to Multiple GPs
+321419,Matiari (Ct),Nadia,Kaliganj,2,110820; 110825,Faridpur; Matiari,1,B: Single SOI Geometry to Multiple GPs
+321504,Birpur,Nadia,Nakashipara,2,110890; 110891,Birpur-I; Birpur-Ii,1,B: Single SOI Geometry to Multiple GPs
+321527,Jagadanandapur (Ct),Nadia,Nakashipara,2,110885; 110886,Bethuadahari-I; Bethuadahari-Ii,1,B: Single SOI Geometry to Multiple GPs
+321630,Khajuri,Nadia,Krishnagar - II,2,110875; 110876,Sadhanpara-I; Sadhanpara-Ii,1,B: Single SOI Geometry to Multiple GPs
+321654,Banagram,Nadia,Krishnagar - II,2,110871; 110872,Dhubulia-I; Dhubulia-Ii,1,B: Single SOI Geometry to Multiple GPs
+321659,Sankarpur,Nadia,Nabadwip,2,110877; 110883,Bablari; Mayapur Bamanpukur-Ii,1,B: Single SOI Geometry to Multiple GPs
+321674,Bankar Dhopadi,Nadia,Nabadwip,2,110880; 110881,Mahisura; Majdia Pansila,1,B: Single SOI Geometry to Multiple GPs
+321675,Parmedia,Nadia,Nabadwip,2,110878; 110880,Charmajdia Charbrahmanagar; Mahisura,1,B: Single SOI Geometry to Multiple GPs
+321676,Gadkhali,Nadia,Nabadwip,2,110878; 110880,Charmajdia Charbrahmanagar; Mahisura,1,B: Single SOI Geometry to Multiple GPs
+321678,Mohisunra,Nadia,Nabadwip,2,110879; 110880,Fakirdanga Gholapara; Mahisura,1,B: Single SOI Geometry to Multiple GPs
+321730,Krishnanagar (P),Nadia,Krishnagar - I,2,110861; 110866,Bhatjungla; Dogachi,2,A: Multiple SOI Geometries
+321792,Shyam Nagar,Nadia,Krishnaganj,2,110852; 110853,Gobindapur; Joyghata,1,B: Single SOI Geometry to Multiple GPs
+321836,Itabaria,Nadia,Hanskhali,2,110802; 110803,Dakshinpara-I; Dakshinpara-Ii,1,B: Single SOI Geometry to Multiple GPs
+321868,Purba Khamar Simulia,Nadia,Hanskhali,2,110799; 110800,Batkulla-I; Batkulla-Ii,1,B: Single SOI Geometry to Multiple GPs
+321879,Hanskhali,Nadia,Hanskhali,2,110801; 110807,Betna Gobindapur; Mayurhat-Ii,1,B: Single SOI Geometry to Multiple GPs
+321881,Muragachha,Nadia,Hanskhali,2,110798; 110805,Bagula-Ii; Mamjoan,1,B: Single SOI Geometry to Multiple GPs
+321911,Bagula (Ct),Nadia,Hanskhali,2,110797; 110798,Bagula-I; Bagula-Ii,1,B: Single SOI Geometry to Multiple GPs
+321912,Badkulla (Ct),Nadia,Hanskhali,2,110799; 110800,Batkulla-I; Batkulla-Ii,1,B: Single SOI Geometry to Multiple GPs
+321983,Phulia (Ct),Nadia,Santipur,3,110928; 110930; 110933,Belgoria-I; Fulia Township; Nabla,1,B: Single SOI Geometry to Multiple GPs
+321990,Birnagar (P),Nadia,Ranaghat - I,2,110902; 110903,Barasat; Kalinarayanpur Paharpur,1,B: Single SOI Geometry to Multiple GPs
+322010,Beleati,Nadia,Ranaghat - I,2,110901; 110905,Habibpur; Nawpara Masunda,1,B: Single SOI Geometry to Multiple GPs
+322073,Gopinagar Baghadanga,Nadia,Ranaghat - II,2,110913; 110915,Baidyapur-I; Debagram,1,B: Single SOI Geometry to Multiple GPs
+322163,Halalpur Krishnapur (Ct),Nadia,Ranaghat - II,2,110921; 110922,Raghunathpur Hijuli-I; Raghunathpur Hijuli-Ii,1,B: Single SOI Geometry to Multiple GPs
+322295,Srikrishnapur Char,Nadia,Kalyani,2,110769; 110776,Chanduria-Ii; Madanpur-Ii,1,B: Single SOI Geometry to Multiple GPs
+322359,Subuddipur,Nadia,Haringhata,2,244952; 110814,Kastodanga-I; Kastodanga-Ii,1,B: Single SOI Geometry to Multiple GPs
+322821,Bil Balli,North 24 Parganas,Swarupnagar,7,107967; 107968; 107969; 107971; 107972; 107974; 107975,Balti Nityanandakati; Bankra Gokulpur; Bithari Hakimpur; Gobindapur; Kaijuri; Sharapul Nirman; Swarupnagar Banglani,1,B: Single SOI Geometry to Multiple GPs
+323132,Jugberia,North 24 Parganas,Barrackpur - II,2,107833; 107834,Bilkanda-I; Bilkanda-Ii,1,B: Single SOI Geometry to Multiple GPs
+323141,Talbandha (Ct),North 24 Parganas,Barrackpur - II,2,107833; 107834,Bilkanda-I; Bilkanda-Ii,1,B: Single SOI Geometry to Multiple GPs
+323143,Muragachha (Ct),North 24 Parganas,Barrackpur - II,2,107833; 107834,Bilkanda-I; Bilkanda-Ii,1,B: Single SOI Geometry to Multiple GPs
+323688,Kamarganti,North 24 Parganas,Haroa,2,107917; 107918,Kulti; Sonapukur Sankarpur,1,B: Single SOI Geometry to Multiple GPs
+323696,Behari (P),North 24 Parganas,Haroa,2,107937; 107916,Atpukur; Khasbalanda,1,B: Single SOI Geometry to Multiple GPs
+323769,Bishnupur (Ct),North 24 Parganas,Rajarhat,2,107945; 107950,Chandpur; Rajarhat Bishnupur-Ii,1,B: Single SOI Geometry to Multiple GPs
+324005,Sahebkhali,North 24 Parganas,Hingalganj,2,107929; 107935,Dulduli; Sahebkhali,1,B: Single SOI Geometry to Multiple GPs
+324187,Fului,Hooghly,Goghat - II,2,109427; 109428,Badanganj-Falui-I; Badanganj-Falui-Ii,1,B: Single SOI Geometry to Multiple GPs
+324346,Taral,Hooghly,Arambag,2,109351; 109352,Harinkhola-I; Harinkhola-Ii,1,B: Single SOI Geometry to Multiple GPs
+324351,Amgaon,Hooghly,Arambag,2,109351; 109352,Harinkhola-I; Harinkhola-Ii,1,B: Single SOI Geometry to Multiple GPs
+324468,Bajitpur (P),Hooghly,Tarakeswar,2,109544; 109546,Baligori-I; Bhanjipur,1,B: Single SOI Geometry to Multiple GPs
+324475,Baidyapur,Hooghly,Tarakeswar,2,109544; 109546,Baligori-I; Bhanjipur,1,B: Single SOI Geometry to Multiple GPs
+325002,Bhabanipur Char,Hooghly,Balagarh,2,109368; 109373,Jirat; Sripur-Balagarh,1,B: Single SOI Geometry to Multiple GPs
+325091,Kola (Ct),Hooghly,Chinsurah - Magra,2,109399; 109400,Mogra-I; Mogra-Ii,1,B: Single SOI Geometry to Multiple GPs
+325102,Naldanga (Ct),Hooghly,Chinsurah - Magra,2,109392; 109395,Bandel; Debanandapur,1,B: Single SOI Geometry to Multiple GPs
+325103,Kulihanda (Ct),Hooghly,Chinsurah - Magra,2,109397; 109398,Kodalia-I; Kodalia-Ii,1,B: Single SOI Geometry to Multiple GPs
+325105,Simla (Ct),Hooghly,Chinsurah - Magra,2,109397; 109398,Kodalia-I; Kodalia-Ii,1,B: Single SOI Geometry to Multiple GPs
+325393,Bamanjol,Hooghly,Haripal,2,109438; 109441,Bandipur; Haripur Kinkarbati,1,B: Single SOI Geometry to Multiple GPs
+325423,Malia,Hooghly,Haripal,2,109445; 109449,Nalikulpaschim; Pyantra,1,B: Single SOI Geometry to Multiple GPs
+325458,Khagragachhi,Hooghly,Singur,2,109527; 109532,Beraberi; Kamarkundugopalnagardaluigachha,1,B: Single SOI Geometry to Multiple GPs
+325467,Gopalnagar,Hooghly,Singur,3,109531; 109532; 109536,Gopalnagar; Kamarkundugopalnagardaluigachha; Singur-Ii,1,B: Single SOI Geometry to Multiple GPs
+325468,Khordaapurbapur,Hooghly,Singur,2,109531; 109536,Gopalnagar; Singur-Ii,1,B: Single SOI Geometry to Multiple GPs
+325470,Gandarpukur,Hooghly,Singur,2,109521; 109536,Anandanagar; Singur-Ii,1,B: Single SOI Geometry to Multiple GPs
+325497,Atisara,Hooghly,Singur,2,109521; 109522,Anandanagar; Bagdangachinamore,1,B: Single SOI Geometry to Multiple GPs
+325506,Bhola,Hooghly,Singur,2,109524; 109532,Balarambati; Kamarkundugopalnagardaluigachha,1,B: Single SOI Geometry to Multiple GPs
+325513,Mirzapur-Bakipur,Hooghly,Singur,2,109524; 109533,Balarambati; Mirzapurbankipur,1,B: Single SOI Geometry to Multiple GPs
+325514,Shibrambati,Hooghly,Singur,3,109524; 109526; 109533,Balarambati; Basubati; Mirzapurbankipur,1,B: Single SOI Geometry to Multiple GPs
+325527,Raghunathpur,Hooghly,Singur,2,109525; 109533,Baruiparapaltagarh; Mirzapurbankipur,1,B: Single SOI Geometry to Multiple GPs
+325545,Bara Kamalapur,Hooghly,Singur,2,109529; 109530,Bora; Boraipahalampur,1,B: Single SOI Geometry to Multiple GPs
+325556,Singur (Ct),Hooghly,Singur,3,109524; 109535; 109536,Balarambati; Singur-I; Singur-Ii,1,B: Single SOI Geometry to Multiple GPs
+325665,Purbba Tajpur (Ct),Hooghly,Chanditala - II,2,109385; 109391,Begumpur; Panchghora,1,B: Single SOI Geometry to Multiple GPs
+325767,Nilarpur,Hooghly,Jangipara,2,109453; 109457,Furfura; Radhanagar,1,B: Single SOI Geometry to Multiple GPs
+325804,Rajbalhat (Ct),Hooghly,Jangipara,2,109458; 109459,Rajbalhat-I; Rajbalhat-Ii,1,B: Single SOI Geometry to Multiple GPs
+332686,Ghoshpur,Howrah,Amta - I,2,109553; 109557,Amta; Bhandargachha,1,B: Single SOI Geometry to Multiple GPs
+332696,Amta (Ct),Howrah,Amta - I,2,109553; 109563,Amta; Sirajbati,1,B: Single SOI Geometry to Multiple GPs
+332809,Uttar Jhapardaha (Ct),Howrah,Domjur,2,109618; 109622,Parbatipur; Uttar Jhapardaha,1,B: Single SOI Geometry to Multiple GPs
+332810,Dafarpur (Ct),Howrah,Domjur,2,109617; 109618,Narna; Parbatipur,1,B: Single SOI Geometry to Multiple GPs
+332813,Dakshin Jhapardaha (Ct),Howrah,Domjur,2,109609; 109622,Dakshin Jhapardaha; Uttar Jhapardaha,1,B: Single SOI Geometry to Multiple GPs
+332820,Salap (Ct),Howrah,Domjur,2,109620; 109621,Shalap-I; Shalap-Ii,1,B: Single SOI Geometry to Multiple GPs
+332821,Bankra (Ct),Howrah,Domjur,3,109605; 109606; 109607,Bankra-I; Bankra-Ii; Bankra-Iii,1,B: Single SOI Geometry to Multiple GPs
+332822,Nibra (Ct),Howrah,Domjur,2,109606; 109621,Bankra-Ii; Shalap-Ii,1,B: Single SOI Geometry to Multiple GPs
+332823,Ankurhati (Ct),Howrah,Domjur,2,109614; 109615,Mahiyari-Ii; Makardah-I,1,B: Single SOI Geometry to Multiple GPs
+332826,Kesabpur (Ct),Howrah,Domjur,3,109608; 109609; 109619,Begari; Dakshin Jhapardaha; Rudrapur,1,B: Single SOI Geometry to Multiple GPs
+332829,Kalara (Ct),Howrah,Domjur,2,109611; 109612,Kolora-I; Kolora-Ii,1,B: Single SOI Geometry to Multiple GPs
+332831,Mahiari (Ct),Howrah,Domjur,2,109613; 109614,Mahiyari-I; Mahiyari-Ii,1,B: Single SOI Geometry to Multiple GPs
+332835,Jaypur Bil (Ct),Howrah,Bally Jagachha,3,109598; 109601; 109603,Chakpara Anandanagar; Durgapur Abhaynagar-Ii; Nischinda,1,B: Single SOI Geometry to Multiple GPs
+332836,Bally (Ct),Howrah,Bally Jagachha,5,109597; 109600; 109601; 109603; 109604,Bali; Durgapur Abhaynagar-I; Durgapur Abhaynagar-Ii; Nischinda; Sanpuipara Basukati,1,B: Single SOI Geometry to Multiple GPs
+332861,Jhorhat (Ct),Howrah,Sankrail,2,109650; 109654,Banpur-Ii; Jorhat,1,B: Single SOI Geometry to Multiple GPs
+332870,Sankrail (Ct),Howrah,Sankrail,2,109651; 109661,Dakshin Sankrail; Sankrail,1,B: Single SOI Geometry to Multiple GPs
+332871,Sankrailjala (Ct),Howrah,Sankrail,2,109651; 109661,Dakshin Sankrail; Sankrail,1,B: Single SOI Geometry to Multiple GPs
+332875,Ula (Ct),Howrah,Sankrail,2,109658; 109660,Nalpur; Raghudebbati,1,B: Single SOI Geometry to Multiple GPs
+332877,Raghudebbati (Ct),Howrah,Sankrail,2,109658; 109660,Nalpur; Raghudebbati,1,B: Single SOI Geometry to Multiple GPs
+332882,Jala Bishwanathpur,Howrah,Panchla,2,109637; 109643,Banharishpur; Jalabiswanathpur,1,B: Single SOI Geometry to Multiple GPs
+332898,Jujarsaha (Ct),Howrah,Panchla,2,109644; 109647,Jujarsaha; Suvarara,1,B: Single SOI Geometry to Multiple GPs
+332908,Ban Harishpur (Ct),Howrah,Panchla,2,109637; 109643,Banharishpur; Jalabiswanathpur,1,B: Single SOI Geometry to Multiple GPs
+332910,Panchla (Ct),Howrah,Panchla,2,109640; 109645,Chara-Panchla; Panchla,1,B: Single SOI Geometry to Multiple GPs
+332936,Kantaberia (Ct),Howrah,Uluberia - II,2,109707; 109708,Tehatta-Kantaberia-I; Tehatta-Kantaberia-Ii,1,B: Single SOI Geometry to Multiple GPs
+333181,Alipur,Howrah,Shyampur - I,2,109664; 109671,Balichaturi; Nabagram,1,B: Single SOI Geometry to Multiple GPs
+333317,Uttar Raypur (Ct),South 24 Parganas,Budge Budge - I,2,108051; 108055,Chingripota; Uttar Raipur,1,B: Single SOI Geometry to Multiple GPs
+333318,Balarampur (Ct),South 24 Parganas,Budge Budge - I,2,108051; 108055,Chingripota; Uttar Raipur,1,B: Single SOI Geometry to Multiple GPs
+333387,Bowali (Ct),South 24 Parganas,Budge Budge - II,2,108063; 108066,North Bawali; South Bawali,1,B: Single SOI Geometry to Multiple GPs
+333389,Poali (Ct),South 24 Parganas,Budge Budge - II,2,108059; 108064,Gaja Poyali; Rania,1,B: Single SOI Geometry to Multiple GPs
+333394,Khariberia,South 24 Parganas,Bishnupur - I,2,108036; 108037,Paschim Bishnupur; Purba Bishnupur,1,B: Single SOI Geometry to Multiple GPs
+333423,Dakshin Gouripur,South 24 Parganas,Bishnupur - I,2,108030; 108031,Bhandaria Kastekumari; Dakshin Gauripur Chakdhir,1,B: Single SOI Geometry to Multiple GPs
+333476,Bhasa (Ct),South 24 Parganas,Bishnupur - I,2,108036; 108037,Paschim Bishnupur; Purba Bishnupur,1,B: Single SOI Geometry to Multiple GPs
+333477,Bishnupur (Ct),South 24 Parganas,Bishnupur - I,2,108036; 108037,Paschim Bishnupur; Purba Bishnupur,1,B: Single SOI Geometry to Multiple GPs
+333573,Banhugli,South 24 Parganas,Sonarpur,2,108272; 108273,Bangooghly-I; Banhooghly-Ii,1,B: Single SOI Geometry to Multiple GPs
+333661,Satbaria,South 24 Parganas,Bhangar - I,2,108010; 108012,Chandaneswar-I; Durgapur,1,B: Single SOI Geometry to Multiple GPs
+333760,Sibnagar,South 24 Parganas,Canning - I,2,108068; 108076,Daria; Taldi,1,B: Single SOI Geometry to Multiple GPs
+333784,Hero Bhanga,South 24 Parganas,Canning - I,2,108070; 108072,Gopalpur; Itkhola,1,B: Single SOI Geometry to Multiple GPs
+333818,Matla (Ct),South 24 Parganas,Canning - I,2,108073; 108074,Matla-I; Matla-Ii,0,C: Zero SOI Geometries
+333869,Jogendra Nagar,South 24 Parganas,Canning - II,2,108080; 108081,Kalikatala; Matherdighi,1,B: Single SOI Geometry to Multiple GPs
+333894,Kapindapur,South 24 Parganas,Baruipur,2,107986; 107987,Madarat; Mallikpur,1,B: Single SOI Geometry to Multiple GPs
+333902,Begampur,South 24 Parganas,Baruipur,2,107977; 107995,Begumpur; South Garia,1,B: Single SOI Geometry to Multiple GPs
+333940,Banbere,South 24 Parganas,Baruipur,2,107991; 107993,Shankarpur-I; Shikharbali-I,1,B: Single SOI Geometry to Multiple GPs
+333959,Nachangachha,South 24 Parganas,Baruipur,2,107982; 107988,Dhapdhapi-Ii; Nabagram,1,B: Single SOI Geometry to Multiple GPs
+334080,Maitir Hat,South 24 Parganas,Magrahat - II,2,108201; 108209,Gokarni; Urelchandpur,1,B: Single SOI Geometry to Multiple GPs
+334098,Dhamua (Ct),South 24 Parganas,Magrahat - II,2,108197; 108198,Dhamua Dakshin; Dhamua Uttar,1,B: Single SOI Geometry to Multiple GPs
+334105,Magrahat (Ct),South 24 Parganas,Magrahat - II,2,108204; 108205,Magrahat Paschim; Magrahat Purba,1,B: Single SOI Geometry to Multiple GPs
+334186,Sadashibpur (M) (P),South 24 Parganas,Mandirbazar,3,108217; 108188; 108219,Kecharkur; Lakshmikantapur; Nisapur,0,C: Zero SOI Geometries
+334212,Rajarampur,South 24 Parganas,Falta,2,108108; 108113,Falta; Mallikpur,1,B: Single SOI Geometry to Multiple GPs
+334276,Mulpunja,South 24 Parganas,Falta,2,108111; 108112,Harindanga-I; Harindanga-Ii,1,B: Single SOI Geometry to Multiple GPs
+334278,Keyat Khanda,South 24 Parganas,Falta,2,108109; 108112,Fatepur; Harindanga-Ii,1,B: Single SOI Geometry to Multiple GPs
+334279,Dostapur,South 24 Parganas,Falta,2,108109; 108112,Fatepur; Harindanga-Ii,1,B: Single SOI Geometry to Multiple GPs
+334327,Chandpala Anantapathpur (Ct),South 24 Parganas,Falta,2,108105; 108111,Belsingha-Ii; Harindanga-I,1,B: Single SOI Geometry to Multiple GPs
+334340,Jaydebpur,South 24 Parganas,Diamond Harbour - I,2,108089; 108093,Harindanga; Parulia,1,B: Single SOI Geometry to Multiple GPs
+334385,Radhaballabhpur,South 24 Parganas,Diamond Harbour - I,2,108088; 108092,Derak; Netra,1,B: Single SOI Geometry to Multiple GPs
+334592,Gouripur,South 24 Parganas,Kulpi,2,108168; 108171,Kamarchak; Kulpi,1,B: Single SOI Geometry to Multiple GPs
+334595,Basudebpur,South 24 Parganas,Kulpi,2,108168; 108171,Kamarchak; Kulpi,1,B: Single SOI Geometry to Multiple GPs
+334662,Lakshmipur,South 24 Parganas,Kulpi,2,108162; 108170,Baburmahal; Keoratala,1,B: Single SOI Geometry to Multiple GPs
+334927,Srikrishnanagar,South 24 Parganas,Jaynagar - I,2,108135; 108136,Jangalia; Khakurdaha,1,B: Single SOI Geometry to Multiple GPs
+334938,Purba Gabberia,South 24 Parganas,Jaynagar - I,2,108130; 108131,Bamangachhi; Chaltaberia,1,B: Single SOI Geometry to Multiple GPs
+334943,Charaghata,South 24 Parganas,Jaynagar - I,2,108133; 108138,Dhosa Chandaneswar; Rajapur Korabeg,1,B: Single SOI Geometry to Multiple GPs
+334946,Kamaria,South 24 Parganas,Jaynagar - I,2,108130; 108131,Bamangachhi; Chaltaberia,1,B: Single SOI Geometry to Multiple GPs
+335007,Meraganj,South 24 Parganas,Kultali,2,108183; 108184,Meriganj-I; Meriganj-Ii,1,B: Single SOI Geometry to Multiple GPs
+335111,Nafarganj,South 24 Parganas,Basanti,2,107998; 108006,Bharatgarh; Nafarganj,3,A: Multiple SOI Geometries
+335171,Khari,South 24 Parganas,Mathurapur - II,2,108231; 108235,Gilarchhat; Khari,1,B: Single SOI Geometry to Multiple GPs
+335176,Gilarchat,South 24 Parganas,Mathurapur - II,2,108231; 108239,Gilarchhat; Radhakantapur,1,B: Single SOI Geometry to Multiple GPs
+344292,Mahishdol,Purba Medinipur,Panskura,2,110150; 110159,Chaitanyapur-Ii; Pratappur-Ii,1,B: Single SOI Geometry to Multiple GPs
+344327,Raybandh,Purba Medinipur,Panskura,2,110150; 110159,Chaitanyapur-Ii; Pratappur-Ii,1,B: Single SOI Geometry to Multiple GPs
+344343,Shrirampur,Purba Medinipur,Panskura,2,110149; 110161,Chaitanyapur-I; Radhaballavchak,1,B: Single SOI Geometry to Multiple GPs
+344585,Gathra,Purba Medinipur,Sahid Matangini,2,110200; 110201,Kharui-I; Kharui-Ii,1,B: Single SOI Geometry to Multiple GPs
+344660,Saorabere Jalpai (P),Purba Medinipur,Nanda Kumar,2,110115; 110129,Naichanpur-Ii; Seoraberiajalpai-I,1,B: Single SOI Geometry to Multiple GPs
+344717,Jalpai,Purba Medinipur,Nanda Kumar,2,110130; 110131,Seoraberiajalpai-Ii; Shitalpurpaschim,1,B: Single SOI Geometry to Multiple GPs
+345207,Kismat Bajkul,Purba Medinipur,Bhagawanpur - II,2,110015; 110016,Garbari-I; Garbari-Ii,1,B: Single SOI Geometry to Multiple GPs
+345377,Mahammadpur,Purba Medinipur,Bhagawanpur - I,2,110009; 110010,Mahammadpur-I; Mahammadpur-Ii,1,B: Single SOI Geometry to Multiple GPs
+345616,Brajalal Chak,Purba Medinipur,Chandipur,2,110021; 110028,Brajalalchak; Kulbari,1,B: Single SOI Geometry to Multiple GPs
+345846,Kalicharanpur,Purba Medinipur,Nandigram - I,2,110136; 110141,Kalicharanpur; Sonachura,1,B: Single SOI Geometry to Multiple GPs
+345906,Chingur Dania,Purba Medinipur,Khejuri - I,2,110078; 110080,Kamarda; Tikashi,1,B: Single SOI Geometry to Multiple GPs
+345910,Jahanabad,Purba Medinipur,Khejuri - I,2,110077; 110078,Kalagechhia; Kamarda,1,B: Single SOI Geometry to Multiple GPs
+345912,Kamarda,Purba Medinipur,Khejuri - I,2,110077; 110078,Kalagechhia; Kamarda,1,B: Single SOI Geometry to Multiple GPs
+346278,Harranamaldina,Purba Medinipur,Deshopran,2,110047; 110048,Amtalia; Aurai,1,B: Single SOI Geometry to Multiple GPs
+346309,Kurkraul (P),Purba Medinipur,Deshopran,2,110046; 110054,Marishda; Sarada,1,B: Single SOI Geometry to Multiple GPs

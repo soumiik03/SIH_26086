@@ -1,0 +1,16 @@
+{
+  "forecast_status": "EXPERIMENTAL_OBSERVATION_STATE",
+  "disclaimer": "This engine operates from the available observation/feature state. It is not yet an operational 7-30 day dynamical forecast.",
+  "data_timestamp": "2025-12-31T00:00:00Z",
+  "districts_forecasted": 12,
+  "blocks_forecasted": 187,
+  "safe_panchayats_forecasted": 1710,
+  "safe_panchayat_polygons": 1719,
+  "official_gps_intentionally_excluded": 85,
+  "unsupported_blocks_deficit": 166,
+  "output_files": {
+    "block_forecast": "data/processed/spatial_forecasts\\latest_block_forecast.geojson",
+    "panchayat_forecast": "data/processed/spatial_forecasts\\latest_panchayat_forecast.geojson",
+    "risk_map": "data/processed/spatial_forecasts\\latest_risk_map.geojson"
+  }
+}

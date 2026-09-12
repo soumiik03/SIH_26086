@@ -1,0 +1,86 @@
+gp_lgd_code,gp_name,district_code,district_name,block_code,block_name,num_lgd_villages,num_villages_in_soi,num_villages_absent_soi,is_exclusively_split_geom,has_any_safe_villages,classification
+107808,Chhoto Jagulia,303,North 24 Parganas,2325,Barasat - I,11,11,0,False,False,ADMINISTRATIVE_MISMATCH
+107809,Dattapukur-I,303,North 24 Parganas,2325,Barasat - I,2,2,0,False,False,ADMINISTRATIVE_MISMATCH
+107810,Dattapukur-Ii,303,North 24 Parganas,2325,Barasat - I,3,3,0,False,False,ADMINISTRATIVE_MISMATCH
+107811,Ichhapur-Nilganj,303,North 24 Parganas,2325,Barasat - I,18,18,0,False,False,ADMINISTRATIVE_MISMATCH
+107812,Kadambagachhi,303,North 24 Parganas,2325,Barasat - I,13,13,0,False,False,ADMINISTRATIVE_MISMATCH
+107813,Kashimpur,303,North 24 Parganas,2325,Barasat - I,9,9,0,False,False,ADMINISTRATIVE_MISMATCH
+107814,Kotra,303,North 24 Parganas,2325,Barasat - I,15,15,0,False,False,ADMINISTRATIVE_MISMATCH
+107815,Paschim Khilkapur,303,North 24 Parganas,2325,Barasat - I,8,8,0,False,False,ADMINISTRATIVE_MISMATCH
+107816,Purba Khilkapur,303,North 24 Parganas,2325,Barasat - I,3,3,0,False,False,ADMINISTRATIVE_MISMATCH
+108073,Matla-I,304,South 24 Parganas,2420,Canning - I,1,0,1,False,False,NO_SURVEY_GEOMETRY
+108074,Matla-Ii,304,South 24 Parganas,2420,Canning - I,1,0,1,False,False,NO_SURVEY_GEOMETRY
+108231,Gilarchhat,304,South 24 Parganas,2436,Mathurapur - II,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+108235,Khari,304,South 24 Parganas,2436,Mathurapur - II,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+108575,Kenda,704,Paschim Bardhaman,2270,Jamuria,3,3,0,True,False,FULLY_EXCLUDED_MULTI_GP
+108577,Parasia,704,Paschim Bardhaman,2270,Jamuria,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+108896,Margram-Ii,307,Birbhum,2254,Rampurhat - II,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109030,Balarampur-Ii,308,Cooch Behar,2185,Tufanganj - I,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109535,Singur-I,312,Hooghly,2349,Singur,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109597,Bali,313,Howrah,2403,Bally Jagachha,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109600,Durgapur Abhaynagar-I,313,Howrah,2403,Bally Jagachha,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109601,Durgapur Abhaynagar-Ii,313,Howrah,2403,Bally Jagachha,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109603,Nischinda,313,Howrah,2403,Bally Jagachha,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109604,Sanpuipara Basukati,313,Howrah,2403,Bally Jagachha,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109605,Bankra-I,313,Howrah,2402,Domjur,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109606,Bankra-Ii,313,Howrah,2402,Domjur,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109607,Bankra-Iii,313,Howrah,2402,Domjur,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109613,Mahiyari-I,313,Howrah,2402,Domjur,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109621,Shalap-Ii,313,Howrah,2402,Domjur,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109650,Banpur-Ii,313,Howrah,2404,Sankrail,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109732,Banarhat-I,314,Jalpaiguri,7118,Banarhat,7,5,2,False,False,OTHER
+109733,Banarhat-Ii,314,Jalpaiguri,7118,Banarhat,11,11,0,False,False,ADMINISTRATIVE_MISMATCH
+109735,Binnaguri,314,Jalpaiguri,7118,Banarhat,5,5,0,False,False,ADMINISTRATIVE_MISMATCH
+109736,Chamurchi,314,Jalpaiguri,7118,Banarhat,5,5,0,False,False,ADMINISTRATIVE_MISMATCH
+109744,Sakoyajhora-I,314,Jalpaiguri,7118,Banarhat,7,7,0,False,False,ADMINISTRATIVE_MISMATCH
+109746,Salbari-I,314,Jalpaiguri,7118,Banarhat,6,6,0,False,False,ADMINISTRATIVE_MISMATCH
+109747,Salbari-Ii,314,Jalpaiguri,7118,Banarhat,7,7,0,False,False,ADMINISTRATIVE_MISMATCH
+109760,Arabinda,314,Jalpaiguri,2178,Jalpaiguri,3,3,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109766,Kharia,314,Jalpaiguri,2178,Jalpaiguri,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109767,Kharija-Berubari-I,314,Jalpaiguri,2178,Jalpaiguri,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109768,Kharija-Berubari-Ii,314,Jalpaiguri,2178,Jalpaiguri,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109769,Mondalghat,314,Jalpaiguri,2178,Jalpaiguri,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109772,Patkata,314,Jalpaiguri,2178,Jalpaiguri,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109778,Jaigaon-Ii,664,Alipurduar,2171,Kalchini,1,0,1,False,False,NO_SURVEY_GEOMETRY
+109797,Birpara-I,664,Alipurduar,2170,Madarihat,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109807,Changmari,314,Jalpaiguri,7119; 2167,Kranti; Mal,12,12,0,False,False,ADMINISTRATIVE_MISMATCH
+109808,Chapadanga,314,Jalpaiguri,7119,Kranti,11,11,0,False,False,ADMINISTRATIVE_MISMATCH
+109810,Jkranti,314,Jalpaiguri,7119,Kranti,7,7,0,False,False,ADMINISTRATIVE_MISMATCH
+109812,Lataguri,314,Jalpaiguri,7119,Kranti,3,3,0,False,False,ADMINISTRATIVE_MISMATCH
+109813,Moulani,314,Jalpaiguri,7119,Kranti,5,5,0,False,False,ADMINISTRATIVE_MISMATCH
+109815,Rajadanga,314,Jalpaiguri,7119,Kranti,11,11,0,False,False,ADMINISTRATIVE_MISMATCH
+109845,Dabgram-I,314,Jalpaiguri,2166,Rajganj,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109846,Dabgram-Ii,314,Jalpaiguri,2166,Rajganj,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109847,Fulbari-I,314,Jalpaiguri,2166,Rajganj,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109848,Fulbari-Ii,314,Jalpaiguri,2166,Rajganj,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109853,Sannyasikata,314,Jalpaiguri,2166,Rajganj,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109855,Sukhani,314,Jalpaiguri,2166,Rajganj,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109931,Alipur-I,316,Malda,2220,Kaliachak - I,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109951,Uttar Pachanandapur-Ii,316,Malda,2221,Kaliachak - II,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+109957,Beernagar-Ii,316,Malda,2220; 2222,Kaliachak - I; Kaliachak - III,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110549,Radharghat-I,319,Murshidabad,2241,Berhampore,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110559,Nashipur,319,Murshidabad,2232,Bhagawangola - II,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110564,Kantanagar,319,Murshidabad,2231,Bhagawangola - I,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110692,Bali-Ii,319,Murshidabad,2243,Nawda,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110751,Tinpukuria,319,Murshidabad,2224,Samserganj,3,3,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110758,Aurangabad-I,319,Murshidabad,2226,Suti - II,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110759,Aurangabad-Ii,319,Murshidabad,2226,Suti - II,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110760,Bajitpur,319,Murshidabad,2226,Suti - II,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110769,Chanduria-Ii,320,Nadia,6966,Kalyani,4,4,0,False,False,OTHER
+110774,Kancharapara,320,Nadia,6966,Kalyani,10,10,0,False,False,ADMINISTRATIVE_MISMATCH
+110775,Madanpur-I,320,Nadia,6966,Kalyani,6,6,0,False,False,ADMINISTRATIVE_MISMATCH
+110776,Madanpur-Ii,320,Nadia,6966,Kalyani,4,4,0,False,False,OTHER
+110777,Saguna,320,Nadia,6966,Kalyani,10,10,0,False,False,ADMINISTRATIVE_MISMATCH
+110778,Sarati,320,Nadia,6966,Kalyani,12,12,0,False,False,ADMINISTRATIVE_MISMATCH
+110781,Simurali,320,Nadia,6966,Kalyani,9,9,0,False,False,ADMINISTRATIVE_MISMATCH
+110879,Fakirdanga Gholapara,320,Nadia,2307,Nabadwip,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+110930,Fulia Township,320,Nadia,2311,Santipur,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+261006,Lower Echhay,702,Kalimpong,2156,Kalimpong -I,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+261016,Upper Echhay,702,Kalimpong,2156,Kalimpong -I,1,1,0,True,False,FULLY_EXCLUDED_MULTI_GP
+261021,Kage,702,Kalimpong,7051,Pedong,3,3,0,False,False,ADMINISTRATIVE_MISMATCH
+261022,Kashyong,702,Kalimpong,7051,Pedong,1,1,0,False,False,ADMINISTRATIVE_MISMATCH
+261024,Lingseykha,702,Kalimpong,7051,Pedong,2,2,0,False,False,ADMINISTRATIVE_MISMATCH
+261027,Pedon,702,Kalimpong,7051,Pedong,2,2,0,False,False,ADMINISTRATIVE_MISMATCH
+261030,Syakiyong,702,Kalimpong,7051,Pedong,2,2,0,False,False,ADMINISTRATIVE_MISMATCH
+261050,Paheligaon School Dara-Ii,309,Darjeeling,2160,Mirik,2,2,0,True,False,FULLY_EXCLUDED_MULTI_GP
+299521,Lingsey,702,Kalimpong,7051,Pedong,1,1,0,False,False,ADMINISTRATIVE_MISMATCH
