@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color: #17231f; background: #f5f7f2; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; font-family: var(--font-manrope), sans-serif; background: #f5f7f2; }
+button, select { font: inherit; }
+.maplibregl-canvas { outline: none; }
+.maplibregl-ctrl-group { border: 1px solid #dbe4dc; box-shadow: 0 4px 16px rgba(23, 35, 31, .08); }
+.maplibregl-ctrl button { background-color: #fff; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.animate-rise { animation: rise .5s ease-out both; }
