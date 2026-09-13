@@ -36,8 +36,8 @@ export default function ForecastPanel({
 
         const [panchayatData, forecastData] =
           await Promise.all([
-            api.getPanchayat(panchayatId),
-            api.getForecast(panchayatId),
+            api.panchayat(panchayatId),
+            api.forecast(panchayatId),
           ]);
 
         setPanchayat(panchayatData);
