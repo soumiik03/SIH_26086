@@ -1,6 +1,7 @@
 """Cached access to verified VARSHASENTINEL spatial forecast artifacts."""
 
 import json
+import ast
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List
@@ -150,6 +151,14 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
         
     }
     statistical_outlook = p.get("statistical_7_30_day_outlook")
+    if isinstance(statistical_outlook, str):
+        try:
+            statistical_outlook = ast.literal_eval(statistical_outlook)
+        except Exception:
+            try:
+                statistical_outlook = json.loads(statistical_outlook)
+            except Exception:
+                pass
     return {
         "panchayat_id": str(p["panchayat_id"]),
         "panchayat_name": str(p["panchayat_name"]),
@@ -188,9 +197,18 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
 def health() -> Dict[str, Any]:
     available = {
         "onset": (ROOT / "models" / "iod_enhanced" / "target_onset_window_14d_xgb.joblib").is_file(),
-        "false_onset": (ROOT / "models" / "iod_enhanced" / "target_false_onset_flag_xgb.joblib").is_file(),
-        "revival": (ROOT / "models" / "iod_enhanced" / "target_revival_7d_xgb.joblib").is_file(),
-        "heavy_rain": (ROOT / "models" / "iod_enhanced" / "target_heavy_rain_7d_xgb.joblib").is_file(),
+        "false_onset": (
+            (ROOT / "models" / "atmospheric_enhanced" / "target_false_onset_flag_xgb.joblib").is_file()
+            or (ROOT / "models" / "iod_enhanced" / "target_false_onset_flag_xgb.joblib").is_file()
+        ),
+        "revival": (
+            (ROOT / "models" / "atmospheric_enhanced" / "target_revival_7d_xgb.joblib").is_file()
+            or (ROOT / "models" / "iod_enhanced" / "target_revival_7d_xgb.joblib").is_file()
+        ),
+        "heavy_rain": (
+            (ROOT / "models" / "atmospheric_enhanced" / "target_heavy_rain_7d_xgb.joblib").is_file()
+            or (ROOT / "models" / "iod_enhanced" / "target_heavy_rain_7d_xgb.joblib").is_file()
+        ),
         "dry_spell_5d": (ROOT / "models" / "target_dry_spell_5d_14d_xgb.joblib").is_file(),
         "severe_break_7d": (ROOT / "models" / "target_dry_spell_7d_21d_xgb.joblib").is_file(),
     }

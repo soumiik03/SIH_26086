@@ -51,7 +51,11 @@ logger = logging.getLogger("varshasentinel.spatial_forecast")
 DEFAULT_BLOCKS_PATH = "data/spatial/derived/west_bengal_blocks.geojson"
 DEFAULT_PANCHAYATS_PATH = "data/spatial/derived/west_bengal_panchayats_safe.geojson"
 DEFAULT_MISSING_GP_PATH = "reports/missing_gp_coverage.csv"
-DEFAULT_DATASET_PATH = "data/processed/varshasentinel_master_with_iod.parquet"
+DEFAULT_DATASET_PATH = (
+    "data/processed/varshasentinel_master_with_atmospheric_signals.parquet"
+    if os.path.exists("data/processed/varshasentinel_master_with_atmospheric_signals.parquet")
+    else "data/processed/varshasentinel_master_with_iod.parquet"
+)
 DEFAULT_OUTPUT_DIR = "data/processed/spatial_forecasts"
 
 OPERATIONAL_STATUS = "EXPERIMENTAL_OBSERVATION_STATE"
@@ -305,10 +309,17 @@ def get_statistical_outlook_properties(forecast: Dict[str, Any]) -> Dict[str, An
             raise ValueError(f"Statistical outlook {horizon} is missing fields: {missing}")
         values = {}
         for event in STATISTICAL_OUTLOOK_EVENTS:
-            probability = float(source_horizon[event])
-            if not 0.0 <= probability <= 1.0:
+            probability = source_horizon[event]
+            if probability is not None:
+                probability = float(probability)
+            if probability is not None and not 0.0 <= probability <= 1.0:
                 raise ValueError(f"Statistical outlook probability out of bounds: {horizon}.{event}")
             values[event] = probability
+            applicability_key = event.removesuffix("_probability") + "_applicability"
+            applicability = source_horizon.get(applicability_key)
+            if applicability not in {"APPLICABLE", "OUT_OF_SEASON"}:
+                raise ValueError(f"Statistical outlook is missing valid applicability: {horizon}.{event}")
+            values[applicability_key] = applicability
         values["forecast_status"] = STATISTICAL_OUTLOOK_STATUS
         values["model_versions"] = source_horizon.get("model_versions", {})
         result[horizon] = values
@@ -651,6 +662,18 @@ class SpatialForecastEngine:
             "blocks_forecasted": len(block_gdf),
             "safe_panchayats_forecasted": panchayat_gdf["gp_lgd_code"].nunique(),
             "safe_panchayat_polygons": len(panchayat_gdf),
+            "panchayat_polygon_excess_over_unique_lgd": int(
+                len(panchayat_gdf) - panchayat_gdf["gp_lgd_code"].nunique()
+            ),
+            "panchayat_lgd_ids_with_multiple_polygons": int(
+                (panchayat_gdf["gp_lgd_code"].value_counts() > 1).sum()
+            ),
+            "panchayat_count_definition": (
+                "safe_panchayats_forecasted counts unique GP LGD identifiers; "
+                "safe_panchayat_polygons counts returned spatial features. "
+                "The difference is caused by duplicated GP LGD identifiers across "
+                "multiple source block polygons and is retained pending cadastral reconciliation."
+            ),
             "official_gps_intentionally_excluded": len(self.missing_gps_df),
             "unsupported_blocks_deficit": len(self.blocks_gdf) - len(block_gdf),
             "output_files": {

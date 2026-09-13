@@ -9,6 +9,7 @@ and deterministic agrometeorological advisory mapping.
 
 import os
 import json
+import ast
 import unittest
 import pandas as pd
 import geopandas as gpd
@@ -239,6 +240,8 @@ class TestSpatialForecastLayer(unittest.TestCase):
         """Every block and safe Panchayat carries all horizon/event outlook fields."""
         for gdf in [self.block_gdf, self.panchayat_gdf]:
             for outlook in gdf["statistical_7_30_day_outlook"]:
+                if isinstance(outlook, str):
+                    outlook = ast.literal_eval(outlook)
                 self.assertEqual(outlook["forecast_status"], STATISTICAL_OUTLOOK_STATUS)
                 self.assertIn("not an NWP or S2S forecast", outlook["disclaimer"])
                 for horizon in STATISTICAL_OUTLOOK_HORIZONS:
@@ -246,8 +249,13 @@ class TestSpatialForecastLayer(unittest.TestCase):
                     self.assertEqual(outlook[horizon]["forecast_status"], STATISTICAL_OUTLOOK_STATUS)
                     for event in STATISTICAL_OUTLOOK_EVENTS:
                         self.assertIn(event, outlook[horizon])
-                        self.assertGreaterEqual(outlook[horizon][event], 0.0)
-                        self.assertLessEqual(outlook[horizon][event], 1.0)
+                        probability = outlook[horizon][event]
+                        if probability is not None:
+                            self.assertGreaterEqual(probability, 0.0)
+                            self.assertLessEqual(probability, 1.0)
+                        applicability = event.removesuffix("_probability") + "_applicability"
+                        self.assertIn(applicability, outlook[horizon])
+                        self.assertIn(outlook[horizon][applicability], {"APPLICABLE", "OUT_OF_SEASON"})
 
     def test_forecast_metadata_records_outlook_and_coverage(self):
         metadata_path = os.path.join(self.output_dir, "forecast_run_metadata.json")

@@ -22,6 +22,9 @@
   "blocks_forecasted": 187,
   "safe_panchayats_forecasted": 1710,
   "safe_panchayat_polygons": 1719,
+  "panchayat_polygon_excess_over_unique_lgd": 9,
+  "panchayat_lgd_ids_with_multiple_polygons": 7,
+  "panchayat_count_definition": "safe_panchayats_forecasted counts unique GP LGD identifiers; safe_panchayat_polygons counts returned spatial features. The difference is caused by duplicated GP LGD identifiers across multiple source block polygons and is retained pending cadastral reconciliation.",
   "official_gps_intentionally_excluded": 85,
   "unsupported_blocks_deficit": 166,
   "output_files": {

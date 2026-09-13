@@ -49,9 +49,9 @@ class TestForecastEngine(unittest.TestCase):
         """Verify all 6 benchmark models load correctly from their respective benchmark directories."""
         expected_heads = {
             "onset": ("iod_enhanced", "models/iod_enhanced"),
-            "false_onset": ("iod_enhanced", "models/iod_enhanced"),
-            "revival": ("iod_enhanced", "models/iod_enhanced"),
-            "heavy_rain": ("iod_enhanced", "models/iod_enhanced"),
+            "false_onset": ("atmospheric_enhanced", "models/atmospheric_enhanced"),
+            "revival": ("atmospheric_enhanced", "models/atmospheric_enhanced"),
+            "heavy_rain": ("atmospheric_enhanced", "models/atmospheric_enhanced"),
             "dry_spell_5d": ("baseline_v1", "models"),
             "severe_break_7d": ("baseline_v1", "models")
         }
@@ -207,10 +207,10 @@ class TestForecastEngine(unittest.TestCase):
             self.assertEqual(metadata["model_version"], "horizon_7_30d_calibrated_platt_sigmoid")
 
     def test_horizon_feature_schema_exact_ordering(self):
-        """The horizon vector exactly matches the separately saved 29-column schema."""
+        """The horizon vector exactly matches the separately saved 38-column schema."""
         horizon = self.engine.prepare_horizon_feature_vector(self.valid_obs)
         expected = self.engine.horizon_feature_metadata["feature_names"]
-        self.assertEqual(len(expected), 29)
+        self.assertEqual(len(expected), 38)
         self.assertEqual(list(horizon.columns), expected)
         self.assertNotIn("District_Encoded", expected)
         self.assertNotIn("Zone_Encoded", expected)
@@ -229,8 +229,22 @@ class TestForecastEngine(unittest.TestCase):
             self.assertTrue(expected_events.issubset(values))
             self.assertEqual(set(values["model_versions"]), {"dry_spell", "severe_break", "heavy_rain", "revival"})
             for event in expected_events:
-                self.assertGreaterEqual(values[event], 0.0)
-                self.assertLessEqual(values[event], 1.0)
+                applicability = event.removesuffix("_probability") + "_applicability"
+                self.assertIn(values[applicability], {"APPLICABLE", "OUT_OF_SEASON"})
+                if values[event] is not None:
+                    self.assertGreaterEqual(values[event], 0.0)
+                    self.assertLessEqual(values[event], 1.0)
+
+    def test_out_of_season_horizon_events_are_explicitly_unavailable(self):
+        result = self.engine.predict({**self.valid_obs, "Date": "2025-12-15"})
+        values = result["statistical_7_30_day_outlook"]["horizons"]["7_14d"]
+        self.assertIsNone(values["dry_spell_probability"])
+        self.assertEqual(values["dry_spell_applicability"], "OUT_OF_SEASON")
+        self.assertIsNone(values["severe_break_probability"])
+        self.assertEqual(values["severe_break_applicability"], "OUT_OF_SEASON")
+        self.assertIsNone(values["revival_probability"])
+        self.assertEqual(values["revival_applicability"], "OUT_OF_SEASON")
+        self.assertEqual(values["heavy_rain_applicability"], "APPLICABLE")
 
         self.assertEqual(result["forecast_sections"]["existing_short_horizon_event_forecasts"]["forecast_status"], "EXPERIMENTAL_OBSERVATION_STATE")
         self.assertEqual(result["forecast_sections"]["statistical_7_30_day_outlook"]["forecast_status"], "STATISTICAL_7_30_DAY_OUTLOOK")

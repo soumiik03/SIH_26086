@@ -4,102 +4,113 @@
     "event": "dry_spell",
     "horizon": "7_14d",
     "description": "At least five consecutive days below 2.5 mm",
-    "n_train": 17532,
-    "n_validation": 4392,
-    "n_test": 4380,
+    "n_train": 7344,
+    "n_validation": 1836,
+    "n_test": 1836,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 252
+    },
+    "out_of_season": {
+      "train": 10188,
+      "validation": 2556,
+      "test": 2292
+    },
+    "class_balance": {
+      "train_positive": 4653,
+      "train_negative": 2691,
+      "validation_positive": 1273,
+      "validation_negative": 563,
+      "test_positive": 1212,
+      "test_negative": 624
+    },
     "test": {
-      "brier_score": 0.12502908109948446,
-      "roc_auc": 0.8108653882586951,
-      "pr_auc": 0.9322298468252272,
-      "f1": 0.897823779193206,
-      "precision": 0.8375835602871998,
-      "recall": 0.9674006291106663,
-      "positive_event_rate": 0.7984018264840183
+      "brier_score": 0.17514716760242555,
+      "roc_auc": 0.8163080731150038,
+      "pr_auc": 0.9039256198694898,
+      "f1": 0.8091937249179132,
+      "precision": 0.7253106605624591,
+      "recall": 0.915016501650165,
+      "positive_event_rate": 0.6601307189542484
     },
     "climatology": {
-      "brier_score": 0.16120854431114415,
+      "brier_score": 0.22506317682301677,
       "roc_auc": 0.5,
-      "pr_auc": 0.7984018264840183,
-      "f1": 0.8879014853370573,
-      "precision": 0.7984018264840183,
+      "pr_auc": 0.6601307189542484,
+      "f1": 0.7952755905511811,
+      "precision": 0.6601307189542484,
       "recall": 1.0,
-      "positive_event_rate": 0.7984018264840183,
-      "forecast_probability": 0.8142824549395391
+      "positive_event_rate": 0.6601307189542484,
+      "forecast_probability": 0.633578431372549
     },
-    "validation_brier": 0.08515625393594423,
-    "decision_threshold_from_validation": 0.32999999999999996,
+    "validation_brier": 0.15094843190664153,
+    "decision_threshold_from_validation": 0.29,
     "calibration": {
       "method": "platt_sigmoid",
       "reliability_test": [
         {
-          "bin_lower": 0.0,
-          "bin_upper": 0.1,
-          "count": 70,
-          "mean_predicted": 0.08042604450655022,
-          "observed_rate": 0.18571428571428572
-        },
-        {
           "bin_lower": 0.1,
           "bin_upper": 0.2,
-          "count": 146,
-          "mean_predicted": 0.14214891935316332,
-          "observed_rate": 0.3287671232876712
+          "count": 188,
+          "mean_predicted": 0.16436947741379387,
+          "observed_rate": 0.2074468085106383
         },
         {
           "bin_lower": 0.2,
           "bin_upper": 0.30000000000000004,
-          "count": 90,
-          "mean_predicted": 0.25083009401773887,
-          "observed_rate": 0.4222222222222222
+          "count": 126,
+          "mean_predicted": 0.24725933878354292,
+          "observed_rate": 0.5317460317460317
         },
         {
           "bin_lower": 0.30000000000000004,
           "bin_upper": 0.4,
-          "count": 112,
-          "mean_predicted": 0.3483907005202606,
-          "observed_rate": 0.4107142857142857
+          "count": 88,
+          "mean_predicted": 0.3509070428595813,
+          "observed_rate": 0.4090909090909091
         },
         {
           "bin_lower": 0.4,
           "bin_upper": 0.5,
-          "count": 92,
-          "mean_predicted": 0.45144627633394696,
-          "observed_rate": 0.31521739130434784
+          "count": 65,
+          "mean_predicted": 0.4490540328099563,
+          "observed_rate": 0.27692307692307694
         },
         {
           "bin_lower": 0.5,
           "bin_upper": 0.6000000000000001,
-          "count": 84,
-          "mean_predicted": 0.548221192269208,
-          "observed_rate": 0.4642857142857143
+          "count": 76,
+          "mean_predicted": 0.5488583372949332,
+          "observed_rate": 0.2894736842105263
         },
         {
           "bin_lower": 0.6000000000000001,
           "bin_upper": 0.7000000000000001,
-          "count": 95,
-          "mean_predicted": 0.6595593341347182,
-          "observed_rate": 0.5052631578947369
+          "count": 122,
+          "mean_predicted": 0.6484743957617083,
+          "observed_rate": 0.5327868852459017
         },
         {
           "bin_lower": 0.7000000000000001,
           "bin_upper": 0.8,
-          "count": 181,
-          "mean_predicted": 0.7566415218521315,
-          "observed_rate": 0.5193370165745856
+          "count": 191,
+          "mean_predicted": 0.755739563787623,
+          "observed_rate": 0.612565445026178
         },
         {
           "bin_lower": 0.8,
           "bin_upper": 0.9,
-          "count": 419,
-          "mean_predicted": 0.8594886215898047,
-          "observed_rate": 0.7255369928400954
+          "count": 464,
+          "mean_predicted": 0.8608246943637474,
+          "observed_rate": 0.7607758620689655
         },
         {
           "bin_lower": 0.9,
           "bin_upper": 1.0,
-          "count": 3091,
-          "mean_predicted": 0.9512364875808872,
-          "observed_rate": 0.9181494661921709
+          "count": 516,
+          "mean_predicted": 0.9121846824825025,
+          "observed_rate": 0.9593023255813954
         }
       ]
     },
@@ -113,102 +124,113 @@
     "event": "dry_spell",
     "horizon": "15_21d",
     "description": "At least five consecutive days below 2.5 mm",
-    "n_train": 17532,
-    "n_validation": 4392,
-    "n_test": 4380,
+    "n_train": 7344,
+    "n_validation": 1836,
+    "n_test": 1836,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 336
+    },
+    "out_of_season": {
+      "train": 10188,
+      "validation": 2556,
+      "test": 2208
+    },
+    "class_balance": {
+      "train_positive": 4641,
+      "train_negative": 2703,
+      "validation_positive": 1263,
+      "validation_negative": 573,
+      "test_positive": 1205,
+      "test_negative": 631
+    },
     "test": {
-      "brier_score": 0.147272680710119,
-      "roc_auc": 0.7617631917631918,
-      "pr_auc": 0.8888049992607991,
-      "f1": 0.8804112554112554,
-      "precision": 0.8010832102412605,
-      "recall": 0.9771771771771772,
-      "positive_event_rate": 0.7602739726027398
+      "brier_score": 0.16362234343680696,
+      "roc_auc": 0.834459561652123,
+      "pr_auc": 0.9078009905328586,
+      "f1": 0.8249630723781388,
+      "precision": 0.7431803060545575,
+      "recall": 0.9269709543568465,
+      "positive_event_rate": 0.656318082788671
     },
     "climatology": {
-      "brier_score": 0.18377458528997004,
+      "brier_score": 0.2261587312394093,
       "roc_auc": 0.5,
-      "pr_auc": 0.7602739726027398,
-      "f1": 0.8638132295719845,
-      "precision": 0.7602739726027398,
+      "pr_auc": 0.656318082788671,
+      "f1": 0.7925024662939822,
+      "precision": 0.656318082788671,
       "recall": 1.0,
-      "positive_event_rate": 0.7602739726027398,
-      "forecast_probability": 0.7992242756103126
+      "positive_event_rate": 0.656318082788671,
+      "forecast_probability": 0.6319444444444444
     },
-    "validation_brier": 0.0873481705268749,
-    "decision_threshold_from_validation": 0.19,
+    "validation_brier": 0.1427279352796537,
+    "decision_threshold_from_validation": 0.30999999999999994,
     "calibration": {
       "method": "platt_sigmoid",
       "reliability_test": [
         {
-          "bin_lower": 0.0,
-          "bin_upper": 0.1,
-          "count": 148,
-          "mean_predicted": 0.07783731089641233,
-          "observed_rate": 0.1554054054054054
-        },
-        {
           "bin_lower": 0.1,
           "bin_upper": 0.2,
-          "count": 177,
-          "mean_predicted": 0.14202800453902686,
-          "observed_rate": 0.3220338983050847
+          "count": 233,
+          "mean_predicted": 0.1488015618856562,
+          "observed_rate": 0.2017167381974249
         },
         {
           "bin_lower": 0.2,
           "bin_upper": 0.30000000000000004,
-          "count": 67,
-          "mean_predicted": 0.24534129620861286,
-          "observed_rate": 0.373134328358209
+          "count": 89,
+          "mean_predicted": 0.25242246843104776,
+          "observed_rate": 0.4157303370786517
         },
         {
           "bin_lower": 0.30000000000000004,
           "bin_upper": 0.4,
-          "count": 58,
-          "mean_predicted": 0.35592970531991136,
-          "observed_rate": 0.2413793103448276
+          "count": 83,
+          "mean_predicted": 0.3445774128116833,
+          "observed_rate": 0.43373493975903615
         },
         {
           "bin_lower": 0.4,
           "bin_upper": 0.5,
-          "count": 60,
-          "mean_predicted": 0.4514378758851426,
-          "observed_rate": 0.45
+          "count": 49,
+          "mean_predicted": 0.4537442396348309,
+          "observed_rate": 0.3877551020408163
         },
         {
           "bin_lower": 0.5,
           "bin_upper": 0.6000000000000001,
-          "count": 53,
-          "mean_predicted": 0.5509168981981485,
-          "observed_rate": 0.5471698113207547
+          "count": 99,
+          "mean_predicted": 0.5570408980605484,
+          "observed_rate": 0.5050505050505051
         },
         {
           "bin_lower": 0.6000000000000001,
           "bin_upper": 0.7000000000000001,
-          "count": 137,
-          "mean_predicted": 0.6558463690536456,
-          "observed_rate": 0.43795620437956206
+          "count": 186,
+          "mean_predicted": 0.6550708158737731,
+          "observed_rate": 0.44623655913978494
         },
         {
           "bin_lower": 0.7000000000000001,
           "bin_upper": 0.8,
-          "count": 323,
-          "mean_predicted": 0.7550319173705438,
-          "observed_rate": 0.6006191950464397
+          "count": 177,
+          "mean_predicted": 0.7521308462060667,
+          "observed_rate": 0.5932203389830508
         },
         {
           "bin_lower": 0.8,
           "bin_upper": 0.9,
-          "count": 509,
-          "mean_predicted": 0.853775198051824,
-          "observed_rate": 0.6974459724950884
+          "count": 272,
+          "mean_predicted": 0.8572587983968873,
+          "observed_rate": 0.8088235294117647
         },
         {
           "bin_lower": 0.9,
           "bin_upper": 1.0,
-          "count": 2848,
-          "mean_predicted": 0.9531006586555365,
-          "observed_rate": 0.8939606741573034
+          "count": 648,
+          "mean_predicted": 0.9325458604695446,
+          "observed_rate": 0.9382716049382716
         }
       ]
     },
@@ -222,102 +244,113 @@
     "event": "dry_spell",
     "horizon": "22_30d",
     "description": "At least five consecutive days below 2.5 mm",
-    "n_train": 17532,
-    "n_validation": 4392,
-    "n_test": 4380,
+    "n_train": 7344,
+    "n_validation": 1836,
+    "n_test": 1836,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 444
+    },
+    "out_of_season": {
+      "train": 10188,
+      "validation": 2556,
+      "test": 2100
+    },
+    "class_balance": {
+      "train_positive": 5166,
+      "train_negative": 2178,
+      "validation_positive": 1385,
+      "validation_negative": 451,
+      "test_positive": 1343,
+      "test_negative": 493
+    },
     "test": {
-      "brier_score": 0.1636656089161552,
-      "roc_auc": 0.677107009405146,
-      "pr_auc": 0.8393621012739694,
-      "f1": 0.8770239528970962,
-      "precision": 0.8008308895405669,
-      "recall": 0.9692398698609879,
-      "positive_event_rate": 0.7719178082191781
+      "brier_score": 0.14535478043205366,
+      "roc_auc": 0.8541456791204941,
+      "pr_auc": 0.9420701818120102,
+      "f1": 0.8670842032011135,
+      "precision": 0.813847158719791,
+      "recall": 0.9277736411020104,
+      "positive_event_rate": 0.7314814814814815
     },
     "climatology": {
-      "brier_score": 0.17917721953704832,
+      "brier_score": 0.19720313234226153,
       "roc_auc": 0.5,
-      "pr_auc": 0.7719178082191781,
-      "f1": 0.8712794742945497,
-      "precision": 0.7719178082191781,
+      "pr_auc": 0.7314814814814815,
+      "f1": 0.8449197860962567,
+      "precision": 0.7314814814814815,
       "recall": 1.0,
-      "positive_event_rate": 0.7719178082191781,
-      "forecast_probability": 0.8277435546429386
+      "positive_event_rate": 0.7314814814814815,
+      "forecast_probability": 0.7034313725490197
     },
-    "validation_brier": 0.07986632641138997,
-    "decision_threshold_from_validation": 0.32999999999999996,
+    "validation_brier": 0.12093834236555821,
+    "decision_threshold_from_validation": 0.37999999999999995,
     "calibration": {
       "method": "platt_sigmoid",
       "reliability_test": [
         {
-          "bin_lower": 0.0,
-          "bin_upper": 0.1,
-          "count": 141,
-          "mean_predicted": 0.07461992226421611,
-          "observed_rate": 0.2198581560283688
-        },
-        {
           "bin_lower": 0.1,
           "bin_upper": 0.2,
-          "count": 100,
-          "mean_predicted": 0.14145387581641353,
-          "observed_rate": 0.45
+          "count": 198,
+          "mean_predicted": 0.14806908582106948,
+          "observed_rate": 0.2777777777777778
         },
         {
           "bin_lower": 0.2,
           "bin_upper": 0.30000000000000004,
-          "count": 38,
-          "mean_predicted": 0.25180063778803574,
-          "observed_rate": 0.6052631578947368
+          "count": 65,
+          "mean_predicted": 0.24251360884098278,
+          "observed_rate": 0.36923076923076925
         },
         {
           "bin_lower": 0.30000000000000004,
           "bin_upper": 0.4,
-          "count": 51,
-          "mean_predicted": 0.3508829705504425,
-          "observed_rate": 0.45098039215686275
+          "count": 53,
+          "mean_predicted": 0.34820484250261335,
+          "observed_rate": 0.4339622641509434
         },
         {
           "bin_lower": 0.4,
           "bin_upper": 0.5,
-          "count": 59,
-          "mean_predicted": 0.45340844017191895,
-          "observed_rate": 0.3728813559322034
+          "count": 46,
+          "mean_predicted": 0.46063701551400466,
+          "observed_rate": 0.41304347826086957
         },
         {
           "bin_lower": 0.5,
           "bin_upper": 0.6000000000000001,
-          "count": 65,
-          "mean_predicted": 0.5522904166424731,
-          "observed_rate": 0.4461538461538462
+          "count": 50,
+          "mean_predicted": 0.5516012617377222,
+          "observed_rate": 0.6
         },
         {
           "bin_lower": 0.6000000000000001,
           "bin_upper": 0.7000000000000001,
-          "count": 57,
-          "mean_predicted": 0.6514676138383168,
-          "observed_rate": 0.5087719298245614
+          "count": 84,
+          "mean_predicted": 0.6565590462568516,
+          "observed_rate": 0.5595238095238095
         },
         {
           "bin_lower": 0.7000000000000001,
           "bin_upper": 0.8,
-          "count": 154,
-          "mean_predicted": 0.7581866702113211,
-          "observed_rate": 0.5194805194805194
+          "count": 139,
+          "mean_predicted": 0.7578428931684758,
+          "observed_rate": 0.5755395683453237
         },
         {
           "bin_lower": 0.8,
           "bin_upper": 0.9,
-          "count": 520,
-          "mean_predicted": 0.8557621686078226,
-          "observed_rate": 0.6384615384615384
+          "count": 259,
+          "mean_predicted": 0.8539813496257906,
+          "observed_rate": 0.6756756756756757
         },
         {
           "bin_lower": 0.9,
           "bin_upper": 1.0,
-          "count": 3195,
-          "mean_predicted": 0.9485976135264467,
-          "observed_rate": 0.8660406885758999
+          "count": 942,
+          "mean_predicted": 0.9328375564913416,
+          "observed_rate": 0.9447983014861996
         }
       ]
     },
@@ -331,102 +364,113 @@
     "event": "severe_break",
     "horizon": "7_14d",
     "description": "At least seven consecutive days below 2.5 mm",
-    "n_train": 17532,
-    "n_validation": 4392,
-    "n_test": 4380,
+    "n_train": 7344,
+    "n_validation": 1836,
+    "n_test": 1836,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 252
+    },
+    "out_of_season": {
+      "train": 10188,
+      "validation": 2556,
+      "test": 2292
+    },
+    "class_balance": {
+      "train_positive": 3507,
+      "train_negative": 3837,
+      "validation_positive": 942,
+      "validation_negative": 894,
+      "test_positive": 887,
+      "test_negative": 949
+    },
     "test": {
-      "brier_score": 0.12561467031415247,
-      "roc_auc": 0.8443716739513092,
-      "pr_auc": 0.888923461998657,
-      "f1": 0.8874107722258274,
-      "precision": 0.8715742511153601,
-      "recall": 0.9038334434897555,
-      "positive_event_rate": 0.6908675799086758
+      "brier_score": 0.15976549896523115,
+      "roc_auc": 0.851009132024097,
+      "pr_auc": 0.8652711132087441,
+      "f1": 0.7645398080180689,
+      "precision": 0.7658371040723982,
+      "recall": 0.7632468996617813,
+      "positive_event_rate": 0.4831154684095861
     },
     "climatology": {
-      "brier_score": 0.21451723740240197,
+      "brier_score": 0.24974608012231755,
       "roc_auc": 0.5,
-      "pr_auc": 0.6908675799086758,
-      "f1": 0.817175263300027,
-      "precision": 0.6908675799086758,
-      "recall": 1.0,
-      "positive_event_rate": 0.6908675799086758,
-      "forecast_probability": 0.7216518366415697
+      "pr_auc": 0.4831154684095861,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "positive_event_rate": 0.4831154684095861,
+      "forecast_probability": 0.4775326797385621
     },
-    "validation_brier": 0.08742258653142038,
-    "decision_threshold_from_validation": 0.61,
+    "validation_brier": 0.14909654284845342,
+    "decision_threshold_from_validation": 0.5399999999999999,
     "calibration": {
       "method": "platt_sigmoid",
       "reliability_test": [
         {
-          "bin_lower": 0.0,
-          "bin_upper": 0.1,
-          "count": 362,
-          "mean_predicted": 0.0713990421743903,
-          "observed_rate": 0.10773480662983426
-        },
-        {
           "bin_lower": 0.1,
           "bin_upper": 0.2,
-          "count": 321,
-          "mean_predicted": 0.14206468351541338,
-          "observed_rate": 0.2398753894080997
+          "count": 568,
+          "mean_predicted": 0.13910418754972717,
+          "observed_rate": 0.176056338028169
         },
         {
           "bin_lower": 0.2,
           "bin_upper": 0.30000000000000004,
-          "count": 149,
-          "mean_predicted": 0.24328763119430485,
-          "observed_rate": 0.19463087248322147
+          "count": 174,
+          "mean_predicted": 0.2378445726846678,
+          "observed_rate": 0.2413793103448276
         },
         {
           "bin_lower": 0.30000000000000004,
           "bin_upper": 0.4,
-          "count": 117,
-          "mean_predicted": 0.34561856366819377,
-          "observed_rate": 0.29914529914529914
+          "count": 86,
+          "mean_predicted": 0.34427761290021114,
+          "observed_rate": 0.20930232558139536
         },
         {
           "bin_lower": 0.4,
           "bin_upper": 0.5,
-          "count": 142,
-          "mean_predicted": 0.44818974562298897,
-          "observed_rate": 0.4084507042253521
+          "count": 87,
+          "mean_predicted": 0.45185680851740384,
+          "observed_rate": 0.367816091954023
         },
         {
           "bin_lower": 0.5,
           "bin_upper": 0.6000000000000001,
-          "count": 138,
-          "mean_predicted": 0.5546729105126276,
-          "observed_rate": 0.3333333333333333
+          "count": 104,
+          "mean_predicted": 0.5516646337746359,
+          "observed_rate": 0.4807692307692308
         },
         {
           "bin_lower": 0.6000000000000001,
           "bin_upper": 0.7000000000000001,
-          "count": 145,
-          "mean_predicted": 0.6536666354269055,
-          "observed_rate": 0.5448275862068965
+          "count": 112,
+          "mean_predicted": 0.6550537639710827,
+          "observed_rate": 0.49107142857142855
         },
         {
           "bin_lower": 0.7000000000000001,
           "bin_upper": 0.8,
-          "count": 171,
-          "mean_predicted": 0.7526216865223607,
-          "observed_rate": 0.5497076023391813
+          "count": 123,
+          "mean_predicted": 0.7511315311477825,
+          "observed_rate": 0.5609756097560976
         },
         {
           "bin_lower": 0.8,
           "bin_upper": 0.9,
-          "count": 224,
-          "mean_predicted": 0.8542538981418303,
-          "observed_rate": 0.8125
+          "count": 232,
+          "mean_predicted": 0.8654067575472354,
+          "observed_rate": 0.7758620689655172
         },
         {
           "bin_lower": 0.9,
           "bin_upper": 1.0,
-          "count": 2611,
-          "mean_predicted": 0.9609094421270935,
-          "observed_rate": 0.9142091152815014
+          "count": 350,
+          "mean_predicted": 0.9092124036228701,
+          "observed_rate": 0.9742857142857143
         }
       ]
     },
@@ -440,102 +484,120 @@
     "event": "severe_break",
     "horizon": "15_21d",
     "description": "At least seven consecutive days below 2.5 mm",
-    "n_train": 17532,
-    "n_validation": 4392,
-    "n_test": 4380,
+    "n_train": 7344,
+    "n_validation": 1836,
+    "n_test": 1836,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 336
+    },
+    "out_of_season": {
+      "train": 10188,
+      "validation": 2556,
+      "test": 2208
+    },
+    "class_balance": {
+      "train_positive": 3530,
+      "train_negative": 3814,
+      "validation_positive": 943,
+      "validation_negative": 893,
+      "test_positive": 898,
+      "test_negative": 938
+    },
     "test": {
-      "brier_score": 0.15793890952842,
-      "roc_auc": 0.7818308364965384,
-      "pr_auc": 0.7859696368097486,
-      "f1": 0.854862842892768,
-      "precision": 0.8039399624765479,
-      "recall": 0.9126730564430245,
-      "positive_event_rate": 0.6431506849315068
+      "brier_score": 0.14853865936247837,
+      "roc_auc": 0.863575061377807,
+      "pr_auc": 0.8569058406629891,
+      "f1": 0.8,
+      "precision": 0.7813163481953291,
+      "recall": 0.8195991091314031,
+      "positive_event_rate": 0.4891067538126362
     },
     "climatology": {
-      "brier_score": 0.23229326801323422,
+      "brier_score": 0.24995260903925842,
       "roc_auc": 0.5,
-      "pr_auc": 0.6431506849315068,
-      "f1": 0.7828261775739892,
-      "precision": 0.6431506849315068,
-      "recall": 1.0,
-      "positive_event_rate": 0.6431506849315068,
-      "forecast_probability": 0.695927446954141
+      "pr_auc": 0.4891067538126362,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "positive_event_rate": 0.4891067538126362,
+      "forecast_probability": 0.48066448801742917
     },
-    "validation_brier": 0.09778235642856216,
-    "decision_threshold_from_validation": 0.5499999999999999,
+    "validation_brier": 0.144664239295687,
+    "decision_threshold_from_validation": 0.49999999999999994,
     "calibration": {
       "method": "platt_sigmoid",
       "reliability_test": [
         {
           "bin_lower": 0.0,
           "bin_upper": 0.1,
-          "count": 328,
-          "mean_predicted": 0.07924345928221313,
-          "observed_rate": 0.08841463414634146
+          "count": 142,
+          "mean_predicted": 0.09584165684668307,
+          "observed_rate": 0.04929577464788732
         },
         {
           "bin_lower": 0.1,
           "bin_upper": 0.2,
-          "count": 392,
-          "mean_predicted": 0.14210113413725647,
-          "observed_rate": 0.21428571428571427
+          "count": 425,
+          "mean_predicted": 0.14309146646319845,
+          "observed_rate": 0.18823529411764706
         },
         {
           "bin_lower": 0.2,
           "bin_upper": 0.30000000000000004,
-          "count": 214,
-          "mean_predicted": 0.24592282609500324,
-          "observed_rate": 0.17757009345794392
+          "count": 160,
+          "mean_predicted": 0.23913569279276295,
+          "observed_rate": 0.175
         },
         {
           "bin_lower": 0.30000000000000004,
           "bin_upper": 0.4,
-          "count": 130,
-          "mean_predicted": 0.3521257462714929,
-          "observed_rate": 0.3076923076923077
+          "count": 79,
+          "mean_predicted": 0.34577853437852635,
+          "observed_rate": 0.189873417721519
         },
         {
           "bin_lower": 0.4,
           "bin_upper": 0.5,
-          "count": 81,
-          "mean_predicted": 0.45066544932614744,
-          "observed_rate": 0.4567901234567901
+          "count": 88,
+          "mean_predicted": 0.4520588075324128,
+          "observed_rate": 0.36363636363636365
         },
         {
           "bin_lower": 0.5,
           "bin_upper": 0.6000000000000001,
-          "count": 90,
-          "mean_predicted": 0.5546759445118542,
-          "observed_rate": 0.5111111111111111
+          "count": 109,
+          "mean_predicted": 0.5498932175275272,
+          "observed_rate": 0.5412844036697247
         },
         {
           "bin_lower": 0.6000000000000001,
           "bin_upper": 0.7000000000000001,
-          "count": 178,
-          "mean_predicted": 0.6518397399812391,
-          "observed_rate": 0.601123595505618
+          "count": 125,
+          "mean_predicted": 0.6475574531736122,
+          "observed_rate": 0.608
         },
         {
           "bin_lower": 0.7000000000000001,
           "bin_upper": 0.8,
-          "count": 225,
-          "mean_predicted": 0.7511981927724495,
-          "observed_rate": 0.5911111111111111
+          "count": 140,
+          "mean_predicted": 0.7523472931762809,
+          "observed_rate": 0.6714285714285714
         },
         {
           "bin_lower": 0.8,
           "bin_upper": 0.9,
-          "count": 347,
-          "mean_predicted": 0.8555762055667959,
-          "observed_rate": 0.7406340057636888
+          "count": 365,
+          "mean_predicted": 0.8707965867108912,
+          "observed_rate": 0.8684931506849315
         },
         {
           "bin_lower": 0.9,
           "bin_upper": 1.0,
-          "count": 2395,
-          "mean_predicted": 0.9475972423696035,
-          "observed_rate": 0.8542797494780794
+          "count": 203,
+          "mean_predicted": 0.9063916990955657,
+          "observed_rate": 0.9359605911330049
         }
       ]
     },
@@ -549,102 +611,120 @@
     "event": "severe_break",
     "horizon": "22_30d",
     "description": "At least seven consecutive days below 2.5 mm",
-    "n_train": 17532,
-    "n_validation": 4392,
-    "n_test": 4380,
+    "n_train": 7344,
+    "n_validation": 1836,
+    "n_test": 1836,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 444
+    },
+    "out_of_season": {
+      "train": 10188,
+      "validation": 2556,
+      "test": 2100
+    },
+    "class_balance": {
+      "train_positive": 4160,
+      "train_negative": 3184,
+      "validation_positive": 1093,
+      "validation_negative": 743,
+      "test_positive": 1070,
+      "test_negative": 766
+    },
     "test": {
-      "brier_score": 0.16623638837084018,
-      "roc_auc": 0.7455418467752171,
-      "pr_auc": 0.7744952134122827,
-      "f1": 0.8570051413881749,
-      "precision": 0.8033132530120481,
-      "recall": 0.9183884297520661,
-      "positive_event_rate": 0.663013698630137
+      "brier_score": 0.14623055514602432,
+      "roc_auc": 0.8730204240989727,
+      "pr_auc": 0.9082513444720655,
+      "f1": 0.83311199645861,
+      "precision": 0.7914213624894869,
+      "recall": 0.8794392523364486,
+      "positive_event_rate": 0.5827886710239651
     },
     "climatology": {
-      "brier_score": 0.2285429107465562,
+      "brier_score": 0.24341302727820738,
       "roc_auc": 0.5,
-      "pr_auc": 0.663013698630137,
-      "f1": 0.7973640856672158,
-      "precision": 0.663013698630137,
+      "pr_auc": 0.5827886710239651,
+      "f1": 0.7364074328974536,
+      "precision": 0.5827886710239651,
       "recall": 1.0,
-      "positive_event_rate": 0.663013698630137,
-      "forecast_probability": 0.7345425507643166
+      "positive_event_rate": 0.5827886710239651,
+      "forecast_probability": 0.5664488017429193
     },
-    "validation_brier": 0.0896362045637581,
-    "decision_threshold_from_validation": 0.58,
+    "validation_brier": 0.14067582544813323,
+    "decision_threshold_from_validation": 0.43999999999999995,
     "calibration": {
       "method": "platt_sigmoid",
       "reliability_test": [
         {
           "bin_lower": 0.0,
           "bin_upper": 0.1,
-          "count": 302,
-          "mean_predicted": 0.06927513138693452,
-          "observed_rate": 0.11920529801324503
+          "count": 151,
+          "mean_predicted": 0.08650944943128558,
+          "observed_rate": 0.052980132450331126
         },
         {
           "bin_lower": 0.1,
           "bin_upper": 0.2,
-          "count": 270,
-          "mean_predicted": 0.14591599460120258,
-          "observed_rate": 0.1962962962962963
+          "count": 262,
+          "mean_predicted": 0.14396001174308398,
+          "observed_rate": 0.2633587786259542
         },
         {
           "bin_lower": 0.2,
           "bin_upper": 0.30000000000000004,
-          "count": 176,
-          "mean_predicted": 0.24170966086664028,
-          "observed_rate": 0.23863636363636365
+          "count": 113,
+          "mean_predicted": 0.24910599458298346,
+          "observed_rate": 0.23008849557522124
         },
         {
           "bin_lower": 0.30000000000000004,
           "bin_upper": 0.4,
-          "count": 135,
-          "mean_predicted": 0.35219800370000115,
-          "observed_rate": 0.28888888888888886
+          "count": 96,
+          "mean_predicted": 0.3467587620193742,
+          "observed_rate": 0.16666666666666666
         },
         {
           "bin_lower": 0.4,
           "bin_upper": 0.5,
-          "count": 92,
-          "mean_predicted": 0.4467287600633587,
-          "observed_rate": 0.29347826086956524
+          "count": 72,
+          "mean_predicted": 0.4473687378966351,
+          "observed_rate": 0.4027777777777778
         },
         {
           "bin_lower": 0.5,
           "bin_upper": 0.6000000000000001,
-          "count": 104,
-          "mean_predicted": 0.5528747790717349,
-          "observed_rate": 0.5096153846153846
+          "count": 86,
+          "mean_predicted": 0.5537095938239642,
+          "observed_rate": 0.5
         },
         {
           "bin_lower": 0.6000000000000001,
           "bin_upper": 0.7000000000000001,
-          "count": 138,
-          "mean_predicted": 0.6541628304276834,
-          "observed_rate": 0.572463768115942
+          "count": 115,
+          "mean_predicted": 0.6567880937147673,
+          "observed_rate": 0.591304347826087
         },
         {
           "bin_lower": 0.7000000000000001,
           "bin_upper": 0.8,
-          "count": 207,
-          "mean_predicted": 0.7549090908255134,
-          "observed_rate": 0.6521739130434783
+          "count": 153,
+          "mean_predicted": 0.7492489652846829,
+          "observed_rate": 0.6470588235294118
         },
         {
           "bin_lower": 0.8,
           "bin_upper": 0.9,
-          "count": 279,
-          "mean_predicted": 0.858561100274512,
-          "observed_rate": 0.6415770609318996
+          "count": 184,
+          "mean_predicted": 0.8602535792392009,
+          "observed_rate": 0.6956521739130435
         },
         {
           "bin_lower": 0.9,
           "bin_upper": 1.0,
-          "count": 2677,
-          "mean_predicted": 0.957202733151807,
-          "observed_rate": 0.8446021666044079
+          "count": 604,
+          "mean_predicted": 0.9142554629335629,
+          "observed_rate": 0.9668874172185431
         }
       ]
     },
@@ -660,24 +740,42 @@
     "description": "Daily rain at least 64.5 mm or a 3-day total at least 150 mm",
     "n_train": 17532,
     "n_validation": 4392,
-    "n_test": 4380,
+    "n_test": 4128,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 252
+    },
+    "out_of_season": {
+      "train": 0,
+      "validation": 0,
+      "test": 0
+    },
+    "class_balance": {
+      "train_positive": 1301,
+      "train_negative": 16231,
+      "validation_positive": 292,
+      "validation_negative": 4100,
+      "test_positive": 303,
+      "test_negative": 3825
+    },
     "test": {
-      "brier_score": 0.041779113591404814,
-      "roc_auc": 0.9365999881813053,
-      "pr_auc": 0.46469749811807726,
+      "brier_score": 0.044322899598842905,
+      "roc_auc": 0.9339088418645785,
+      "pr_auc": 0.4651276508078973,
       "f1": 0.5801886792452831,
       "precision": 0.45137614678899085,
       "recall": 0.8118811881188119,
-      "positive_event_rate": 0.06917808219178082
+      "positive_event_rate": 0.07340116279069768
     },
     "climatology": {
-      "brier_score": 0.06441776680031322,
+      "brier_score": 0.06801408172968973,
       "roc_auc": 0.5,
-      "pr_auc": 0.06917808219178082,
+      "pr_auc": 0.07340116279069768,
       "f1": 0.0,
       "precision": 0.0,
       "recall": 0.0,
-      "positive_event_rate": 0.06917808219178082,
+      "positive_event_rate": 0.07340116279069768,
       "forecast_probability": 0.074207164042893
     },
     "validation_brier": 0.04311437389381343,
@@ -688,9 +786,9 @@
         {
           "bin_lower": 0.0,
           "bin_upper": 0.1,
-          "count": 3757,
-          "mean_predicted": 0.013774952102399745,
-          "observed_rate": 0.011711471919084376
+          "count": 3505,
+          "mean_predicted": 0.014054906282657946,
+          "observed_rate": 0.012553495007132667
         },
         {
           "bin_lower": 0.1,
@@ -741,24 +839,42 @@
     "description": "Daily rain at least 64.5 mm or a 3-day total at least 150 mm",
     "n_train": 17532,
     "n_validation": 4392,
-    "n_test": 4380,
+    "n_test": 4044,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 336
+    },
+    "out_of_season": {
+      "train": 0,
+      "validation": 0,
+      "test": 0
+    },
+    "class_balance": {
+      "train_positive": 1175,
+      "train_negative": 16357,
+      "validation_positive": 268,
+      "validation_negative": 4124,
+      "test_positive": 270,
+      "test_negative": 3774
+    },
     "test": {
-      "brier_score": 0.0383410446379733,
-      "roc_auc": 0.9358177885915112,
-      "pr_auc": 0.4799436813618105,
+      "brier_score": 0.041519632813567686,
+      "roc_auc": 0.9314628353844041,
+      "pr_auc": 0.48021658495162134,
       "f1": 0.5501222493887531,
       "precision": 0.41058394160583944,
       "recall": 0.8333333333333334,
-      "positive_event_rate": 0.06164383561643835
+      "positive_event_rate": 0.06676557863501484
     },
     "climatology": {
-      "brier_score": 0.057872779577778116,
+      "brier_score": 0.06230800103043772,
       "roc_auc": 0.5,
-      "pr_auc": 0.06164383561643835,
+      "pr_auc": 0.06676557863501484,
       "f1": 0.0,
       "precision": 0.0,
       "recall": 0.0,
-      "positive_event_rate": 0.06164383561643835,
+      "positive_event_rate": 0.06676557863501484,
       "forecast_probability": 0.06702030572667123
     },
     "validation_brier": 0.04082525408433161,
@@ -769,9 +885,9 @@
         {
           "bin_lower": 0.0,
           "bin_upper": 0.1,
-          "count": 3779,
-          "mean_predicted": 0.01385057433757409,
-          "observed_rate": 0.010849431066419687
+          "count": 3443,
+          "mean_predicted": 0.014313605048221472,
+          "observed_rate": 0.011908219575951205
         },
         {
           "bin_lower": 0.1,
@@ -822,24 +938,42 @@
     "description": "Daily rain at least 64.5 mm or a 3-day total at least 150 mm",
     "n_train": 17532,
     "n_validation": 4392,
-    "n_test": 4380,
+    "n_test": 3936,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 444
+    },
+    "out_of_season": {
+      "train": 0,
+      "validation": 0,
+      "test": 0
+    },
+    "class_balance": {
+      "train_positive": 1421,
+      "train_negative": 16111,
+      "validation_positive": 329,
+      "validation_negative": 4063,
+      "test_positive": 321,
+      "test_negative": 3615
+    },
     "test": {
-      "brier_score": 0.04029136703811238,
-      "roc_auc": 0.9423848698979767,
-      "pr_auc": 0.5620928018024516,
+      "brier_score": 0.044818583137286115,
+      "roc_auc": 0.9363038223394217,
+      "pr_auc": 0.5623424681837773,
       "f1": 0.6474442988204456,
       "precision": 0.5588235294117647,
       "recall": 0.7694704049844237,
-      "positive_event_rate": 0.07328767123287672
+      "positive_event_rate": 0.08155487804878049
     },
     "climatology": {
-      "brier_score": 0.06797687003406325,
+      "brier_score": 0.0749039330117969,
       "roc_auc": 0.5,
-      "pr_auc": 0.07328767123287672,
+      "pr_auc": 0.08155487804878049,
       "f1": 0.0,
       "precision": 0.0,
       "recall": 0.0,
-      "positive_event_rate": 0.07328767123287672,
+      "positive_event_rate": 0.08155487804878049,
       "forecast_probability": 0.08105179101072325
     },
     "validation_brier": 0.04820606937143784,
@@ -850,9 +984,9 @@
         {
           "bin_lower": 0.0,
           "bin_upper": 0.1,
-          "count": 3781,
-          "mean_predicted": 0.01799078721835886,
-          "observed_rate": 0.013224014810896589
+          "count": 3337,
+          "mean_predicted": 0.018719360628380238,
+          "observed_rate": 0.014983518130056937
         },
         {
           "bin_lower": 0.1,
@@ -901,67 +1035,85 @@
     "event": "revival",
     "horizon": "7_14d",
     "description": "Active dry spell followed by at least 5 mm and subsequent rain of at least 2.5 mm",
-    "n_train": 17532,
-    "n_validation": 4392,
-    "n_test": 4380,
+    "n_train": 7344,
+    "n_validation": 1836,
+    "n_test": 1836,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 252
+    },
+    "out_of_season": {
+      "train": 10188,
+      "validation": 2556,
+      "test": 2292
+    },
+    "class_balance": {
+      "train_positive": 632,
+      "train_negative": 6712,
+      "validation_positive": 114,
+      "validation_negative": 1722,
+      "test_positive": 156,
+      "test_negative": 1680
+    },
     "test": {
-      "brier_score": 0.03541184516577809,
-      "roc_auc": 0.9466933460019342,
-      "pr_auc": 0.4881716033526828,
-      "f1": 0.5157699443413729,
-      "precision": 0.4440894568690096,
-      "recall": 0.6150442477876106,
-      "positive_event_rate": 0.051598173515981734
+      "brier_score": 0.05361329345051692,
+      "roc_auc": 0.9315018315018315,
+      "pr_auc": 0.6077074449408909,
+      "f1": 0.5689655172413793,
+      "precision": 0.515625,
+      "recall": 0.6346153846153846,
+      "positive_event_rate": 0.08496732026143791
     },
     "climatology": {
-      "brier_score": 0.048948462167748216,
+      "brier_score": 0.07774906137715315,
       "roc_auc": 0.5,
-      "pr_auc": 0.051598173515981734,
+      "pr_auc": 0.08496732026143791,
       "f1": 0.0,
       "precision": 0.0,
       "recall": 0.0,
-      "positive_event_rate": 0.051598173515981734,
-      "forecast_probability": 0.05515628564909879
+      "positive_event_rate": 0.08496732026143791,
+      "forecast_probability": 0.0860566448801743
     },
-    "validation_brier": 0.027994224514704014,
-    "decision_threshold_from_validation": 0.21999999999999997,
+    "validation_brier": 0.04512248558858346,
+    "decision_threshold_from_validation": 0.22999999999999998,
     "calibration": {
       "method": "platt_sigmoid",
       "reliability_test": [
         {
           "bin_lower": 0.0,
           "bin_upper": 0.1,
-          "count": 3948,
-          "mean_predicted": 0.008398209179686204,
-          "observed_rate": 0.012917933130699088
+          "count": 1541,
+          "mean_predicted": 0.012153576988232976,
+          "observed_rate": 0.018170019467878003
         },
         {
           "bin_lower": 0.1,
           "bin_upper": 0.2,
-          "count": 93,
-          "mean_predicted": 0.1473684832645768,
-          "observed_rate": 0.3010752688172043
+          "count": 90,
+          "mean_predicted": 0.14309523634884247,
+          "observed_rate": 0.25555555555555554
         },
         {
           "bin_lower": 0.2,
           "bin_upper": 0.30000000000000004,
-          "count": 128,
-          "mean_predicted": 0.24875187347591382,
-          "observed_rate": 0.3515625
+          "count": 64,
+          "mean_predicted": 0.24732924220844527,
+          "observed_rate": 0.453125
         },
         {
           "bin_lower": 0.30000000000000004,
           "bin_upper": 0.4,
-          "count": 175,
-          "mean_predicted": 0.35312924015220104,
-          "observed_rate": 0.4685714285714286
+          "count": 64,
+          "mean_predicted": 0.35329617564259,
+          "observed_rate": 0.3125
         },
         {
           "bin_lower": 0.4,
           "bin_upper": 0.5,
-          "count": 36,
-          "mean_predicted": 0.40817484469121745,
-          "observed_rate": 0.5555555555555556
+          "count": 77,
+          "mean_predicted": 0.4391646083827838,
+          "observed_rate": 0.7272727272727273
         }
       ]
     },
@@ -975,74 +1127,92 @@
     "event": "revival",
     "horizon": "15_21d",
     "description": "Active dry spell followed by at least 5 mm and subsequent rain of at least 2.5 mm",
-    "n_train": 17532,
-    "n_validation": 4392,
-    "n_test": 4380,
+    "n_train": 7344,
+    "n_validation": 1836,
+    "n_test": 1836,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 336
+    },
+    "out_of_season": {
+      "train": 10188,
+      "validation": 2556,
+      "test": 2208
+    },
+    "class_balance": {
+      "train_positive": 545,
+      "train_negative": 6799,
+      "validation_positive": 125,
+      "validation_negative": 1711,
+      "test_positive": 98,
+      "test_negative": 1738
+    },
     "test": {
-      "brier_score": 0.031148480007777778,
-      "roc_auc": 0.9376541902241916,
-      "pr_auc": 0.3803990366268939,
-      "f1": 0.41776315789473684,
-      "precision": 0.297423887587822,
-      "recall": 0.7016574585635359,
-      "positive_event_rate": 0.04132420091324201
+      "brier_score": 0.038097878107362614,
+      "roc_auc": 0.9294168760714873,
+      "pr_auc": 0.4366252428467368,
+      "f1": 0.504,
+      "precision": 0.4144736842105263,
+      "recall": 0.6428571428571429,
+      "positive_event_rate": 0.05337690631808279
     },
     "climatology": {
-      "brier_score": 0.03975124726812958,
+      "brier_score": 0.05096183996777117,
       "roc_auc": 0.5,
-      "pr_auc": 0.04132420091324201,
+      "pr_auc": 0.05337690631808279,
       "f1": 0.0,
       "precision": 0.0,
       "recall": 0.0,
-      "positive_event_rate": 0.04132420091324201,
-      "forecast_probability": 0.052931781884553955
+      "positive_event_rate": 0.05337690631808279,
+      "forecast_probability": 0.07421023965141613
     },
-    "validation_brier": 0.02963013067110537,
-    "decision_threshold_from_validation": 0.18,
+    "validation_brier": 0.043912244645006135,
+    "decision_threshold_from_validation": 0.3499999999999999,
     "calibration": {
       "method": "platt_sigmoid",
       "reliability_test": [
         {
           "bin_lower": 0.0,
           "bin_upper": 0.1,
-          "count": 3890,
-          "mean_predicted": 0.005261358687638229,
-          "observed_rate": 0.009254498714652956
+          "count": 1566,
+          "mean_predicted": 0.007353349982353773,
+          "observed_rate": 0.01277139208173691
         },
         {
           "bin_lower": 0.1,
           "bin_upper": 0.2,
-          "count": 88,
-          "mean_predicted": 0.15088238239126572,
-          "observed_rate": 0.3068181818181818
+          "count": 41,
+          "mean_predicted": 0.15200370115896256,
+          "observed_rate": 0.14634146341463414
         },
         {
           "bin_lower": 0.2,
           "bin_upper": 0.30000000000000004,
-          "count": 130,
-          "mean_predicted": 0.2477703481854434,
-          "observed_rate": 0.2076923076923077
+          "count": 45,
+          "mean_predicted": 0.2490712194353185,
+          "observed_rate": 0.1111111111111111
         },
         {
           "bin_lower": 0.30000000000000004,
           "bin_upper": 0.4,
-          "count": 120,
-          "mean_predicted": 0.3424687610654474,
-          "observed_rate": 0.25833333333333336
+          "count": 60,
+          "mean_predicted": 0.34816085894811694,
+          "observed_rate": 0.2
         },
         {
           "bin_lower": 0.4,
           "bin_upper": 0.5,
-          "count": 90,
-          "mean_predicted": 0.45365861736510643,
-          "observed_rate": 0.3111111111111111
+          "count": 72,
+          "mean_predicted": 0.45554129099831986,
+          "observed_rate": 0.3888888888888889
         },
         {
           "bin_lower": 0.5,
           "bin_upper": 0.6000000000000001,
-          "count": 62,
-          "mean_predicted": 0.5306764574603804,
-          "observed_rate": 0.5161290322580645
+          "count": 52,
+          "mean_predicted": 0.5420417279632092,
+          "observed_rate": 0.5192307692307693
         }
       ]
     },
@@ -1056,67 +1226,99 @@
     "event": "revival",
     "horizon": "22_30d",
     "description": "Active dry spell followed by at least 5 mm and subsequent rain of at least 2.5 mm",
-    "n_train": 17532,
-    "n_validation": 4392,
-    "n_test": 4380,
+    "n_train": 7344,
+    "n_validation": 1836,
+    "n_test": 1836,
+    "unavailable": {
+      "train": 0,
+      "validation": 0,
+      "test": 444
+    },
+    "out_of_season": {
+      "train": 10188,
+      "validation": 2556,
+      "test": 2100
+    },
+    "class_balance": {
+      "train_positive": 555,
+      "train_negative": 6789,
+      "validation_positive": 134,
+      "validation_negative": 1702,
+      "test_positive": 128,
+      "test_negative": 1708
+    },
     "test": {
-      "brier_score": 0.03863628131174441,
-      "roc_auc": 0.9516174144294917,
-      "pr_auc": 0.5434934486938042,
-      "f1": 0.560625814863103,
-      "precision": 0.42828685258964144,
-      "recall": 0.8113207547169812,
-      "positive_event_rate": 0.06050228310502283
+      "brier_score": 0.040743044079118045,
+      "roc_auc": 0.9443062060889931,
+      "pr_auc": 0.6215597816542364,
+      "f1": 0.588957055214724,
+      "precision": 0.48484848484848486,
+      "recall": 0.75,
+      "positive_event_rate": 0.06971677559912855
     },
     "climatology": {
-      "brier_score": 0.05688276736214014,
+      "brier_score": 0.0648906292273627,
       "roc_auc": 0.5,
-      "pr_auc": 0.06050228310502283,
+      "pr_auc": 0.06971677559912855,
       "f1": 0.0,
       "precision": 0.0,
       "recall": 0.0,
-      "positive_event_rate": 0.06050228310502283,
-      "forecast_probability": 0.06690622861054073
+      "positive_event_rate": 0.06971677559912855,
+      "forecast_probability": 0.0755718954248366
     },
-    "validation_brier": 0.03417621119747525,
-    "decision_threshold_from_validation": 0.12,
+    "validation_brier": 0.041846738876853605,
+    "decision_threshold_from_validation": 0.13999999999999999,
     "calibration": {
       "method": "platt_sigmoid",
       "reliability_test": [
         {
           "bin_lower": 0.0,
           "bin_upper": 0.1,
-          "count": 3865,
-          "mean_predicted": 0.0074808516059855275,
-          "observed_rate": 0.011901681759379043
+          "count": 1630,
+          "mean_predicted": 0.007232516312406851,
+          "observed_rate": 0.017791411042944787
         },
         {
           "bin_lower": 0.1,
           "bin_upper": 0.2,
-          "count": 78,
-          "mean_predicted": 0.15356276217838535,
-          "observed_rate": 0.4358974358974359
+          "count": 23,
+          "mean_predicted": 0.15156104109107665,
+          "observed_rate": 0.30434782608695654
         },
         {
           "bin_lower": 0.2,
           "bin_upper": 0.30000000000000004,
-          "count": 125,
-          "mean_predicted": 0.25766557077647473,
-          "observed_rate": 0.28
+          "count": 21,
+          "mean_predicted": 0.2497557403394044,
+          "observed_rate": 0.38095238095238093
         },
         {
           "bin_lower": 0.30000000000000004,
           "bin_upper": 0.4,
-          "count": 145,
-          "mean_predicted": 0.3483363532733126,
-          "observed_rate": 0.3724137931034483
+          "count": 28,
+          "mean_predicted": 0.34455286528675105,
+          "observed_rate": 0.25
         },
         {
           "bin_lower": 0.4,
           "bin_upper": 0.5,
-          "count": 167,
-          "mean_predicted": 0.44095327771125453,
-          "observed_rate": 0.5748502994011976
+          "count": 35,
+          "mean_predicted": 0.4576982420426609,
+          "observed_rate": 0.42857142857142855
+        },
+        {
+          "bin_lower": 0.5,
+          "bin_upper": 0.6000000000000001,
+          "count": 44,
+          "mean_predicted": 0.5622220734955689,
+          "observed_rate": 0.5909090909090909
+        },
+        {
+          "bin_lower": 0.6000000000000001,
+          "bin_upper": 0.7000000000000001,
+          "count": 55,
+          "mean_predicted": 0.6399624528204647,
+          "observed_rate": 0.6545454545454545
         }
       ]
     },

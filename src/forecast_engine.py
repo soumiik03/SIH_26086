@@ -30,14 +30,21 @@ logger = logging.getLogger("varshasentinel.forecast_engine")
 
 BASELINE_MODELS_DIR = "models"
 IOD_MODELS_DIR = "models/iod_enhanced"
+ATMOSPHERIC_MODELS_DIR = "models/atmospheric_enhanced"
 HORIZON_MODELS_DIR = "models/horizon_7_30d"
-ENGINE_VERSION = "VARSHASENTINEL_FORECAST_ENGINE_v1.1"
+ENGINE_VERSION = "VARSHASENTINEL_FORECAST_ENGINE_v1.2"
 HORIZON_OUTLOOK_STATUS = "STATISTICAL_7_30_DAY_OUTLOOK"
 HORIZON_OUTLOOK_DISCLAIMER = (
     "This is a statistical probabilistic outlook based on the observation and climate state "
     "available on the reference date. It is not an NWP or S2S forecast and does not claim "
     "operational 7-30 day dynamical forecasting."
 )
+HORIZON_EVENT_APPLICABILITY_MONTHS = {
+    "dry_spell": frozenset({6, 7, 8, 9, 10}),
+    "severe_break": frozenset({6, 7, 8, 9, 10}),
+    "heavy_rain": frozenset(range(1, 13)),
+    "revival": frozenset({6, 7, 8, 9, 10}),
+}
 
 DISTRICT_ZONE_MAP = {
     "Purba_Bardhaman": "gangetic_alluvial",
@@ -80,10 +87,12 @@ class ForecastEngine:
         self,
         baseline_dir: str = BASELINE_MODELS_DIR,
         iod_dir: str = IOD_MODELS_DIR,
+        atmospheric_dir: str = ATMOSPHERIC_MODELS_DIR,
         horizon_dir: str = HORIZON_MODELS_DIR
     ):
         self.baseline_dir = baseline_dir
         self.iod_dir = iod_dir
+        self.atmospheric_dir = atmospheric_dir
         self.horizon_dir = horizon_dir
         self.models: Dict[str, Any] = {}
         self.model_metadata: Dict[str, Dict[str, Any]] = {}
@@ -91,6 +100,7 @@ class ForecastEngine:
         self.horizon_model_metadata: Dict[str, Dict[str, Any]] = {}
         self.baseline_feature_metadata: Optional[Dict[str, Any]] = None
         self.iod_feature_metadata: Optional[Dict[str, Any]] = None
+        self.atmospheric_feature_metadata: Optional[Dict[str, Any]] = None
         self.horizon_feature_metadata: Optional[Dict[str, Any]] = None
 
         self._load_feature_schemas()
@@ -98,7 +108,7 @@ class ForecastEngine:
         self._load_horizon_models()
 
     def _load_feature_schemas(self):
-        """Loads and parses feature metadata for baseline and IOD models."""
+        """Loads and parses feature metadata for baseline, IOD, atmospheric, and horizon models."""
         base_meta_path = os.path.join(self.baseline_dir, "feature_metadata.json")
         if not os.path.exists(base_meta_path):
             raise FileNotFoundError(f"Baseline feature metadata not found at: {base_meta_path}")
@@ -111,7 +121,17 @@ class ForecastEngine:
         with open(iod_meta_path, "r", encoding="utf-8") as f:
             self.iod_feature_metadata = json.load(f)
 
-        logger.info(f"Loaded baseline schema ({len(self.baseline_feature_metadata['feature_names'])} features) and IOD schema ({len(self.iod_feature_metadata['feature_names'])} features).")
+        atmos_meta_path = os.path.join(self.atmospheric_dir, "feature_metadata.json")
+        if not os.path.exists(atmos_meta_path):
+            raise FileNotFoundError(f"Atmospheric feature metadata not found at: {atmos_meta_path}")
+        with open(atmos_meta_path, "r", encoding="utf-8") as f:
+            self.atmospheric_feature_metadata = json.load(f)
+
+        logger.info(
+            f"Loaded baseline schema ({len(self.baseline_feature_metadata['feature_names'])} features), "
+            f"IOD schema ({len(self.iod_feature_metadata['feature_names'])} features), and "
+            f"atmospheric schema ({len(self.atmospheric_feature_metadata['feature_names'])} features)."
+        )
 
         horizon_meta_path = os.path.join(self.horizon_dir, "feature_metadata.json")
         if not os.path.exists(horizon_meta_path):
@@ -138,23 +158,23 @@ class ForecastEngine:
             "false_onset": {
                 "target_col": "target_false_onset_flag",
                 "description": "False Onset Surge Failure",
-                "source_dir": self.iod_dir,
-                "version": "iod_enhanced",
-                "schema": "iod"
+                "source_dir": self.atmospheric_dir,
+                "version": "atmospheric_enhanced",
+                "schema": "atmospheric"
             },
             "revival": {
                 "target_col": "target_revival_7d",
                 "description": "Dry Spell Revival (7-Day Lead)",
-                "source_dir": self.iod_dir,
-                "version": "iod_enhanced",
-                "schema": "iod"
+                "source_dir": self.atmospheric_dir,
+                "version": "atmospheric_enhanced",
+                "schema": "atmospheric"
             },
             "heavy_rain": {
                 "target_col": "target_heavy_rain_7d",
                 "description": "Heavy Rainfall / Flood Hazard (7-Day Lead)",
-                "source_dir": self.iod_dir,
-                "version": "iod_enhanced",
-                "schema": "iod"
+                "source_dir": self.atmospheric_dir,
+                "version": "atmospheric_enhanced",
+                "schema": "atmospheric"
             },
             "dry_spell_5d": {
                 "target_col": "target_dry_spell_5d_14d",
@@ -180,12 +200,13 @@ class ForecastEngine:
 
             loaded_obj = joblib.load(path)
             # Baseline models are stored as a dict with {'model': estimator, ...}
-            # IOD models are stored directly as the calibrated estimator
+            # IOD and Atmospheric models are stored directly as the calibrated estimator
             if isinstance(loaded_obj, dict) and "model" in loaded_obj:
                 estimator = loaded_obj["model"]
             else:
                 estimator = loaded_obj
 
+            feat_count = 40 if cfg["schema"] == "atmospheric" else (31 if cfg["schema"] == "iod" else 26)
             self.models[head_key] = estimator
             self.model_metadata[head_key] = {
                 "head_key": head_key,
@@ -194,7 +215,7 @@ class ForecastEngine:
                 "model_version": cfg["version"],
                 "model_path": path,
                 "schema_type": cfg["schema"],
-                "feature_count": 31 if cfg["schema"] == "iod" else 26
+                "feature_count": feat_count
             }
             logger.info(f"Loaded head '{head_key}' [{cfg['version']}] from {path}")
 
@@ -223,11 +244,10 @@ class ForecastEngine:
             if not isinstance(loaded_obj, dict) or "model" not in loaded_obj:
                 raise ValueError(f"Invalid calibrated horizon artifact for {target_col}: {path}")
             estimator = loaded_obj["model"]
-            artifact_features = loaded_obj.get("feature_cols")
-            if artifact_features != feature_names:
+            artifact_features = loaded_obj.get("feature_cols", feature_names)
+            if not all(col in feature_names for col in artifact_features):
                 raise ValueError(
-                    f"Feature ordering mismatch for {target_col}: artifact metadata does not "
-                    "match horizon feature_metadata.json"
+                    f"Feature ordering mismatch for {target_col}: artifact metadata contains unrecognized features"
                 )
 
             target_without_prefix = target_col.removeprefix("target_")
@@ -247,14 +267,15 @@ class ForecastEngine:
                 "model_version": "horizon_7_30d_calibrated_platt_sigmoid",
                 "model_path": path,
                 "artifact_calibration_method": loaded_obj.get("calibration_method", "platt_sigmoid"),
-                "feature_count": len(feature_names),
+                "feature_cols": artifact_features,
+                "feature_count": len(artifact_features),
             }
-            logger.info("Loaded horizon head '%s' from %s", target_col, path)
+            logger.info("Loaded horizon head '%s' (%d features) from %s", target_col, len(artifact_features), path)
 
-    def prepare_feature_vectors(self, observation: Dict[str, Any]):
+    def prepare_feature_vectors(self, observation: Dict[str, Any], return_atmospheric: bool = False):
         """
         Validates the incoming observation, computes any derived variables if missing,
-        and constructs the exact feature matrices required by baseline and IOD models.
+        and constructs the exact feature matrices required by baseline, IOD, and atmospheric models.
         """
         if not isinstance(observation, dict):
             raise TypeError(f"Observation must be a dictionary, got {type(observation)}")
@@ -351,7 +372,21 @@ class ForecastEngine:
             if "iod_dmi_lag14" not in obs:
                 obs["iod_dmi_lag14"] = iod_val
 
-        # 6. Verify and construct Baseline feature vector (26 cols)
+        # 6. Regional Atmospheric Circulation Variables
+        u850 = obs.get("u850_regional", 1.5528)
+        v850 = obs.get("v850_regional", 0.0833)
+        obs.setdefault("u850_regional", float(u850))
+        obs.setdefault("v850_regional", float(v850))
+        if "wind850_speed" not in obs:
+            obs["wind850_speed"] = float(np.sqrt(obs["u850_regional"]**2 + obs["v850_regional"]**2))
+        obs.setdefault("mslp_regional", float(obs.get("mslp_regional", 1009.545)))
+        obs.setdefault("regional_slp_gradient", float(obs.get("regional_slp_gradient", 3.61)))
+        obs.setdefault("u850_lag7", float(obs.get("u850_lag7", obs["u850_regional"])))
+        obs.setdefault("mslp_lag7", float(obs.get("mslp_lag7", obs["mslp_regional"])))
+        obs.setdefault("u850_rolling_7d", float(obs.get("u850_rolling_7d", obs["u850_regional"])))
+        obs.setdefault("mslp_rolling_7d", float(obs.get("mslp_rolling_7d", obs["mslp_regional"])))
+
+        # 7. Verify and construct Baseline feature vector (26 cols)
         baseline_cols = self.baseline_feature_metadata["feature_names"]
         missing_base = [col for col in baseline_cols if col not in obs or obs[col] is None]
         if missing_base:
@@ -359,7 +394,7 @@ class ForecastEngine:
 
         df_base = pd.DataFrame([{col: obs[col] for col in baseline_cols}])[baseline_cols]
 
-        # 7. Verify and construct IOD feature vector (31 cols)
+        # 8. Verify and construct IOD feature vector (31 cols)
         iod_cols = self.iod_feature_metadata["feature_names"]
         missing_iod = [col for col in iod_cols if col not in obs or obs[col] is None]
         if missing_iod:
@@ -367,22 +402,38 @@ class ForecastEngine:
 
         df_iod = pd.DataFrame([{col: obs[col] for col in iod_cols}])[iod_cols]
 
+        # 9. Verify and construct Atmospheric feature vector (40 cols)
+        atmos_cols = self.atmospheric_feature_metadata["feature_names"]
+        missing_atmos = [col for col in atmos_cols if col not in obs or obs[col] is None]
+        if missing_atmos:
+            raise ValueError(f"Observation missing mandatory atmospheric features: {missing_atmos}")
+
+        df_atmos = pd.DataFrame([{col: obs[col] for col in atmos_cols}])[atmos_cols]
+
+        if return_atmospheric:
+            return df_base, df_iod, df_atmos
         return df_base, df_iod
 
+    def prepare_atmospheric_feature_vector(self, observation: Dict[str, Any]) -> pd.DataFrame:
+        """Build the exact 40-column atmospheric matrix in artifact metadata order."""
+        _, _, df_atmos = self.prepare_feature_vectors(observation, return_atmospheric=True)
+        return df_atmos
+
     def prepare_horizon_feature_vector(self, observation: Dict[str, Any]) -> pd.DataFrame:
-        """Build the exact 29-column horizon matrix in artifact metadata order."""
-        df_base, df_iod = self.prepare_feature_vectors(observation)
+        """Build the exact 38-column horizon matrix in artifact metadata order."""
+        _, _, df_atmos = self.prepare_feature_vectors(observation, return_atmospheric=True)
         horizon_cols = self.horizon_feature_metadata["feature_names"]
-        missing_horizon = [col for col in horizon_cols if col not in df_iod.columns]
+        missing_horizon = [col for col in horizon_cols if col not in df_atmos.columns]
         if missing_horizon:
             raise ValueError(f"Observation missing mandatory horizon features: {missing_horizon}")
-        horizon_df = df_iod.loc[:, horizon_cols].copy()
+        horizon_df = df_atmos.loc[:, horizon_cols].copy()
         if list(horizon_df.columns) != horizon_cols:
             raise ValueError("Horizon feature ordering does not match feature metadata")
         return horizon_df
 
-    def _predict_horizon_outlook(self, horizon_features: pd.DataFrame) -> Dict[str, Any]:
+    def _predict_horizon_outlook(self, horizon_features: pd.DataFrame, reference_date: Any) -> Dict[str, Any]:
         """Predict all new heads and return the explicitly labelled outlook section."""
+        month = pd.to_datetime(reference_date).month
         horizons: Dict[str, Dict[str, Any]] = {
             "7_14d": {}, "15_21d": {}, "22_30d": {}
         }
@@ -391,9 +442,17 @@ class ForecastEngine:
             meta = self.horizon_model_metadata[target_col]
             horizon = meta["horizon"]
             event = meta["event"]
-            probability_raw = float(model.predict_proba(horizon_features)[0, 1])
-            probability = max(0.0, min(1.0, probability_raw))
-            horizons[horizon][f"{event}_probability"] = round(probability, 4)
+            applicable = month in HORIZON_EVENT_APPLICABILITY_MONTHS[event]
+            probability = None
+            if applicable:
+                feat_cols = meta.get("feature_cols", list(horizon_features.columns))
+                X_model = horizon_features[feat_cols]
+                probability_raw = float(model.predict_proba(X_model)[0, 1])
+                probability = round(max(0.0, min(1.0, probability_raw)), 4)
+            horizons[horizon][f"{event}_probability"] = probability
+            horizons[horizon][f"{event}_applicability"] = (
+                "APPLICABLE" if applicable else "OUT_OF_SEASON"
+            )
             horizons[horizon].setdefault("model_versions", {})[event] = {
                 "target_col": target_col,
                 "model_version": meta["model_version"],
@@ -403,7 +462,11 @@ class ForecastEngine:
             }
 
         for horizon, values in horizons.items():
-            missing_events = [f"{event}_probability" for event in event_order if f"{event}_probability" not in values]
+            missing_events = [
+                field for event in event_order
+                for field in (f"{event}_probability", f"{event}_applicability")
+                if field not in values
+            ]
             if missing_events:
                 raise RuntimeError(f"Horizon {horizon} is missing predictions: {missing_events}")
         return {
@@ -424,7 +487,7 @@ class ForecastEngine:
         else:
             raise TypeError(f"Expected dict or pd.Series, got {type(observation)}")
 
-        df_base, df_iod = self.prepare_feature_vectors(obs_dict)
+        df_base, df_iod, df_atmos = self.prepare_feature_vectors(obs_dict, return_atmospheric=True)
 
         results_by_head = {}
         summary_probs = {}
@@ -433,7 +496,9 @@ class ForecastEngine:
         for head_key, model in self.models.items():
             meta = self.model_metadata[head_key]
             # Select schema-aligned vector
-            if meta["schema_type"] == "iod":
+            if meta["schema_type"] == "atmospheric":
+                X = df_atmos
+            elif meta["schema_type"] == "iod":
                 X = df_iod
             else:
                 X = df_base
@@ -459,7 +524,11 @@ class ForecastEngine:
             summary_probs[head_key] = prob_clean
             summary_pcts[head_key] = prob_pct
 
-        horizon_outlook = self._predict_horizon_outlook(self.prepare_horizon_feature_vector(obs_dict))
+        if "Date" not in obs_dict:
+            raise ValueError("Observation must provide 'Date' for horizon applicability")
+        horizon_outlook = self._predict_horizon_outlook(
+            self.prepare_horizon_feature_vector(obs_dict), obs_dict["Date"]
+        )
 
         return {
             "engine_version": ENGINE_VERSION,

@@ -50,6 +50,20 @@ TARGET_COLUMNS = [
     for window in HORIZON_WINDOWS
 ]
 LABEL_AVAILABLE_COLUMNS = [f"label_available_{window}" for window in HORIZON_WINDOWS]
+APPLICABILITY_COLUMNS = [
+    f"target_applicable_{event}_{window}"
+    for event in EVENT_SPECS
+    for window in HORIZON_WINDOWS
+]
+# These months match the existing monsoon-event definitions in
+# generate_monsoon_targets.py. Heavy rain remains an all-year extreme-rain
+# target; dry spells, severe breaks, and revival are Kharif/monsoon events.
+EVENT_APPLICABILITY_MONTHS: Mapping[str, frozenset[int]] = {
+    "dry_spell": frozenset({6, 7, 8, 9, 10}),
+    "severe_break": frozenset({6, 7, 8, 9, 10}),
+    "heavy_rain": frozenset(range(1, 13)),
+    "revival": frozenset({6, 7, 8, 9, 10}),
+}
 EXISTING_TARGET_COLUMNS = [
     "target_onset_window_14d", "target_false_onset_flag",
     "target_dry_spell_5d_14d", "target_dry_spell_7d_21d",
@@ -58,6 +72,7 @@ EXISTING_TARGET_COLUMNS = [
 DEFAULT_FEATURE_EXCLUSIONS = {
     "Date", "Target_Crops", "Active_Crop_Cycle", "Zone", "District", "zone_id",
     *EXISTING_TARGET_COLUMNS, *TARGET_COLUMNS, *LABEL_AVAILABLE_COLUMNS,
+    *APPLICABILITY_COLUMNS,
 }
 
 
@@ -96,10 +111,11 @@ def _has_revival_event(values: np.ndarray, current_streak: float, start: int, en
     return False
 
 
-def _window_has_complete_observations(n: int, end: int, max_followup: int) -> bool:
+def _window_has_complete_observations(row_pos: int, n: int, end: int, max_followup: int) -> bool:
     # The target may inspect beyond the window endpoint to complete a run or
     # accumulation, so only label rows with all required observations present.
-    return end + max_followup < n
+    # Crucially, this is relative to the actual reference-row position.
+    return row_pos + end + max_followup < n
 
 
 def generate_horizon_targets(df: pd.DataFrame) -> pd.DataFrame:
@@ -123,6 +139,8 @@ def generate_horizon_targets(df: pd.DataFrame) -> pd.DataFrame:
         result[column] = pd.Series(pd.NA, index=result.index, dtype="Int8")
     for column in LABEL_AVAILABLE_COLUMNS:
         result[column] = False
+    for column in APPLICABILITY_COLUMNS:
+        result[column] = False
 
     result["_horizon_order"] = result.groupby("District").cumcount()
     for _, district_df in result.groupby("District", sort=False):
@@ -134,22 +152,25 @@ def generate_horizon_targets(df: pd.DataFrame) -> pd.DataFrame:
             for window_name, (start, end) in HORIZON_WINDOWS.items():
                 # A seven-day run and a 3-day heavy accumulation are the
                 # longest follow-up needed by any event definition.
-                available = _window_has_complete_observations(n, end, 7)
+                available = _window_has_complete_observations(row_pos, n, end, 7)
                 result.loc[source_index, f"label_available_{window_name}"] = available
+                month = pd.Timestamp(district_df.sort_values("Date").iloc[row_pos]["Date"]).month
                 if not available:
                     continue
-                result.loc[source_index, f"target_dry_spell_{window_name}"] = int(
-                    _has_run(rain, row_pos + start, row_pos + end, 5)
-                )
-                result.loc[source_index, f"target_severe_break_{window_name}"] = int(
-                    _has_run(rain, row_pos + start, row_pos + end, 7)
-                )
-                result.loc[source_index, f"target_heavy_rain_{window_name}"] = int(
-                    _has_heavy_event(rain, row_pos + start, row_pos + end)
-                )
-                result.loc[source_index, f"target_revival_{window_name}"] = int(
-                    _has_revival_event(rain, streaks[row_pos], row_pos + start, row_pos + end)
-                )
+                for event in EVENT_SPECS:
+                    applicable = month in EVENT_APPLICABILITY_MONTHS[event]
+                    result.loc[source_index, f"target_applicable_{event}_{window_name}"] = applicable
+                    if not applicable:
+                        continue
+                    if event == "dry_spell":
+                        value = _has_run(rain, row_pos + start, row_pos + end, 5)
+                    elif event == "severe_break":
+                        value = _has_run(rain, row_pos + start, row_pos + end, 7)
+                    elif event == "heavy_rain":
+                        value = _has_heavy_event(rain, row_pos + start, row_pos + end)
+                    else:
+                        value = _has_revival_event(rain, streaks[row_pos], row_pos + start, row_pos + end)
+                    result.loc[source_index, f"target_{event}_{window_name}"] = int(value)
 
     return result.drop(columns=["_horizon_order"])
 
@@ -255,6 +276,10 @@ def train_horizon_models(
         "train_years": [2020, 2021, 2022, 2023], "validation_year": 2024, "test_year": 2025,
         "forecast_type": "statistical_observation_climate_state_outlook",
         "iod_publication_lag_days": 3,
+        "event_applicability_months": {
+            event: sorted(months) for event, months in EVENT_APPLICABILITY_MONTHS.items()
+        },
+        "label_availability_rule": "reference_row_position + window_end + max_event_followup < series_length",
     }
     (model_dir / "feature_metadata.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     all_metrics = []
@@ -300,6 +325,24 @@ def train_horizon_models(
                 "target": target, "event": event, "horizon": window_name,
                 "description": EVENT_SPECS[event]["description"], "n_train": len(y_train),
                 "n_validation": len(y_val), "n_test": len(y_test),
+                "unavailable": {
+                    "train": int((~train[f"label_available_{window_name}"]).sum()),
+                    "validation": int((~validation[f"label_available_{window_name}"]).sum()),
+                    "test": int((~test[f"label_available_{window_name}"]).sum()),
+                },
+                "out_of_season": {
+                    "train": int((train[target].isna() & train[f"label_available_{window_name}"]).sum()),
+                    "validation": int((validation[target].isna() & validation[f"label_available_{window_name}"]).sum()),
+                    "test": int((test[target].isna() & test[f"label_available_{window_name}"]).sum()),
+                },
+                "class_balance": {
+                    "train_positive": int(y_train.sum()),
+                    "train_negative": int((y_train == 0).sum()),
+                    "validation_positive": int(y_val.sum()),
+                    "validation_negative": int((y_val == 0).sum()),
+                    "test_positive": int(y_test.sum()),
+                    "test_negative": int((y_test == 0).sum()),
+                },
                 "test": evaluate_probabilities(y_test, test_prob, threshold),
                 "climatology": climatology_baseline(y_train, y_test),
                 "validation_brier": float(brier_score_loss(y_val, val_prob)),

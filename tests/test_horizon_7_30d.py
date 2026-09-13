@@ -58,6 +58,27 @@ class TestHorizonTargets(unittest.TestCase):
         self.assertFalse(bool(df.iloc[0]["label_available_22_30d"]))
         self.assertTrue(pd.isna(df.iloc[0]["target_dry_spell_22_30d"]))
 
+    def test_final_reference_rows_are_unavailable(self):
+        df = generate_horizon_targets(synthetic_rows([0.0] * 45))
+        for row_pos in (42, 43, 44):
+            row = df.iloc[row_pos]
+            self.assertFalse(bool(row["label_available_7_14d"]))
+            self.assertFalse(bool(row["label_available_15_21d"]))
+            self.assertFalse(bool(row["label_available_22_30d"]))
+            self.assertTrue(pd.isna(row["target_dry_spell_7_14d"]))
+            self.assertTrue(pd.isna(row["target_severe_break_22_30d"]))
+
+    def test_out_of_season_targets_are_unavailable_but_future_labels_are_available(self):
+        df = generate_horizon_targets(synthetic_rows([0.0] * 60, start="2025-12-01"))
+        row = df.iloc[0]
+        self.assertTrue(bool(row["label_available_7_14d"]))
+        self.assertFalse(bool(row["target_applicable_dry_spell_7_14d"]))
+        self.assertFalse(bool(row["target_applicable_severe_break_7_14d"]))
+        self.assertTrue(pd.isna(row["target_dry_spell_7_14d"]))
+        self.assertTrue(pd.isna(row["target_severe_break_7_14d"]))
+        self.assertTrue(bool(row["target_applicable_heavy_rain_7_14d"]))
+        self.assertEqual(row["target_heavy_rain_7_14d"], 0)
+
     def test_temporal_split(self):
         rows = []
         for year in (2020, 2023, 2024, 2025):
@@ -86,12 +107,18 @@ class TestHorizonTargets(unittest.TestCase):
     def test_trained_artifact_loading_and_probability_bounds(self):
         model_dir = Path("models/horizon_7_30d")
         metadata = json.loads((model_dir / "feature_metadata.json").read_text(encoding="utf-8"))
-        dataset = pd.read_parquet("data/processed/horizon_7_30d_dataset.parquet")
+        ds_path = (
+            Path("data/processed/horizon_7_30d_with_atmospheric.parquet")
+            if Path("data/processed/horizon_7_30d_with_atmospheric.parquet").exists()
+            else Path("data/processed/horizon_7_30d_dataset.parquet")
+        )
+        dataset = pd.read_parquet(ds_path)
         sample = dataset.loc[dataset["label_available_7_14d"]].iloc[:3]
         for target in TARGET_COLUMNS:
             artifact = joblib.load(model_dir / f"{target}_calibrated_xgb.joblib")
             self.assertEqual(artifact["target_col"], target)
-            probabilities = artifact["model"].predict_proba(sample[metadata["feature_names"]])[:, 1]
+            features = artifact.get("feature_cols", metadata["feature_names"])
+            probabilities = artifact["model"].predict_proba(sample[features])[:, 1]
             self.assertTrue(np.all((probabilities >= 0) & (probabilities <= 1)))
 
 

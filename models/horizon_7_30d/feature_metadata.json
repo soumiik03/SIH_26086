@@ -28,7 +28,58 @@
     "iod_positive_flag",
     "iod_negative_flag",
     "iod_dmi_lag7",
+    "iod_dmi_lag14",
+    "u850_regional",
+    "v850_regional",
+    "wind850_speed",
+    "mslp_regional",
+    "regional_slp_gradient",
+    "u850_lag7",
+    "mslp_lag7",
+    "u850_rolling_7d",
+    "mslp_rolling_7d"
+  ],
+  "base_features": [
+    "Latitude",
+    "Longitude",
+    "Rainfall_Observed_mm",
+    "Tmax_C",
+    "Tmin_C",
+    "Relative_Humidity_pct",
+    "Solar_Radiation_MJm2",
+    "MJO_Phase",
+    "MJO_Amplitude",
+    "Nino34_Anomaly",
+    "Dry_Spell_Days_Streak",
+    "Rolling_Rainfall_7d_mm",
+    "Rolling_Rainfall_30d_mm",
+    "Drought_Stress_Index",
+    "Waterlogging_Risk_Index",
+    "dtr_c",
+    "vpd_kpa",
+    "day_of_year",
+    "doy_sin",
+    "doy_cos",
+    "mjo_phase_sin",
+    "mjo_phase_cos",
+    "rolling_rain_3d_mm",
+    "rolling_rain_15d_mm",
+    "iod_dmi",
+    "iod_positive_flag",
+    "iod_negative_flag",
+    "iod_dmi_lag7",
     "iod_dmi_lag14"
+  ],
+  "atmospheric_features": [
+    "u850_regional",
+    "v850_regional",
+    "wind850_speed",
+    "mslp_regional",
+    "regional_slp_gradient",
+    "u850_lag7",
+    "mslp_lag7",
+    "u850_rolling_7d",
+    "mslp_rolling_7d"
   ],
   "target_columns": [
     "target_dry_spell_7_14d",
@@ -67,5 +118,46 @@
   "validation_year": 2024,
   "test_year": 2025,
   "forecast_type": "statistical_observation_climate_state_outlook",
-  "iod_publication_lag_days": 3
+  "calibration_method": "platt_sigmoid",
+  "operational_lag_days": {
+    "iod": 3,
+    "atmospheric": 1
+  },
+  "event_applicability_months": {
+    "dry_spell": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "severe_break": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "heavy_rain": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "revival": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  }
 }

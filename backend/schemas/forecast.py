@@ -1,4 +1,4 @@
-from typing import Dict, Literal
+from typing import Dict, Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 RiskLevel = Literal["LOW", "MODERATE", "HIGH", "VERY_HIGH"]
 ForecastStatus = Literal["EXPERIMENTAL_OBSERVATION_STATE"]
 HorizonForecastStatus = Literal["STATISTICAL_7_30_DAY_OUTLOOK"]
+HorizonApplicability = Literal["APPLICABLE", "OUT_OF_SEASON"]
 
 
 class RiskLevels(BaseModel):
@@ -30,10 +31,14 @@ class HorizonModelVersion(BaseModel):
 
 
 class HorizonForecast(BaseModel):
-    dry_spell_probability: float = Field(ge=0, le=1)
-    severe_break_probability: float = Field(ge=0, le=1)
-    heavy_rain_probability: float = Field(ge=0, le=1)
-    revival_probability: float = Field(ge=0, le=1)
+    dry_spell_probability: Optional[float] = Field(default=None, ge=0, le=1)
+    severe_break_probability: Optional[float] = Field(default=None, ge=0, le=1)
+    heavy_rain_probability: Optional[float] = Field(default=None, ge=0, le=1)
+    revival_probability: Optional[float] = Field(default=None, ge=0, le=1)
+    dry_spell_applicability: HorizonApplicability
+    severe_break_applicability: HorizonApplicability
+    heavy_rain_applicability: HorizonApplicability
+    revival_applicability: HorizonApplicability
     model_versions: Dict[str, HorizonModelVersion]
 
 
