@@ -121,7 +121,8 @@ class TestAgronomicExpertSystem(unittest.TestCase):
         ForecastResponse.model_validate(forecast)
         self.assertEqual(
             forecast["onset_probability"],
-            float(feature["properties"]["onset_prob"]),
+            (float(feature["properties"]["onset_prob"])
+             if feature["properties"]["onset_prob"] is not None else None),
         )
         advisory = forecast_service.advisory_for_panchayat(
             str(feature["properties"]["panchayat_id"]), "aman_rice"

@@ -1,0 +1,13 @@
+district,number_of_blocks,number_of_supported_panchayats,dry_spell_probability,severe_break_probability,heavy_rain_probability,risk_category
+Alipurduar,8,62,0.9773,0.9971,,VERY_HIGH
+Bankura,22,190,0.9871,0.9979,,VERY_HIGH
+Birbhum (Suri),19,167,0.9907,0.9985,,VERY_HIGH
+Cooch Behar,12,129,0.9788,0.9826,,VERY_HIGH
+Hooghly,18,206,0.9831,0.9963,,VERY_HIGH
+Jalpaiguri,9,55,0.9738,0.9946,,VERY_HIGH
+Jhargram,8,79,0.9935,0.9972,,VERY_HIGH
+Murshidabad,26,242,0.9900,0.9971,,VERY_HIGH
+Nadia,18,176,0.9809,0.9839,,VERY_HIGH
+Purba Bardhaman,23,215,0.9877,0.9946,,VERY_HIGH
+Purulia,20,170,0.9915,0.9947,,VERY_HIGH
+Darjeeling (Siliguri Foothills),4,28,0.9885,0.9944,,VERY_HIGH

@@ -24,10 +24,17 @@ type FarmerAction = "SOW" | "WAIT" | "PREPARE IRRIGATION";
  * NOTE: Per product specification, this does NOT use frontend probability thresholds
  * or heuristic rules. The decision reflects the action communicated by the backend advisory.
  */
-function getFarmerAction(forecast: Forecast): FarmerAction {
+function getFarmerAction(forecast: Forecast): FarmerAction | null {
+  if (forecast.advisory?.action) {
+    return forecast.advisory.action === "PREPARE_IRRIGATION"
+      ? "PREPARE IRRIGATION"
+      : forecast.advisory.action;
+  }
+
   const headline = forecast.advisory?.headline?.toLowerCase() || "";
   const action = forecast.advisory?.recommended_action?.toLowerCase() || "";
   const combined = `${headline} ${action}`;
+  if (!combined.trim() || combined.includes("unavailable")) return null;
 
   if (
     combined.includes("supplementary irrigation") ||
@@ -50,11 +57,11 @@ function getFarmerAction(forecast: Forecast): FarmerAction {
     return "WAIT";
   }
 
-  return "SOW";
+  return null;
 }
 
-function formatPercent(probability: number | undefined): string {
-  if (probability === undefined || isNaN(probability)) return "0%";
+function formatPercent(probability: number | null | undefined): string {
+  if (probability === null || probability === undefined || !Number.isFinite(probability)) return "Data unavailable";
   const percentage = probability * 100;
   if (percentage === 0) return "0%";
   if (percentage < 0.1) return `${percentage.toFixed(2)}%`;
@@ -90,7 +97,15 @@ export function FarmerView({ forecast, panchayat }: FarmerViewProps) {
       icon: <Droplets className="h-8 w-8 text-sky-600 sm:h-10 sm:w-10" />,
       subtext: "Dry hiatus expected. Arrange supplementary water & conserve soil moisture",
     },
-  }[primaryAction];
+    UNAVAILABLE: {
+      border: "border-slate-400",
+      bg: "bg-slate-50",
+      textColor: "text-slate-900",
+      badgeBg: "bg-slate-600 text-white",
+      icon: <HelpCircle className="h-8 w-8 text-slate-500 sm:h-10 sm:w-10" />,
+      subtext: "No agronomic action is inferred while required forecast data are unavailable",
+    },
+  }[primaryAction ?? "UNAVAILABLE"];
 
   return (
     <div className="animate-rise space-y-6">
@@ -145,7 +160,7 @@ export function FarmerView({ forecast, panchayat }: FarmerViewProps) {
             <div
               className={`inline-block rounded-lg px-4 py-1.5 font-display text-3xl font-black tracking-wider sm:text-4xl ${actionTheme.badgeBg}`}
             >
-              {primaryAction}
+              {primaryAction ?? "ADVISORY UNAVAILABLE"}
             </div>
             <p className="mt-2 text-sm font-semibold text-slate-800">
               {forecast.advisory?.headline}

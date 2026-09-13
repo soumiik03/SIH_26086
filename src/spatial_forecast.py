@@ -80,7 +80,8 @@ RISK_COLORS = {
     "LOW": "#22c55e",         # Green
     "MODERATE": "#eab308",    # Yellow
     "HIGH": "#f97316",        # Orange
-    "VERY_HIGH": "#ef4444"    # Red
+    "VERY_HIGH": "#ef4444",   # Red
+    "UNAVAILABLE": "#94a3b8"   # Slate: no valid forecast state
 }
 
 # Crosswalk between ML Model district keys and spatial layer identifiers
@@ -202,8 +203,8 @@ def evaluate_risk_level(probabilities: Dict[str, Optional[float]]) -> Tuple[str,
       (overall_risk_level, head_risk_dict, risk_color)
     """
     def _categorize(p: Optional[float], t1: float, t2: float, t3: float) -> str:
-        if p is None:
-            return "LOW"
+        if p is None or not np.isfinite(float(p)):
+            return "UNAVAILABLE"
         if p >= t3:
             return "VERY_HIGH"
         elif p >= t2:
@@ -225,9 +226,11 @@ def evaluate_risk_level(probabilities: Dict[str, Optional[float]]) -> Tuple[str,
     }
 
     rank_order = {"LOW": 1, "MODERATE": 2, "HIGH": 3, "VERY_HIGH": 4}
-    max_rank = max(rank_order[v] for v in head_risks.values())
-    inv_rank = {v: k for k, v in rank_order.items()}
-    overall_level = inv_rank[max_rank]
+    available_ranks = [rank_order[v] for v in head_risks.values() if v in rank_order]
+    if not available_ranks:
+        overall_level = "UNAVAILABLE"
+    else:
+        overall_level = {v: k for k, v in rank_order.items()}[max(available_ranks)]
     color = RISK_COLORS[overall_level]
 
     return overall_level, head_risks, color
@@ -241,12 +244,22 @@ def get_agricultural_advisory(probabilities: Dict[str, Optional[float]]) -> Tupl
     Returns:
       (advisory_headline, recommended_action)
     """
-    p_heavy = probabilities.get("heavy_rain") or 0.0
-    p_break = probabilities.get("severe_break_7d") or 0.0
-    p_dry5 = probabilities.get("dry_spell_5d") or 0.0
-    p_false = probabilities.get("false_onset") or 0.0
-    p_onset = probabilities.get("onset") or 0.0
-    p_revival = probabilities.get("revival") or 0.0
+    required = ("heavy_rain", "severe_break_7d", "dry_spell_5d", "false_onset", "onset", "revival")
+    if any(
+        probabilities.get(key) is None or not np.isfinite(float(probabilities[key]))
+        for key in required
+    ):
+        return (
+            "Agronomic Advisory Unavailable",
+            "Required forecast probabilities are unavailable; no agronomic action is inferred.",
+        )
+
+    p_heavy = float(probabilities["heavy_rain"])
+    p_break = float(probabilities["severe_break_7d"])
+    p_dry5 = float(probabilities["dry_spell_5d"])
+    p_false = float(probabilities["false_onset"])
+    p_onset = float(probabilities["onset"])
+    p_revival = float(probabilities["revival"])
 
     if p_heavy >= 0.60:
         return (

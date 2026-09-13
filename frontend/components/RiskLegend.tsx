@@ -3,6 +3,7 @@ const riskLevels = [
   { label: "Moderate", color: "#facc15" },
   { label: "High", color: "#f97316" },
   { label: "Very high", color: "#dc2626" },
+  { label: "Unavailable", color: "#94a3b8" },
 ];
 
 export default function RiskLegend() {

@@ -56,7 +56,8 @@ export default function StatisticalOutlookPanel({
                   <ProbabilityCard
                     key={eventKey}
                     label={eventLabel}
-                    probability={horizon[eventKey] as number}
+                    probability={horizon[eventKey] as number | null}
+                    status={horizon[`${String(eventKey).replace("_probability", "")}_applicability` as keyof HorizonForecast] as "APPLICABLE" | "OUT_OF_SEASON" | "UNAVAILABLE"}
                   />
                 ))}
               </div>

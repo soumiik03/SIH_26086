@@ -1,4 +1,4 @@
-export type RiskLevel = "LOW" | "MODERATE" | "HIGH" | "VERY_HIGH";
+export type RiskLevel = "LOW" | "MODERATE" | "HIGH" | "VERY_HIGH" | "UNAVAILABLE";
 export type ForecastStatus = "EXPERIMENTAL_OBSERVATION_STATE";
 
 export interface HealthResponse {
@@ -22,7 +22,7 @@ export interface Block {
   block_lgd_code: string | null;
   centroid_lat: number;
   centroid_lon: number;
-  risk_level: string;
+  risk_level: RiskLevel;
 }
 
 export interface PanchayatListItem {
@@ -69,6 +69,9 @@ export interface RiskLevels {
 export interface AgronomicAdvisory {
   headline: string;
   recommended_action: string;
+  action?: "SOW" | "WAIT" | "PREPARE_IRRIGATION";
+  rule_id?: string;
+  validity?: string;
 }
 export interface HorizonModelVersion {
   target_col: string;

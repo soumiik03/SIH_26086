@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 from src.agronomy.expert_system import evaluate_advisory, supported_crops
 from src.forecast_engine import ForecastEngine, ENGINE_VERSION
-from src.spatial_forecast import OPERATIONAL_DISCLAIMER, OPERATIONAL_STATUS
+from src.spatial_forecast import OPERATIONAL_DISCLAIMER, OPERATIONAL_STATUS, evaluate_risk_level
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -144,6 +144,12 @@ def to_panchayat_list_item(feature: Dict[str, Any]) -> Dict[str, Any]:
 def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
     p = feature["properties"]
     probabilities = _forecast_probabilities(p)
+    _, computed_head_risks, _ = evaluate_risk_level({
+        "heavy_rain": probabilities["heavy_rain_probability"],
+        "severe_break_7d": probabilities["severe_break_7d_probability"],
+        "dry_spell_5d": probabilities["dry_spell_5d_probability"],
+        "false_onset": probabilities["false_onset_probability"],
+    })
     statistical_outlook = _statistical_outlook(p)
     timestamp = str(p.get("data_timestamp", ""))
     ref_date = str(p.get("forecast_reference_date", timestamp[:10] if timestamp else "2026-09-08"))
@@ -174,11 +180,16 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
         "heavy_rain_probability": probabilities["heavy_rain_probability"],
         "revival_probability": probabilities["revival_probability"],
         "risk_levels": {
-            "overall": p["risk_level"],
-            "heavy_rain": p["heavy_rain_risk"],
-            "severe_break": p["severe_break_risk"],
-            "dry_spell": p["dry_spell_risk"],
-            "false_onset": p["false_onset_risk"],
+            "overall": evaluate_risk_level({
+                "heavy_rain": probabilities["heavy_rain_probability"],
+                "severe_break_7d": probabilities["severe_break_7d_probability"],
+                "dry_spell_5d": probabilities["dry_spell_5d_probability"],
+                "false_onset": probabilities["false_onset_probability"],
+            })[0],
+            "heavy_rain": computed_head_risks["heavy_rain_risk"],
+            "severe_break": computed_head_risks["severe_break_risk"],
+            "dry_spell": computed_head_risks["dry_spell_risk"],
+            "false_onset": computed_head_risks["false_onset_risk"],
         },
         "advisory": {
             **_expert_advisory(p),

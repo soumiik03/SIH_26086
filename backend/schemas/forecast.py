@@ -1,7 +1,7 @@
 from typing import Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
 
-RiskLevel = Literal["LOW", "MODERATE", "HIGH", "VERY_HIGH"]
+RiskLevel = Literal["LOW", "MODERATE", "HIGH", "VERY_HIGH", "UNAVAILABLE"]
 ForecastStatus = Literal["EXPERIMENTAL_OBSERVATION_STATE"]
 HorizonForecastStatus = Literal["STATISTICAL_7_30_DAY_OUTLOOK"]
 HorizonApplicability = Literal["APPLICABLE", "OUT_OF_SEASON", "UNAVAILABLE"]

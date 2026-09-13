@@ -178,56 +178,62 @@ class TestSpatialForecastLayer(unittest.TestCase):
     def test_deterministic_risk_classification(self):
         """Verify deterministic risk mapping logic and color assignment."""
         # Case 1: VERY_HIGH heavy rain
-        risk, head_risks, color = evaluate_risk_level({"heavy_rain": 0.80})
+        base = {"heavy_rain": 0.05, "severe_break_7d": 0.05, "dry_spell_5d": 0.05, "false_onset": 0.05, "onset": 0.05, "revival": 0.05}
+        risk, head_risks, color = evaluate_risk_level({**base, "heavy_rain": 0.80})
         self.assertEqual(risk, "VERY_HIGH")
         self.assertEqual(head_risks["heavy_rain_risk"], "VERY_HIGH")
         self.assertEqual(color, "#ef4444")
 
         # Case 2: HIGH severe break
-        risk, head_risks, color = evaluate_risk_level({"severe_break_7d": 0.65})
+        risk, head_risks, color = evaluate_risk_level({**base, "severe_break_7d": 0.65})
         self.assertEqual(risk, "HIGH")
         self.assertEqual(head_risks["severe_break_risk"], "HIGH")
         self.assertEqual(color, "#f97316")
 
         # Case 3: MODERATE false onset
-        risk, head_risks, color = evaluate_risk_level({"false_onset": 0.30})
+        risk, head_risks, color = evaluate_risk_level({**base, "false_onset": 0.30})
         self.assertEqual(risk, "MODERATE")
         self.assertEqual(head_risks["false_onset_risk"], "MODERATE")
         self.assertEqual(color, "#eab308")
 
         # Case 4: LOW all events
         risk, head_risks, color = evaluate_risk_level({
-            "heavy_rain": 0.05, "severe_break_7d": 0.08, "dry_spell_5d": 0.06, "false_onset": 0.02
+            "heavy_rain": 0.05, "severe_break_7d": 0.08, "dry_spell_5d": 0.06, "false_onset": 0.02, "onset": 0.03, "revival": 0.04
         })
         self.assertEqual(risk, "LOW")
         self.assertEqual(color, "#22c55e")
 
         # Check values present in actual GDF
-        valid_risk_levels = {"LOW", "MODERATE", "HIGH", "VERY_HIGH"}
+        valid_risk_levels = {"LOW", "MODERATE", "HIGH", "VERY_HIGH", "UNAVAILABLE"}
         self.assertTrue(set(self.block_gdf["risk_level"].unique()).issubset(valid_risk_levels))
         self.assertTrue(set(self.panchayat_gdf["risk_level"].unique()).issubset(valid_risk_levels))
 
     def test_deterministic_advisory_output(self):
         """Verify deterministic AAS agrometeorological advisory logic."""
         # Heavy rain advisory
-        hl, text = get_agricultural_advisory({"heavy_rain": 0.65})
+        base = {"heavy_rain": 0.05, "severe_break_7d": 0.05, "dry_spell_5d": 0.05, "false_onset": 0.05, "onset": 0.05, "revival": 0.05}
+        hl, text = get_agricultural_advisory({**base, "heavy_rain": 0.65})
         self.assertIn("Heavy Rainfall", hl)
         self.assertIn("drainage channels", text)
 
         # Severe break advisory
-        hl, text = get_agricultural_advisory({"severe_break_7d": 0.72})
+        hl, text = get_agricultural_advisory({**base, "severe_break_7d": 0.72})
         self.assertIn("Dry Spell", hl)
         self.assertIn("supplementary irrigation", text)
 
         # False onset precaution
-        hl, text = get_agricultural_advisory({"false_onset": 0.45, "onset": 0.55})
+        hl, text = get_agricultural_advisory({**base, "false_onset": 0.45, "onset": 0.55})
         self.assertIn("False Onset", hl)
         self.assertIn("community nursery", text)
 
         # Normal seasonal operations
-        hl, text = get_agricultural_advisory({"heavy_rain": 0.05, "severe_break_7d": 0.05})
+        hl, text = get_agricultural_advisory(base)
         self.assertIn("Normal Seasonal", hl)
         self.assertIn("standard agronomic", text)
+
+        missing_hl, missing_text = get_agricultural_advisory({"heavy_rain": None})
+        self.assertEqual(missing_hl, "Agronomic Advisory Unavailable")
+        self.assertNotIn("Normal Seasonal", missing_hl)
 
         # Verify all actual records have non-empty advisories
         self.assertTrue((self.block_gdf["recommended_action"].str.len() > 20).all())

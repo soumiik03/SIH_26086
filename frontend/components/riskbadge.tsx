@@ -12,6 +12,7 @@ export default function RiskBadge({
     MODERATE: "bg-yellow-100 text-yellow-700",
     HIGH: "bg-orange-100 text-orange-700",
     VERY_HIGH: "bg-red-100 text-red-700",
+    UNAVAILABLE: "bg-slate-100 text-slate-600",
   };
 
   return (

@@ -55,8 +55,10 @@ class TestVarshaSentinelAPI(unittest.TestCase):
         )
         for field in fields:
             self.assertIn(field, body)
-            self.assertGreaterEqual(body[field], 0)
-            self.assertLessEqual(body[field], 1)
+            if body[field] is not None:
+                self.assertGreaterEqual(body[field], 0)
+                self.assertLessEqual(body[field], 1)
+        self.assertEqual(body["event_applicability"]["onset"], "OUT_OF_SEASON")
         self.assertEqual(body["forecast_status"], "EXPERIMENTAL_OBSERVATION_STATE")
 
     def test_risk_map_geojson(self):
