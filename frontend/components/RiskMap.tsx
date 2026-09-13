@@ -1,37 +1,219 @@
 "use client";
 
-import type { RiskMap } from "@/types/api";
-import maplibregl, { type Map } from "maplibre-gl";
-import { useEffect, useRef } from "react";
-import { MapPinned } from "lucide-react";
-import { LoadingState } from "./LoadingState";
-import { ErrorState } from "./ErrorState";
+"use client";
 
-function collectCoordinates(value: unknown, result: Array<[number, number]>): void {
-  if (!Array.isArray(value)) return;
-  if (value.length >= 2 && typeof value[0] === "number" && typeof value[1] === "number") { result.push([value[0], value[1]]); return; }
-  value.forEach((item) => collectCoordinates(item, result));
+import { useEffect, useRef } from "react";
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+
+import { api } from "@/lib/api";
+import RiskLegend from "./RiskLegend";
+
+interface RiskMapProps {
+  selectedPanchayat: string;
+  onPanchayatSelect: (id: string) => void;
 }
 
-export function RiskMap({ data, loading, error, onRetry }: { data: RiskMap | null; loading: boolean; error?: string; onRetry: () => void }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<Map | null>(null);
+export default function RiskMap({
+  selectedPanchayat,
+  onPanchayatSelect,
+}: RiskMapProps) {
+
+  const mapContainer = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<maplibregl.Map | null>(null);
+
   useEffect(() => {
-    if (!containerRef.current || mapRef.current) return;
-    mapRef.current = new maplibregl.Map({ container: containerRef.current, style: { version: 8, sources: {}, layers: [{ id: "background", type: "background", paint: { "background-color": "#e8eee9" } }] }, center: [0, 0], zoom: 1 });
-    mapRef.current.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
-    return () => { mapRef.current?.remove(); mapRef.current = null; };
-  }, []);
-  useEffect(() => {
-    if (!data || !mapRef.current) return;
-    const map = mapRef.current;
-    const draw = () => {
-      if (map.getSource("risk-map")) (map.getSource("risk-map") as maplibregl.GeoJSONSource).setData(data as never);
-      else { map.addSource("risk-map", { type: "geojson", data: data as never }); map.addLayer({ id: "risk-fill", type: "fill", source: "risk-map", paint: { "fill-color": "#4c8b68", "fill-opacity": .35 } }); map.addLayer({ id: "risk-line", type: "line", source: "risk-map", paint: { "line-color": "#2f6b52", "line-width": 1.2 } }); }
-      const coordinates: Array<[number, number]> = []; data.features.forEach((feature) => collectCoordinates(feature.geometry?.coordinates, coordinates));
-      if (coordinates.length) { const bounds = coordinates.reduce((result, coordinate) => result.extend(coordinate), new maplibregl.LngLatBounds(coordinates[0], coordinates[0])); map.fitBounds(bounds, { padding: 40, maxZoom: 10, duration: 0 }); }
+    if (!mapContainer.current) return;
+
+    const map = new maplibregl.Map({
+      container: mapContainer.current,
+
+      // Replace this with your team's approved MapLibre style.
+      style: {
+        version: 8,
+        sources: {},
+        layers: [
+          {
+            id: "background",
+            type: "background",
+            paint: {
+              "background-color": "#eef2f5",
+            },
+          },
+        ],
+      },
+
+      center: [87.855, 22.986],
+      zoom: 6,
+    });
+
+    map.addControl(
+      new maplibregl.NavigationControl(),
+      "top-right"
+    );
+
+    mapRef.current = map;
+
+    async function loadRiskMap() {
+      try {
+        const data = await api.getRiskMap();
+
+        map.on("load", () => {
+
+          map.addSource("risk-map", {
+            type: "geojson",
+            data,
+            promoteId: "panchayat_id",
+          });
+
+          map.addLayer({
+            id: "risk-fill",
+            type: "fill",
+            source: "risk-map",
+
+            paint: {
+              "fill-color": [
+                "match",
+                ["get", "risk_level"],
+
+                "LOW",
+                "#22c55e",
+
+                "MODERATE",
+                "#facc15",
+
+                "HIGH",
+                "#f97316",
+
+                "VERY HIGH",
+                "#dc2626",
+
+                "#94a3b8",
+              ],
+
+              "fill-opacity": 0.55,
+            },
+          });
+
+          map.addLayer({
+            id: "risk-outline",
+            type: "line",
+            source: "risk-map",
+
+            paint: {
+              "line-color": "#475569",
+              "line-width": 0.8,
+              "line-opacity": 0.7,
+            },
+          });
+
+          map.on("click", "risk-fill", (event) => {
+
+            const feature = event.features?.[0];
+
+            if (!feature) return;
+
+            const id = feature.properties?.panchayat_id;
+
+            if (id === undefined) return;
+
+            onPanchayatSelect(String(id));
+          });
+
+          map.on("mouseenter", "risk-fill", () => {
+            map.getCanvas().style.cursor = "pointer";
+          });
+
+          map.on("mouseleave", "risk-fill", () => {
+            map.getCanvas().style.cursor = "";
+          });
+        });
+
+      } catch (error) {
+        console.error("Risk map loading failed:", error);
+      }
+    }
+
+    loadRiskMap();
+
+    return () => {
+      map.remove();
+      mapRef.current = null;
     };
-    if (map.loaded()) draw(); else map.once("load", draw);
-  }, [data]);
-  return <section className="overflow-hidden border border-slate-200 bg-white"><div className="flex items-center justify-between border-b border-slate-200 px-5 py-4"><div className="flex items-center gap-2"><MapPinned className="h-4 w-4 text-moss" /><h2 className="font-display text-lg font-semibold">Supported risk map</h2></div>{data && <span className="text-xs text-slate-500">{data.features.length} mapped areas</span>}</div><div className="relative h-[360px] bg-[#e8eee9] sm:h-[430px]">{loading && <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/80"><LoadingState label="Loading risk map..." /></div>}{error && <div className="absolute inset-0 z-10 flex items-center justify-center p-5"><ErrorState message={error} onRetry={onRetry} /></div>} {!loading && !error && !data && <div className="absolute inset-0 z-10 flex items-center justify-center p-5 text-sm text-slate-500">No risk map data available.</div>}<div ref={containerRef} className="h-full w-full" /></div></section>;
+  }, [onPanchayatSelect]);
+
+  // Highlight selected Panchayat
+  useEffect(() => {
+
+    const map = mapRef.current;
+
+    if (!map || !map.getSource("risk-map")) {
+      return;
+    }
+
+    if (!selectedPanchayat) {
+      return;
+    }
+
+    map.setFilter(
+      "selected-risk-outline",
+      [
+        "==",
+        ["get", "panchayat_id"],
+        selectedPanchayat,
+      ]
+    );
+
+  }, [selectedPanchayat]);
+
+  // Add selection layer after map load
+  useEffect(() => {
+
+    const map = mapRef.current;
+
+    if (!map) return;
+
+    const addSelectionLayer = () => {
+
+      if (!map.getLayer("selected-risk-outline")) {
+
+        map.addLayer({
+          id: "selected-risk-outline",
+          type: "line",
+          source: "risk-map",
+
+          paint: {
+            "line-color": "#111827",
+            "line-width": 4,
+          },
+
+          filter: [
+            "==",
+            ["get", "panchayat_id"],
+            "",
+          ],
+        });
+      }
+    };
+
+    if (map.loaded()) {
+      addSelectionLayer();
+    } else {
+      map.once("load", addSelectionLayer);
+    }
+
+  }, []);
+
+  return (
+    <div className="relative h-full min-h-[500px] overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+
+      <div
+        ref={mapContainer}
+        className="absolute inset-0"
+      />
+
+      <RiskLegend />
+
+    </div>
+  );
 }
