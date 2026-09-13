@@ -1,4 +1,4 @@
-import type { RiskLevel } from "@/types/forecast";
+import type { RiskLevel } from "@/types/api";
 
 interface RiskBadgeProps {
   level: RiskLevel;
