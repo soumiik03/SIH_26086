@@ -1,0 +1,245 @@
+{
+  "source_trace": "reports\\step10_forecast_trace.json",
+  "reference_date": "2026-09-08",
+  "data_as_of": "2026-09-08",
+  "district": "Alipurduar",
+  "block": "Madarihat",
+  "panchayat": "Bandapani",
+  "panchayat_id": "gp_109796",
+  "features": {
+    "Latitude": 26.49,
+    "Longitude": 89.53,
+    "Rainfall_Observed_mm": 7.18,
+    "Tmax_C": 30.48,
+    "Tmin_C": 24.57,
+    "Relative_Humidity_pct": 87.8,
+    "Solar_Radiation_MJm2": 17.99,
+    "MJO_Phase": 7,
+    "MJO_Amplitude": 0.8527,
+    "Nino34_Anomaly": 2.52,
+    "Dry_Spell_Days_Streak": 0,
+    "Rolling_Rainfall_7d_mm": 74.88,
+    "Rolling_Rainfall_30d_mm": 337.28,
+    "Drought_Stress_Index": 0.0,
+    "Waterlogging_Risk_Index": 0.0,
+    "dtr_c": 5.91,
+    "vpd_kpa": 0.4485,
+    "day_of_year": 251,
+    "doy_sin": -0.9232,
+    "doy_cos": -0.3844,
+    "mjo_phase_sin": -0.7071,
+    "mjo_phase_cos": 0.7071,
+    "rolling_rain_3d_mm": 39.18,
+    "rolling_rain_15d_mm": 234.36,
+    "iod_dmi": 0.22,
+    "iod_positive_flag": 0,
+    "iod_negative_flag": 0,
+    "iod_dmi_lag7": 0.17,
+    "iod_dmi_lag14": 0.18,
+    "District_Encoded": 0,
+    "Zone_Encoded": 2,
+    "atmospheric_fields": null
+  },
+  "v2_forecast": {
+    "engine_version": "VARSHASENTINEL_V2_STEP11",
+    "reference_date": "2026-09-08",
+    "operational_status": "EXPERIMENTAL_OBSERVATION_STATE",
+    "events": {
+      "onset": {
+        "probability": null,
+        "probability_pct": null,
+        "applicability": "OUT_OF_SEASON",
+        "model_status": "PRODUCTION_V2"
+      },
+      "false_onset": {
+        "probability": null,
+        "probability_pct": null,
+        "applicability": "OUT_OF_SEASON",
+        "model_status": "BASELINE_PREFERRED"
+      },
+      "dry_spell_5d": {
+        "probability": 0.773946,
+        "probability_pct": 77.3946,
+        "raw_probability": 0.720883,
+        "applicability": "APPLICABLE",
+        "model_status": "PRODUCTION_V2",
+        "missing_features": []
+      },
+      "severe_break_7d": {
+        "probability": 0.41711,
+        "probability_pct": 41.711,
+        "raw_probability": 0.349209,
+        "applicability": "APPLICABLE",
+        "model_status": "PRODUCTION_V2",
+        "missing_features": []
+      },
+      "heavy_rain": {
+        "probability": 0.091667,
+        "probability_pct": 9.1667,
+        "applicability": "BASELINE_PREFERRED",
+        "model_status": "BASELINE_PREFERRED",
+        "missing_features": []
+      },
+      "revival": {
+        "probability": null,
+        "probability_pct": null,
+        "applicability": "UNAVAILABLE",
+        "model_status": "PRODUCTION_V2",
+        "missing_features": [
+          "u850_regional",
+          "v850_regional",
+          "wind850_speed",
+          "mslp_regional",
+          "regional_slp_gradient",
+          "u850_lag7",
+          "mslp_lag7",
+          "u850_rolling_7d",
+          "mslp_rolling_7d"
+        ]
+      }
+    },
+    "statistical_7_30_day_outlook": {
+      "forecast_status": "STATISTICAL_7_30_DAY_OUTLOOK",
+      "disclaimer": "Statistical probabilistic outlook based on available climate and observation-state information; not an NWP/S2S forecast.",
+      "horizons": {
+        "7_14d": {
+          "dry_spell": {
+            "probability": 0.622403,
+            "probability_pct": 62.2403,
+            "raw_probability": 0.520385,
+            "applicability": "APPLICABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": []
+          },
+          "severe_break": {
+            "probability": 0.260492,
+            "probability_pct": 26.0492,
+            "raw_probability": 0.201285,
+            "applicability": "APPLICABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": []
+          },
+          "heavy_rain": {
+            "probability": null,
+            "probability_pct": null,
+            "applicability": "UNAVAILABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": [
+              "u850_regional",
+              "v850_regional",
+              "wind850_speed",
+              "mslp_regional",
+              "regional_slp_gradient",
+              "u850_lag7",
+              "mslp_lag7",
+              "u850_rolling_7d",
+              "mslp_rolling_7d"
+            ]
+          },
+          "revival": {
+            "probability": null,
+            "probability_pct": null,
+            "applicability": "UNAVAILABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": [
+              "u850_regional",
+              "v850_regional",
+              "wind850_speed",
+              "mslp_regional",
+              "regional_slp_gradient",
+              "u850_lag7",
+              "mslp_lag7",
+              "u850_rolling_7d",
+              "mslp_rolling_7d"
+            ]
+          }
+        },
+        "15_21d": {
+          "dry_spell": {
+            "probability": 0.766521,
+            "probability_pct": 76.6521,
+            "raw_probability": 0.672512,
+            "applicability": "APPLICABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": []
+          },
+          "severe_break": {
+            "probability": 0.436951,
+            "probability_pct": 43.6951,
+            "raw_probability": 0.390164,
+            "applicability": "APPLICABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": []
+          },
+          "heavy_rain": {
+            "probability": 0.245159,
+            "probability_pct": 24.5159,
+            "raw_probability": 0.26479,
+            "applicability": "APPLICABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": []
+          },
+          "revival": {
+            "probability": null,
+            "probability_pct": null,
+            "applicability": "UNAVAILABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": [
+              "u850_regional",
+              "v850_regional",
+              "wind850_speed",
+              "mslp_regional",
+              "regional_slp_gradient",
+              "u850_lag7",
+              "mslp_lag7",
+              "u850_rolling_7d",
+              "mslp_rolling_7d"
+            ]
+          }
+        },
+        "22_30d": {
+          "dry_spell": {
+            "probability": 0.952518,
+            "probability_pct": 95.2518,
+            "raw_probability": 0.918527,
+            "applicability": "APPLICABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": []
+          },
+          "severe_break": {
+            "probability": 0.764835,
+            "probability_pct": 76.4835,
+            "raw_probability": 0.740735,
+            "applicability": "APPLICABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": []
+          },
+          "heavy_rain": {
+            "probability": 0.061806,
+            "probability_pct": 6.1806,
+            "applicability": "BASELINE_PREFERRED",
+            "model_status": "BASELINE_PREFERRED",
+            "missing_features": []
+          },
+          "revival": {
+            "probability": null,
+            "probability_pct": null,
+            "applicability": "UNAVAILABLE",
+            "model_status": "PRODUCTION_V2",
+            "missing_features": [
+              "u850_regional",
+              "v850_regional",
+              "wind850_speed",
+              "mslp_regional",
+              "regional_slp_gradient",
+              "u850_lag7",
+              "mslp_lag7",
+              "u850_rolling_7d",
+              "mslp_rolling_7d"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

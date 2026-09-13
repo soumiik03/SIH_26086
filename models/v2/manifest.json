@@ -1,0 +1,945 @@
+{
+  "model_version": "VARSHASENTINEL_V2_STEP11",
+  "release_gate": "per-event; no 2026 tuning",
+  "training_years": [
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "calibration_year": 2024,
+  "test_year": 2025,
+  "gap_days": 37,
+  "routing": [
+    {
+      "event": "onset",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.12634603397226118,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "isotonic",
+      "validation": {
+        "brier": 0.013722181438809324,
+        "log_loss": 0.05633881012300439,
+        "roc_auc": 0.987279843444227,
+        "pr_auc": 0.488095238095238,
+        "positive_rate": 0.01881720430107527
+      },
+      "test": {
+        "brier": 0.11870683253961951,
+        "log_loss": 0.5832010805005404,
+        "roc_auc": 0.7632020757020759,
+        "pr_auc": 0.31430966541259103,
+        "positive_rate": 0.15217391304347827
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.1276306466222534,
+          "log_loss": 0.41945631873059763,
+          "roc_auc": 0.612408424908425,
+          "pr_auc": 0.19104125890476567,
+          "positive_rate": 0.15217391304347827
+        },
+        "district_climatology": {
+          "brier": 0.12634603397226118,
+          "log_loss": 1.1503796779518358,
+          "roc_auc": 0.6502849002849003,
+          "pr_auc": 0.23775776178117594,
+          "positive_rate": 0.15217391304347827
+        },
+        "recent_state": {
+          "brier": 0.12674132256769172,
+          "log_loss": 0.41605879788721484,
+          "roc_auc": 0.598293777981278,
+          "pr_auc": 0.18309906146625363,
+          "positive_rate": 0.15217391304347827
+        }
+      },
+      "artifact": "models\\v2\\onset\\model.joblib"
+    },
+    {
+      "event": "false_onset",
+      "selected_model": "xgb_full",
+      "baseline": "BASELINE_PREFERRED",
+      "release_status": "BASELINE_PREFERRED",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.08456683631436608,
+        "test_baseline_preferred": true,
+        "discrimination_failure": true
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.03558394798632647,
+        "log_loss": 0.15539328819598314,
+        "roc_auc": 0.8533519553072626,
+        "pr_auc": 0.14090572316256902,
+        "positive_rate": 0.03763440860215054
+      },
+      "test": {
+        "brier": 0.08499958638470645,
+        "log_loss": 0.32363056379882804,
+        "roc_auc": 0.4939587179056889,
+        "pr_auc": 0.0878030108232509,
+        "positive_rate": 0.09148550724637682
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.08614517995818399,
+          "log_loss": 0.3180620007998251,
+          "roc_auc": 0.562130440362082,
+          "pr_auc": 0.10724206419216405,
+          "positive_rate": 0.09148550724637682
+        },
+        "district_climatology": {
+          "brier": 0.09323233208664485,
+          "log_loss": 0.33267713065575405,
+          "roc_auc": 0.5880576093501673,
+          "pr_auc": 0.12942976142526946,
+          "positive_rate": 0.09148550724637682
+        },
+        "recent_state": {
+          "brier": 0.08456683631436608,
+          "log_loss": 0.31294467278420335,
+          "roc_auc": 0.5192689258955806,
+          "pr_auc": 0.09780056737878481,
+          "positive_rate": 0.09148550724637682
+        }
+      },
+      "artifact": "models\\v2\\false_onset\\model.joblib"
+    },
+    {
+      "event": "dry_spell_5d",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.1400199142156863,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "isotonic",
+      "validation": {
+        "brier": 0.0886788667964,
+        "log_loss": 0.2682325395663622,
+        "roc_auc": 0.912267144620086,
+        "pr_auc": 0.9737212656534626,
+        "positive_rate": 0.8062330623306233
+      },
+      "test": {
+        "brier": 0.13874740073804612,
+        "log_loss": 0.8023438982759244,
+        "roc_auc": 0.83512501783571,
+        "pr_auc": 0.9367137345518604,
+        "positive_rate": 0.7706971677559913
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.1400199142156863,
+          "log_loss": 0.4286253423966239,
+          "roc_auc": 0.8311549986151097,
+          "pr_auc": 0.9319531820361665,
+          "positive_rate": 0.7706971677559913
+        },
+        "district_climatology": {
+          "brier": 0.14102460204511916,
+          "log_loss": 0.4898573407676186,
+          "roc_auc": 0.828427184140067,
+          "pr_auc": 0.9417408550800612,
+          "positive_rate": 0.7706971677559913
+        },
+        "recent_state": {
+          "brier": 0.15594760160365403,
+          "log_loss": 0.4809441245804063,
+          "roc_auc": 0.7199961390933584,
+          "pr_auc": 0.8639164323708586,
+          "positive_rate": 0.7706971677559913
+        }
+      },
+      "artifact": "models\\v2\\dry_spell_5d\\model.joblib"
+    },
+    {
+      "event": "severe_break_7d",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.14104673505204554,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.12176827993103638,
+        "log_loss": 0.36024375925587043,
+        "roc_auc": 0.8878169948419236,
+        "pr_auc": 0.9601608292529766,
+        "positive_rate": 0.7228997289972899
+      },
+      "test": {
+        "brier": 0.13413153371193978,
+        "log_loss": 0.3953815999959937,
+        "roc_auc": 0.8790473002056531,
+        "pr_auc": 0.9432371737324308,
+        "positive_rate": 0.6633986928104575
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.14104673505204554,
+          "log_loss": 0.4203842547594417,
+          "roc_auc": 0.8598131586079361,
+          "pr_auc": 0.9157694303228756,
+          "positive_rate": 0.6633986928104575
+        },
+        "district_climatology": {
+          "brier": 0.15638374973645372,
+          "log_loss": 0.9248006428847164,
+          "roc_auc": 0.8463334502420543,
+          "pr_auc": 0.9187075084237759,
+          "positive_rate": 0.6633986928104575
+        },
+        "recent_state": {
+          "brier": 0.20490114578886726,
+          "log_loss": 0.598064260280227,
+          "roc_auc": 0.6710852849118668,
+          "pr_auc": 0.7598277968183331,
+          "positive_rate": 0.6633986928104575
+        }
+      },
+      "artifact": "models\\v2\\severe_break_7d\\model.joblib"
+    },
+    {
+      "event": "heavy_rain",
+      "selected_model": "logistic_local",
+      "baseline": "BASELINE_PREFERRED",
+      "release_status": "BASELINE_PREFERRED",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.04221606652241766,
+        "test_baseline_preferred": true,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.05694405035140545,
+        "log_loss": 0.17883766180209315,
+        "roc_auc": 0.9140689300411523,
+        "pr_auc": 0.36108572964741914,
+        "positive_rate": 0.08163265306122448
+      },
+      "test": {
+        "brier": 0.04425414405804435,
+        "log_loss": 0.14442204931454133,
+        "roc_auc": 0.9308044345756578,
+        "pr_auc": 0.42317355052353,
+        "positive_rate": 0.06961382113821138
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.06056570971410954,
+          "log_loss": 0.22144589337953147,
+          "roc_auc": 0.7653808895462174,
+          "pr_auc": 0.16200478534147048,
+          "positive_rate": 0.06961382113821138
+        },
+        "district_climatology": {
+          "brier": 0.04221606652241766,
+          "log_loss": 0.2027227938475454,
+          "roc_auc": 0.9340688746526766,
+          "pr_auc": 0.49926345969292496,
+          "positive_rate": 0.06961382113821138
+        },
+        "recent_state": {
+          "brier": 0.06059005175368472,
+          "log_loss": 0.2213383849498378,
+          "roc_auc": 0.747987817275072,
+          "pr_auc": 0.14350023814043167,
+          "positive_rate": 0.06961382113821138
+        }
+      },
+      "artifact": "models\\v2\\heavy_rain\\model.joblib"
+    },
+    {
+      "event": "revival",
+      "selected_model": "xgb_full",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.062475740931079715,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.04275990656970303,
+        "log_loss": 0.13718569808262582,
+        "roc_auc": 0.9469632103205183,
+        "pr_auc": 0.5320912690885125,
+        "positive_rate": 0.06910569105691057
+      },
+      "test": {
+        "brier": 0.04329135939688149,
+        "log_loss": 0.14426480757858273,
+        "roc_auc": 0.9315801214054171,
+        "pr_auc": 0.5420131188873033,
+        "positive_rate": 0.06699346405228758
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.062475740931079715,
+          "log_loss": 0.24132583311868455,
+          "roc_auc": 0.6110589039340482,
+          "pr_auc": 0.09177137160649637,
+          "positive_rate": 0.06699346405228758
+        },
+        "district_climatology": {
+          "brier": 0.06352530483519572,
+          "log_loss": 0.3272798111690595,
+          "roc_auc": 0.6691773572726972,
+          "pr_auc": 0.10612864900846836,
+          "positive_rate": 0.06699346405228758
+        },
+        "recent_state": {
+          "brier": 0.06391732873781444,
+          "log_loss": 0.25417771437042913,
+          "roc_auc": 0.5046962728821685,
+          "pr_auc": 0.06875393779881087,
+          "positive_rate": 0.06699346405228758
+        }
+      },
+      "artifact": "models\\v2\\revival\\model.joblib"
+    },
+    {
+      "event": "dry_spell",
+      "horizon": "7_14d",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.16077655375172772,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.11017095537660034,
+        "log_loss": 0.33502045670458985,
+        "roc_auc": 0.9033790234186241,
+        "pr_auc": 0.9650639386064084,
+        "positive_rate": 0.7350948509485095
+      },
+      "test": {
+        "brier": 0.15195898307744546,
+        "log_loss": 0.4609822095087682,
+        "roc_auc": 0.8476664974189726,
+        "pr_auc": 0.9210737910104985,
+        "positive_rate": 0.6601307189542484
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.16232050790248398,
+          "log_loss": 0.47926400808432684,
+          "roc_auc": 0.8145627062706271,
+          "pr_auc": 0.8828614886923369,
+          "positive_rate": 0.6601307189542484
+        },
+        "district_climatology": {
+          "brier": 0.16077655375172772,
+          "log_loss": 0.5947748488518831,
+          "roc_auc": 0.8318325822966911,
+          "pr_auc": 0.907817570411164,
+          "positive_rate": 0.6601307189542484
+        },
+        "recent_state": {
+          "brier": 0.19513053107288933,
+          "log_loss": 0.5756433423037359,
+          "roc_auc": 0.7034119277312347,
+          "pr_auc": 0.7765716753014196,
+          "positive_rate": 0.6601307189542484
+        }
+      },
+      "artifact": "models\\v2\\horizon_7_14d\\dry_spell\\model.joblib"
+    },
+    {
+      "event": "dry_spell",
+      "horizon": "15_21d",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.1551700093119685,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.10295157856227226,
+        "log_loss": 0.3203769625854049,
+        "roc_auc": 0.9142540341492629,
+        "pr_auc": 0.9697411609690657,
+        "positive_rate": 0.7432249322493225
+      },
+      "test": {
+        "brier": 0.14344487745976955,
+        "log_loss": 0.44232619522644373,
+        "roc_auc": 0.8643975511438735,
+        "pr_auc": 0.9284643130993653,
+        "positive_rate": 0.656318082788671
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.1551700093119685,
+          "log_loss": 0.4611546903473964,
+          "roc_auc": 0.8152869383380132,
+          "pr_auc": 0.8861050836203992,
+          "positive_rate": 0.656318082788671
+        },
+        "district_climatology": {
+          "brier": 0.15544764799587696,
+          "log_loss": 0.5288689520488566,
+          "roc_auc": 0.846834702211467,
+          "pr_auc": 0.9165340627660573,
+          "positive_rate": 0.656318082788671
+        },
+        "recent_state": {
+          "brier": 0.20519386335311954,
+          "log_loss": 0.5977183549901349,
+          "roc_auc": 0.6728350573087571,
+          "pr_auc": 0.7556849228877699,
+          "positive_rate": 0.656318082788671
+        }
+      },
+      "artifact": "models\\v2\\horizon_15_21d\\dry_spell\\model.joblib"
+    },
+    {
+      "event": "dry_spell",
+      "horizon": "22_30d",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.12455958488532809,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.0808564296879662,
+        "log_loss": 0.24721427920379346,
+        "roc_auc": 0.9347663586043293,
+        "pr_auc": 0.9854841171436077,
+        "positive_rate": 0.8184281842818428
+      },
+      "test": {
+        "brier": 0.11938865444508254,
+        "log_loss": 0.37313365022634015,
+        "roc_auc": 0.8897173987575877,
+        "pr_auc": 0.9582054185198317,
+        "positive_rate": 0.7314814814814815
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.12965795475398442,
+          "log_loss": 0.3965514128007866,
+          "roc_auc": 0.8714912724532132,
+          "pr_auc": 0.9335705172256569,
+          "positive_rate": 0.7314814814814815
+        },
+        "district_climatology": {
+          "brier": 0.12455958488532809,
+          "log_loss": 0.4406266342749187,
+          "roc_auc": 0.8833407088668009,
+          "pr_auc": 0.9505329520891557,
+          "positive_rate": 0.7314814814814815
+        },
+        "recent_state": {
+          "brier": 0.18233380519219308,
+          "log_loss": 0.5440428072226058,
+          "roc_auc": 0.6720188370621313,
+          "pr_auc": 0.8165969948602887,
+          "positive_rate": 0.7314814814814815
+        }
+      },
+      "artifact": "models\\v2\\horizon_22_30d\\dry_spell\\model.joblib"
+    },
+    {
+      "event": "severe_break",
+      "horizon": "7_14d",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.13223560817696256,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.12941398633029805,
+        "log_loss": 0.41058785212270554,
+        "roc_auc": 0.8871743206559763,
+        "pr_auc": 0.9223469885502518,
+        "positive_rate": 0.5630081300813008
+      },
+      "test": {
+        "brier": 0.13035810415050686,
+        "log_loss": 0.41077629514225383,
+        "roc_auc": 0.8863860730395611,
+        "pr_auc": 0.8925569905133345,
+        "positive_rate": 0.4831154684095861
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.13223560817696256,
+          "log_loss": 0.4197685758285629,
+          "roc_auc": 0.8761034875612257,
+          "pr_auc": 0.859628953928597,
+          "positive_rate": 0.4831154684095861
+        },
+        "district_climatology": {
+          "brier": 0.14472482840208964,
+          "log_loss": 0.6594441567570041,
+          "roc_auc": 0.8675547630390027,
+          "pr_auc": 0.874643359987814,
+          "positive_rate": 0.4831154684095861
+        },
+        "recent_state": {
+          "brier": 0.2183625359511229,
+          "log_loss": 0.627569007707226,
+          "roc_auc": 0.6929402931704054,
+          "pr_auc": 0.621283852363457,
+          "positive_rate": 0.4831154684095861
+        }
+      },
+      "artifact": "models\\v2\\horizon_7_14d\\severe_break\\model.joblib"
+    },
+    {
+      "event": "severe_break",
+      "horizon": "15_21d",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.1390807804727825,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.12420313060258091,
+        "log_loss": 0.3995637786964186,
+        "roc_auc": 0.8983523724180517,
+        "pr_auc": 0.9273732315867704,
+        "positive_rate": 0.5785907859078591
+      },
+      "test": {
+        "brier": 0.13058631902589699,
+        "log_loss": 0.4245625086634666,
+        "roc_auc": 0.8848970229982761,
+        "pr_auc": 0.8653002593065235,
+        "positive_rate": 0.4891067538126362
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.1390807804727825,
+          "log_loss": 0.44211570144356466,
+          "roc_auc": 0.8593415360360147,
+          "pr_auc": 0.8346249952759748,
+          "positive_rate": 0.4891067538126362
+        },
+        "district_climatology": {
+          "brier": 0.1456636754164031,
+          "log_loss": 0.5343593413447145,
+          "roc_auc": 0.8672880031911712,
+          "pr_auc": 0.8636407911388387,
+          "positive_rate": 0.4891067538126362
+        },
+        "recent_state": {
+          "brier": 0.21787385576221702,
+          "log_loss": 0.6265742047765538,
+          "roc_auc": 0.6948733503972343,
+          "pr_auc": 0.6295956836592501,
+          "positive_rate": 0.4891067538126362
+        }
+      },
+      "artifact": "models\\v2\\horizon_15_21d\\severe_break\\model.joblib"
+    },
+    {
+      "event": "severe_break",
+      "horizon": "22_30d",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.12727637488189222,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.10391946998080921,
+        "log_loss": 0.33108075968787504,
+        "roc_auc": 0.9227349663483124,
+        "pr_auc": 0.9642922137592267,
+        "positive_rate": 0.6795392953929539
+      },
+      "test": {
+        "brier": 0.11829209594592179,
+        "log_loss": 0.3792448306459334,
+        "roc_auc": 0.9029428271638076,
+        "pr_auc": 0.9256416686163009,
+        "positive_rate": 0.5827886710239651
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.12727637488189222,
+          "log_loss": 0.4036414705813344,
+          "roc_auc": 0.8928527854371537,
+          "pr_auc": 0.8981415816553984,
+          "positive_rate": 0.5827886710239651
+        },
+        "district_climatology": {
+          "brier": 0.131914941902687,
+          "log_loss": 0.5765334273454187,
+          "roc_auc": 0.8884544057002025,
+          "pr_auc": 0.9104136819564699,
+          "positive_rate": 0.5827886710239651
+        },
+        "recent_state": {
+          "brier": 0.2197220025294152,
+          "log_loss": 0.6296550808346895,
+          "roc_auc": 0.6731290110050998,
+          "pr_auc": 0.6990343553419269,
+          "positive_rate": 0.5827886710239651
+        }
+      },
+      "artifact": "models\\v2\\horizon_22_30d\\severe_break\\model.joblib"
+    },
+    {
+      "event": "heavy_rain",
+      "horizon": "7_14d",
+      "selected_model": "xgb_full",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.04683576705991164,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "isotonic",
+      "validation": {
+        "brier": 0.0530798756047857,
+        "log_loss": 0.1676159645304784,
+        "roc_auc": 0.927665221734934,
+        "pr_auc": 0.4383916772362809,
+        "positive_rate": 0.08276643990929705
+      },
+      "test": {
+        "brier": 0.04639897697022185,
+        "log_loss": 0.15225827060537592,
+        "roc_auc": 0.9335396380265607,
+        "pr_auc": 0.4808631558361883,
+        "positive_rate": 0.07698170731707317
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.06633944903883839,
+          "log_loss": 0.24094166947503948,
+          "roc_auc": 0.7633123758288297,
+          "pr_auc": 0.17646759325850556,
+          "positive_rate": 0.07698170731707317
+        },
+        "district_climatology": {
+          "brier": 0.04683576705991164,
+          "log_loss": 0.35578785225660164,
+          "roc_auc": 0.9021465317464858,
+          "pr_auc": 0.5095922802191687,
+          "positive_rate": 0.07698170731707317
+        },
+        "recent_state": {
+          "brier": 0.06623655910637402,
+          "log_loss": 0.23886996971637997,
+          "roc_auc": 0.7317716495018618,
+          "pr_auc": 0.15332791716889815,
+          "positive_rate": 0.07698170731707317
+        }
+      },
+      "artifact": "models\\v2\\horizon_7_14d\\heavy_rain\\model.joblib"
+    },
+    {
+      "event": "heavy_rain",
+      "horizon": "15_21d",
+      "selected_model": "logistic_local",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.044419715819363895,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.048284245173051216,
+        "log_loss": 0.15485246167820818,
+        "roc_auc": 0.9285661989017694,
+        "pr_auc": 0.4275076031247651,
+        "positive_rate": 0.07086167800453515
+      },
+      "test": {
+        "brier": 0.043891727465214296,
+        "log_loss": 0.1417149042712003,
+        "roc_auc": 0.9348861409145097,
+        "pr_auc": 0.4206230731076619,
+        "positive_rate": 0.06859756097560976
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.0601710068599941,
+          "log_loss": 0.21959081632813235,
+          "roc_auc": 0.7592289507183124,
+          "pr_auc": 0.14455465736570255,
+          "positive_rate": 0.06859756097560976
+        },
+        "district_climatology": {
+          "brier": 0.044419715819363895,
+          "log_loss": 0.31664251072828586,
+          "roc_auc": 0.9019730860156392,
+          "pr_auc": 0.41552412218047463,
+          "positive_rate": 0.06859756097560976
+        },
+        "recent_state": {
+          "brier": 0.060223254571096986,
+          "log_loss": 0.22280122735215982,
+          "roc_auc": 0.7203840092137964,
+          "pr_auc": 0.13411961870384406,
+          "positive_rate": 0.06859756097560976
+        }
+      },
+      "artifact": "models\\v2\\horizon_15_21d\\heavy_rain\\model.joblib"
+    },
+    {
+      "event": "heavy_rain",
+      "horizon": "22_30d",
+      "selected_model": "xgb_atmospheric",
+      "baseline": "BASELINE_PREFERRED",
+      "release_status": "BASELINE_PREFERRED",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.044758008257469284,
+        "test_baseline_preferred": true,
+        "discrimination_failure": false
+      },
+      "calibration": "isotonic",
+      "validation": {
+        "brier": 0.04549260837480551,
+        "log_loss": 0.14199692092565705,
+        "roc_auc": 0.9472783277930337,
+        "pr_auc": 0.49589944766590394,
+        "positive_rate": 0.07709750566893424
+      },
+      "test": {
+        "brier": 0.04775030916438397,
+        "log_loss": 0.3465120140741181,
+        "roc_auc": 0.9468608213440881,
+        "pr_auc": 0.5378674633867125,
+        "positive_rate": 0.08155487804878049
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.06855759266342669,
+          "log_loss": 0.239436429102964,
+          "roc_auc": 0.7927986970178773,
+          "pr_auc": 0.1983342309206443,
+          "positive_rate": 0.08155487804878049
+        },
+        "district_climatology": {
+          "brier": 0.044758008257469284,
+          "log_loss": 0.2191467598150701,
+          "roc_auc": 0.9383401627865893,
+          "pr_auc": 0.5686900984111002,
+          "positive_rate": 0.08155487804878049
+        },
+        "recent_state": {
+          "brier": 0.06993004399201995,
+          "log_loss": 0.25122307169735436,
+          "roc_auc": 0.7228844852918999,
+          "pr_auc": 0.15791382363301207,
+          "positive_rate": 0.08155487804878049
+        }
+      },
+      "artifact": "models\\v2\\horizon_22_30d\\heavy_rain\\model.joblib"
+    },
+    {
+      "event": "revival",
+      "horizon": "7_14d",
+      "selected_model": "xgb_full",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.07584130133783899,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.03839065972232233,
+        "log_loss": 0.12655144301468066,
+        "roc_auc": 0.9324501871098104,
+        "pr_auc": 0.4397591174319747,
+        "positive_rate": 0.0535230352303523
+      },
+      "test": {
+        "brier": 0.05076818779610603,
+        "log_loss": 0.1664970571959137,
+        "roc_auc": 0.942332493894994,
+        "pr_auc": 0.6452095016525027,
+        "positive_rate": 0.08496732026143791
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.07584130133783899,
+          "log_loss": 0.27832689396414617,
+          "roc_auc": 0.6626144688644688,
+          "pr_auc": 0.13096248973177613,
+          "positive_rate": 0.08496732026143791
+        },
+        "district_climatology": {
+          "brier": 0.07590583052217303,
+          "log_loss": 0.4666714153765475,
+          "roc_auc": 0.671371336996337,
+          "pr_auc": 0.1483283381314336,
+          "positive_rate": 0.08496732026143791
+        },
+        "recent_state": {
+          "brier": 0.07802079140820242,
+          "log_loss": 0.29271720100815024,
+          "roc_auc": 0.4994257478632478,
+          "pr_auc": 0.08421564742493436,
+          "positive_rate": 0.08496732026143791
+        }
+      },
+      "artifact": "models\\v2\\horizon_7_14d\\revival\\model.joblib"
+    },
+    {
+      "event": "revival",
+      "horizon": "15_21d",
+      "selected_model": "xgb_atmospheric",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.049070285596317376,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "sigmoid",
+      "validation": {
+        "brier": 0.03582281697227235,
+        "log_loss": 0.11479379268114812,
+        "roc_auc": 0.9513069951359485,
+        "pr_auc": 0.5185115897413469,
+        "positive_rate": 0.05555555555555555
+      },
+      "test": {
+        "brier": 0.03718253293097007,
+        "log_loss": 0.12261636202434988,
+        "roc_auc": 0.9421455578779268,
+        "pr_auc": 0.4693745508642878,
+        "positive_rate": 0.05337690631808279
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.049070285596317376,
+          "log_loss": 0.19336907984081278,
+          "roc_auc": 0.7454263638712102,
+          "pr_auc": 0.11555941494361266,
+          "positive_rate": 0.05337690631808279
+        },
+        "district_climatology": {
+          "brier": 0.0493467712652564,
+          "log_loss": 0.2769562028814151,
+          "roc_auc": 0.7424878466921867,
+          "pr_auc": 0.13761944529671638,
+          "positive_rate": 0.05337690631808279
+        },
+        "recent_state": {
+          "brier": 0.05094241963282129,
+          "log_loss": 0.21129544075296758,
+          "roc_auc": 0.561456400742115,
+          "pr_auc": 0.06238869977082304,
+          "positive_rate": 0.05337690631808279
+        }
+      },
+      "artifact": "models\\v2\\horizon_15_21d\\revival\\model.joblib"
+    },
+    {
+      "event": "revival",
+      "horizon": "22_30d",
+      "selected_model": "xgb_atmospheric",
+      "baseline": "MODEL_SELECTED",
+      "release_status": "PRODUCTION_V2",
+      "release_reasons": {
+        "validation_baseline_protection": true,
+        "best_test_baseline_brier": 0.060945552802961094,
+        "test_baseline_preferred": false,
+        "discrimination_failure": false
+      },
+      "calibration": "isotonic",
+      "validation": {
+        "brier": 0.029922496333211673,
+        "log_loss": 0.087069833455918,
+        "roc_auc": 0.9681132524387343,
+        "pr_auc": 0.4931475520269876,
+        "positive_rate": 0.0508130081300813
+      },
+      "test": {
+        "brier": 0.03822917717482332,
+        "log_loss": 0.23823217570473357,
+        "roc_auc": 0.9419116839871194,
+        "pr_auc": 0.5535672073963224,
+        "positive_rate": 0.06971677559912855
+      },
+      "baseline_metrics": {
+        "climatology": {
+          "brier": 0.060945552802961094,
+          "log_loss": 0.22388843063955066,
+          "roc_auc": 0.7640423741217799,
+          "pr_auc": 0.15114464067136713,
+          "positive_rate": 0.06971677559912855
+        },
+        "district_climatology": {
+          "brier": 0.06140774708927777,
+          "log_loss": 0.32614503909658293,
+          "roc_auc": 0.7533001866217799,
+          "pr_auc": 0.18347627732464664,
+          "positive_rate": 0.06971677559912855
+        },
+        "recent_state": {
+          "brier": 0.0650858914842812,
+          "log_loss": 0.2545954255113426,
+          "roc_auc": 0.5208714505269321,
+          "pr_auc": 0.07306281146367434,
+          "positive_rate": 0.06971677559912855
+        }
+      },
+      "artifact": "models\\v2\\horizon_22_30d\\revival\\model.joblib"
+    }
+  ]
+}

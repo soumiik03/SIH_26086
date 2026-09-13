@@ -1,0 +1,22 @@
+# Step 11 Feature Ablation
+
+Feature-set candidates are local state, local + ENSO/IOD/MJO, atmospheric, full, and full without district identity. Metrics below are emitted from validation-selected candidates; all candidate metrics are stored in the V2 manifest/report generation output.
+
+- **onset**: logistic_local val Brier=0.0137, test Brier=0.1187; xgb_local val Brier=0.0157, test Brier=0.1101; xgb_teleconnection val Brier=0.0174, test Brier=0.1157; xgb_atmospheric val Brier=0.0176, test Brier=0.1120; xgb_full val Brier=0.0173, test Brier=0.1117; xgb_full_no_district val Brier=0.0172, test Brier=0.1113
+- **false_onset**: logistic_local val Brier=0.0360, test Brier=0.0844; xgb_local val Brier=0.0359, test Brier=0.0851; xgb_teleconnection val Brier=0.0360, test Brier=0.0849; xgb_atmospheric val Brier=0.0359, test Brier=0.0848; xgb_full val Brier=0.0356, test Brier=0.0850; xgb_full_no_district val Brier=0.0359, test Brier=0.0848
+- **dry_spell_5d**: logistic_local val Brier=0.0887, test Brier=0.1387; xgb_local val Brier=0.0935, test Brier=0.1330; xgb_teleconnection val Brier=0.0900, test Brier=0.1496; xgb_atmospheric val Brier=0.0960, test Brier=0.1386; xgb_full val Brier=0.0969, test Brier=0.1390; xgb_full_no_district val Brier=0.0969, test Brier=0.1393
+- **severe_break_7d**: logistic_local val Brier=0.1218, test Brier=0.1341; xgb_local val Brier=0.1220, test Brier=0.1434; xgb_teleconnection val Brier=0.1330, test Brier=0.1375; xgb_atmospheric val Brier=0.1298, test Brier=0.1389; xgb_full val Brier=0.1301, test Brier=0.1390; xgb_full_no_district val Brier=0.1296, test Brier=0.1394
+- **heavy_rain**: logistic_local val Brier=0.0569, test Brier=0.0443; xgb_local val Brier=0.0593, test Brier=0.0448; xgb_teleconnection val Brier=0.0598, test Brier=0.0443; xgb_atmospheric val Brier=0.0596, test Brier=0.0442; xgb_full val Brier=0.0596, test Brier=0.0440; xgb_full_no_district val Brier=0.0596, test Brier=0.0439
+- **revival**: logistic_local val Brier=0.0458, test Brier=0.0444; xgb_local val Brier=0.0439, test Brier=0.0435; xgb_teleconnection val Brier=0.0436, test Brier=0.0430; xgb_atmospheric val Brier=0.0431, test Brier=0.0433; xgb_full val Brier=0.0428, test Brier=0.0433; xgb_full_no_district val Brier=0.0430, test Brier=0.0431
+- **dry_spell_7_14d**: logistic_local val Brier=0.1102, test Brier=0.1520; xgb_atmospheric val Brier=0.1160, test Brier=0.1607; xgb_full val Brier=0.1160, test Brier=0.1615
+- **dry_spell_15_21d**: logistic_local val Brier=0.1030, test Brier=0.1434; xgb_atmospheric val Brier=0.1082, test Brier=0.1466; xgb_full val Brier=0.1081, test Brier=0.1482
+- **dry_spell_22_30d**: logistic_local val Brier=0.0809, test Brier=0.1194; xgb_atmospheric val Brier=0.0833, test Brier=0.1232; xgb_full val Brier=0.0835, test Brier=0.1242
+- **severe_break_7_14d**: logistic_local val Brier=0.1294, test Brier=0.1304; xgb_atmospheric val Brier=0.1366, test Brier=0.1361; xgb_full val Brier=0.1371, test Brier=0.1386
+- **severe_break_15_21d**: logistic_local val Brier=0.1242, test Brier=0.1306; xgb_atmospheric val Brier=0.1282, test Brier=0.1391; xgb_full val Brier=0.1303, test Brier=0.1404
+- **severe_break_22_30d**: logistic_local val Brier=0.1039, test Brier=0.1183; xgb_atmospheric val Brier=0.1142, test Brier=0.1260; xgb_full val Brier=0.1149, test Brier=0.1281
+- **heavy_rain_7_14d**: logistic_local val Brier=0.0565, test Brier=0.0462; xgb_atmospheric val Brier=0.0575, test Brier=0.0457; xgb_full val Brier=0.0531, test Brier=0.0464
+- **heavy_rain_15_21d**: logistic_local val Brier=0.0483, test Brier=0.0439; xgb_atmospheric val Brier=0.0496, test Brier=0.0423; xgb_full val Brier=0.0496, test Brier=0.0426
+- **heavy_rain_22_30d**: logistic_local val Brier=0.0482, test Brier=0.0455; xgb_atmospheric val Brier=0.0455, test Brier=0.0478; xgb_full val Brier=0.0490, test Brier=0.0438
+- **revival_7_14d**: logistic_local val Brier=0.0398, test Brier=0.0528; xgb_atmospheric val Brier=0.0389, test Brier=0.0507; xgb_full val Brier=0.0384, test Brier=0.0508
+- **revival_15_21d**: logistic_local val Brier=0.0360, test Brier=0.0350; xgb_atmospheric val Brier=0.0358, test Brier=0.0372; xgb_full val Brier=0.0359, test Brier=0.0375
+- **revival_22_30d**: logistic_local val Brier=0.0309, test Brier=0.0388; xgb_atmospheric val Brier=0.0299, test Brier=0.0382; xgb_full val Brier=0.0302, test Brier=0.0381

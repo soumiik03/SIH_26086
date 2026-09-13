@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600"><rect width="100%" height="100%" fill="white"/><text x="28" y="38" font-family="Arial" font-size="14" font-weight="bold">Reliability</text>
+<rect x="20" y="20" width="300" height="250" fill="none" stroke="#cbd5e1"/>
+<text x="358" y="38" font-family="Arial" font-size="14" font-weight="bold">Probability histogram</text>
+<rect x="350" y="20" width="300" height="250" fill="none" stroke="#cbd5e1"/>
+<text x="688" y="38" font-family="Arial" font-size="14" font-weight="bold">ROC / PR</text>
+<rect x="680" y="20" width="300" height="250" fill="none" stroke="#cbd5e1"/>
+<text x="28" y="328" font-family="Arial" font-size="14" font-weight="bold">Brier</text>
+<rect x="20" y="310" width="300" height="250" fill="none" stroke="#cbd5e1"/>
+<circle cx="52.3" cy="217.8" r="4" fill="#2563eb"/>
+<circle cx="90.4" cy="203.5" r="4" fill="#2563eb"/>
+<circle cx="115.5" cy="144.2" r="4" fill="#2563eb"/>
+<circle cx="127.6" cy="93.3" r="4" fill="#2563eb"/>
+<circle cx="163.3" cy="30.0" r="4" fill="#2563eb"/>
+<circle cx="179.2" cy="114.0" r="4" fill="#2563eb"/>
+<circle cx="190.7" cy="30.0" r="4" fill="#2563eb"/>
+<circle cx="280.0" cy="98.3" r="4" fill="#2563eb"/>
+<rect x="365" y="95.5" width="20" height="149.5" fill="#94a3b8"/>
+<rect x="392" y="238.7" width="20" height="6.3" fill="#94a3b8"/>
+<rect x="419" y="235.9" width="20" height="9.1" fill="#94a3b8"/>
+<rect x="446" y="244.7" width="20" height="0.3" fill="#94a3b8"/>
+<rect x="473" y="245.0" width="20" height="0.0" fill="#94a3b8"/>
+<rect x="500" y="233.1" width="20" height="11.9" fill="#94a3b8"/>
+<rect x="527" y="245.0" width="20" height="0.0" fill="#94a3b8"/>
+<rect x="554" y="245.0" width="20" height="0.0" fill="#94a3b8"/>
+<rect x="581" y="245.0" width="20" height="0.0" fill="#94a3b8"/>
+<rect x="608" y="242.1" width="20" height="2.9" fill="#94a3b8"/>
+<polyline points="690.0,245.0 701.2,220.7 712.5,220.1 723.8,144.4 735.0,134.3 746.2,133.7 757.5,133.7 768.8,131.4 780.0,87.6 791.2,87.6 802.5,84.6 813.8,79.9 825.0,79.9 836.2,78.1 847.5,77.5 858.8,77.5 870.0,72.2 881.2,72.2 892.5,71.6 903.8,71.6 915.0,60.9 926.2,60.9 937.5,55.0 948.8,55.0 960.0,55.0" fill="none" stroke="#dc2626" stroke-width="2"/>
+<polyline points="690.0,55.0 699.0,55.0 708.0,55.0 717.0,55.0 726.0,60.9 735.0,60.9 744.0,60.9 753.0,60.9 762.0,71.6 771.0,71.6 780.0,71.6 789.0,72.2 798.0,72.2 807.0,72.2 816.0,77.5 825.0,77.5 834.0,78.1 843.0,79.9 852.0,79.9 861.0,79.9 870.0,84.6 879.0,87.6 888.0,87.6 897.0,131.4 906.0,133.7 915.0,133.7 924.0,134.3 933.0,144.4 942.0,220.1 951.0,220.7 960.0,245.0" fill="none" stroke="#16a34a" stroke-width="2"/>
+<rect x="45" y="387.7" width="70" height="132.3" fill="#dc2626"/><text x="45" y="545" font-family="Arial" font-size="11">model</text>
+<rect x="165" y="330.0" width="70" height="190.0" fill="#2563eb"/><text x="165" y="545" font-family="Arial" font-size="11">climatology</text></svg>
