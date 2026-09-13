@@ -14,7 +14,7 @@ interface RiskMapProps {
   onPanchayatSelect: (id: string) => void;
 }
 
-export default function RiskMap({
+export function RiskMap({
   selectedPanchayat,
   onPanchayatSelect,
 }: RiskMapProps) {
@@ -217,3 +217,5 @@ export default function RiskMap({
     </div>
   );
 }
+
+export default RiskMap;
