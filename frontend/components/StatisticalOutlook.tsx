@@ -1,5 +1,6 @@
 import type { HorizonForecast, Statistical730DayOutlook } from "@/types/api";
 import ProbabilityCard from "./probability";
+import TrendChart from "./TrendChart";
 
 interface StatisticalOutlookPanelProps {
   outlook: Statistical730DayOutlook;
@@ -41,10 +42,10 @@ export default function StatisticalOutlookPanel({
       </div>
 
       <div className="space-y-6">
-   {horizons.map(({ key, label }) => {
-  const horizon = outlook[key];
+        {horizons.map(({ key, label }) => {
+          const horizon = outlook[key];
 
-  return (
+          return (
             <div key={key}>
               <h4 className="mb-3 text-sm font-semibold text-ink">
                 {label}
@@ -63,6 +64,8 @@ export default function StatisticalOutlookPanel({
           );
         })}
       </div>
+
+      <TrendChart outlook={outlook} />
 
       <div className="mt-6 border-t border-slate-200 pt-4">
         <p className="text-xs font-semibold uppercase tracking-[.14em] text-slate-500">
