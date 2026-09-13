@@ -131,7 +131,7 @@ export default function Home() {
             <ApiStatus connected={apiConnected} loading={healthLoading} />
           </div>
           <div className="max-w-3xl pb-2 pt-16">
-            <p className="mb-4 text-xs font-bold uppercase tracking-[.22em] text-[#b8dbbd]">Monsoon intelligence platform</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-[.22em] text-[#b8dbbd]">Hyperlocal Monsoon Intelligence</p>
             <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
               See the season<br /><span className="text-[#b8dbbd]">before it shifts.</span>
             </h1>
@@ -165,10 +165,13 @@ export default function Home() {
             <LoadingState label="Loading forecast..." />
           </section>
         )}
+        <RiskMapView
+          selectedPanchayatId={panchayatId}
+          onPanchayatSelect={(id) => void selectPanchayat(id)}
+        />
         {unsupportedLocationError && <UnsupportedLocationState message={unsupportedLocationError} />}
         {forecastError && <ErrorState message={forecastError} onRetry={() => void selectPanchayat(panchayatId)} />}
         {panchayat && forecast && !forecastLoading && <ForecastSection forecast={forecast} />}
-        <RiskMapView onPanchayatSelect={(id) => void selectPanchayat(id)} />
 
         {!panchayatId && !initialError && (
           <div className="grid gap-4 border-t border-slate-200 pt-2 sm:grid-cols-3">

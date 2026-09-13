@@ -12,18 +12,22 @@ import { LoadingState } from "./LoadingState";
 import RiskLegend from "./RiskLegend";
 
 interface RiskMapProps {
+  selectedPanchayatId: string;
   onPanchayatSelect: (id: string) => void;
 }
 
 const errorMessage = (error: unknown) =>
   error instanceof ApiError ? error.message : "Unable to load risk map data.";
 
-export function RiskMap({ onPanchayatSelect }: RiskMapProps) {
+export function RiskMap({ selectedPanchayatId, onPanchayatSelect }: RiskMapProps) {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
+  const selectedPanchayatIdRef = useRef(selectedPanchayatId);
   const [data, setData] = useState<RiskMapData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  selectedPanchayatIdRef.current = selectedPanchayatId;
 
   useEffect(() => {
     let cancelled = false;
@@ -117,6 +121,18 @@ export function RiskMap({ onPanchayatSelect }: RiskMapProps) {
         },
       });
 
+      map.addLayer({
+        id: "selected-risk-outline",
+        type: "line",
+        source: "risk-map",
+        paint: {
+          "line-color": "#111827",
+          "line-width": 4,
+          "line-opacity": 0.95,
+        },
+        filter: ["==", ["get", "panchayat_id"], selectedPanchayatIdRef.current],
+      });
+
       map.on("click", "risk-fill", (event) => {
         const id = event.features?.[0]?.properties?.panchayat_id;
         if (id !== undefined) onPanchayatSelect(String(id));
@@ -136,6 +152,17 @@ export function RiskMap({ onPanchayatSelect }: RiskMapProps) {
       mapRef.current = null;
     };
   }, [data, onPanchayatSelect]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !map.getLayer("selected-risk-outline")) return;
+
+    map.setFilter("selected-risk-outline", [
+      "==",
+      ["get", "panchayat_id"],
+      selectedPanchayatId,
+    ]);
+  }, [selectedPanchayatId]);
 
   return (
     <section className="space-y-3">
