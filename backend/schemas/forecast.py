@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 
 RiskLevel = Literal["LOW", "MODERATE", "HIGH", "VERY_HIGH"]
 ForecastStatus = Literal["EXPERIMENTAL_OBSERVATION_STATE"]
+HorizonForecastStatus = Literal["STATISTICAL_7_30_DAY_OUTLOOK"]
 
 
 class RiskLevels(BaseModel):
@@ -18,6 +19,31 @@ class RiskLevels(BaseModel):
 class AgronomicAdvisory(BaseModel):
     headline: str
     recommended_action: str
+
+
+class HorizonModelVersion(BaseModel):
+    target_col: str
+    model_version: str
+    artifact_path: str
+    calibration_method: str
+    features_evaluated: int
+
+
+class HorizonForecast(BaseModel):
+    dry_spell_probability: float = Field(ge=0, le=1)
+    severe_break_probability: float = Field(ge=0, le=1)
+    heavy_rain_probability: float = Field(ge=0, le=1)
+    revival_probability: float = Field(ge=0, le=1)
+    model_versions: Dict[str, HorizonModelVersion]
+
+
+class Statistical730DayOutlook(BaseModel):
+    forecast_status: HorizonForecastStatus
+    disclaimer: str
+
+    horizon_7_14d: HorizonForecast = Field(alias="7_14d")
+    horizon_15_21d: HorizonForecast = Field(alias="15_21d")
+    horizon_22_30d: HorizonForecast = Field(alias="22_30d")
 
 
 class ForecastResponse(BaseModel):
@@ -39,6 +65,7 @@ class ForecastResponse(BaseModel):
     forecast_status: ForecastStatus
     timestamp: str
     disclaimer: str
+    statistical_7_30_day_outlook: Statistical730DayOutlook
 
 
 class HealthResponse(BaseModel):
@@ -46,4 +73,3 @@ class HealthResponse(BaseModel):
     engine_version: str
     forecast_status: ForecastStatus
     model_availability: Dict[str, bool]
-

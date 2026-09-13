@@ -7,8 +7,11 @@ export default function ProbabilityCard({
   label,
   probability,
 }: ProbabilityCardProps) {
-  const percentage = Math.round(probability * 100);
-
+  const percentage = probability * 100;
+   const formattedPercentage =
+    percentage < 0.1
+      ? percentage.toFixed(2)
+      : percentage.toFixed(1);
   return (
     <div className="rounded-xl border bg-white p-5 shadow-sm">
       <p className="text-sm text-gray-500">
@@ -16,7 +19,7 @@ export default function ProbabilityCard({
       </p>
 
       <p className="mt-2 text-3xl font-bold">
-        {percentage}%
+        {formattedPercentage}%
       </p>
 
       <div className="mt-3 h-2 overflow-hidden rounded-full bg-gray-100">

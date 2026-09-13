@@ -70,7 +70,29 @@ export interface AgronomicAdvisory {
   headline: string;
   recommended_action: string;
 }
+export interface HorizonModelVersion {
+  target_col: string;
+  model_version: string;
+  artifact_path: string;
+  calibration_method: string;
+  features_evaluated: number;
+}
 
+export interface HorizonForecast {
+  dry_spell_probability: number;
+  severe_break_probability: number;
+  heavy_rain_probability: number;
+  revival_probability: number;
+  model_versions: Record<string, HorizonModelVersion>;
+}
+
+export interface Statistical730DayOutlook {
+  forecast_status: "STATISTICAL_7_30_DAY_OUTLOOK";
+  disclaimer: string;
+  "7_14d": HorizonForecast;
+  "15_21d": HorizonForecast;
+  "22_30d": HorizonForecast;
+}
 export interface Forecast {
   panchayat_id: string;
   panchayat_name: string;
@@ -90,6 +112,7 @@ export interface Forecast {
   forecast_status: ForecastStatus;
   timestamp: string;
   disclaimer: string;
+   statistical_7_30_day_outlook: Statistical730DayOutlook;
 }
 
 export interface RiskMapFeature {

@@ -4,7 +4,7 @@ import json
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List
-
+from src.forecast_engine import ForecastEngine, ENGINE_VERSION
 from src.forecast_engine import ENGINE_VERSION
 from src.spatial_forecast import OPERATIONAL_DISCLAIMER, OPERATIONAL_STATUS
 
@@ -38,6 +38,13 @@ def risk_map() -> Dict[str, Any]:
 def _prop(feature: Dict[str, Any], key: str, default: Any = None) -> Any:
     return feature.get("properties", {}).get(key, default)
 
+def _canonical_block_id(block_id: Any) -> str:
+    value = str(block_id)
+    if value.startswith("blk_"):
+        numeric = value[4:]
+        if numeric.isdigit():
+            return f"blk_{int(numeric)}"
+    return value
 
 def supported_districts() -> List[Dict[str, str]]:
     seen = {}
@@ -64,8 +71,13 @@ def supported_blocks() -> List[Dict[str, Any]]:
     result = {}
     for feature in _features("latest_block_forecast.geojson"):
         p = feature.get("properties", {})
-        result.setdefault(str(p["block_id"]), {
-            "block_id": str(p["block_id"]),
+        canonical_id = _canonical_block_id(
+            p["block_id"]
+        )
+        result.setdefault(
+            canonical_id,
+            {
+            "block_id": canonical_id,
             "block_name": str(p["block_name"]),
             "district_id": str(p["district_id"]),
             "district_name": str(p["district_name"]),
@@ -135,7 +147,9 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
         "severe_break_7d": float(p["severe_break_7d_prob"]),
         "heavy_rain": float(p["heavy_rain_prob"]),
         "revival": float(p["revival_prob"]),
+        
     }
+    statistical_outlook = p.get("statistical_7_30_day_outlook")
     return {
         "panchayat_id": str(p["panchayat_id"]),
         "panchayat_name": str(p["panchayat_name"]),
@@ -167,6 +181,7 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
         "forecast_status": OPERATIONAL_STATUS,
         "timestamp": str(p["data_timestamp"]),
         "disclaimer": OPERATIONAL_DISCLAIMER,
+        "statistical_7_30_day_outlook": statistical_outlook,
     }
 
 
