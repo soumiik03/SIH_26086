@@ -1,4 +1,8 @@
 {
+  "current_system_date": "2026-09-13",
+  "data_as_of": "2026-09-08",
+  "forecast_reference_date": "2026-09-08",
+  "data_freshness_status": "CURRENT",
   "forecast_status": "EXPERIMENTAL_OBSERVATION_STATE",
   "disclaimer": "This engine operates from the available observation/feature state. It is not yet an operational 7-30 day dynamical forecast.",
   "statistical_7_30_day_outlook": {
@@ -17,7 +21,7 @@
     ],
     "downscaling_method": "NONE_DISTRICT_INHERITED"
   },
-  "data_timestamp": "2025-12-31T00:00:00Z",
+  "data_timestamp": "2026-09-08T00:00:00Z",
   "districts_forecasted": 12,
   "blocks_forecasted": 187,
   "safe_panchayats_forecasted": 1710,

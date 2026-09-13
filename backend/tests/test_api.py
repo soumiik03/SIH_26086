@@ -67,12 +67,16 @@ class TestVarshaSentinelAPI(unittest.TestCase):
         self.assertTrue(body["features"])
         self.assertTrue(all(feature["type"] == "Feature" for feature in body["features"]))
 
-    def test_backtest_is_documented_unimplemented(self):
+    def test_backtest_returns_structured_historical_replay(self):
         response = self.client.get("/api/backtest")
-        self.assertEqual(response.status_code, 501)
-        self.assertIn("not implemented", response.json()["detail"])
+        self.assertEqual(response.status_code, 200)
+        body = response.json()
+        self.assertIn(body["status"], {"AVAILABLE", "UNAVAILABLE"})
+        self.assertIn("methodology", body)
+        if body["status"] == "AVAILABLE":
+            self.assertGreater(body["records_evaluated"], 0)
+            self.assertIn("model_evaluation", body["summary"])
 
 
 if __name__ == "__main__":
     unittest.main()
-

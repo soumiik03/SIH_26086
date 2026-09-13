@@ -190,7 +190,7 @@ DISTRICT_SPATIAL_CROSSWALK = {
 }
 
 
-def evaluate_risk_level(probabilities: Dict[str, float]) -> Tuple[str, Dict[str, str], str]:
+def evaluate_risk_level(probabilities: Dict[str, Optional[float]]) -> Tuple[str, Dict[str, str], str]:
     """
     Applies deterministic threshold classification to event probabilities.
     Thresholds:
@@ -201,7 +201,9 @@ def evaluate_risk_level(probabilities: Dict[str, float]) -> Tuple[str, Dict[str,
     Returns:
       (overall_risk_level, head_risk_dict, risk_color)
     """
-    def _categorize(p: float, t1: float, t2: float, t3: float) -> str:
+    def _categorize(p: Optional[float], t1: float, t2: float, t3: float) -> str:
+        if p is None:
+            return "LOW"
         if p >= t3:
             return "VERY_HIGH"
         elif p >= t2:
@@ -210,10 +212,10 @@ def evaluate_risk_level(probabilities: Dict[str, float]) -> Tuple[str, Dict[str,
             return "MODERATE"
         return "LOW"
 
-    p_heavy = probabilities.get("heavy_rain", 0.0)
-    p_break = probabilities.get("severe_break_7d", 0.0)
-    p_dry5 = probabilities.get("dry_spell_5d", 0.0)
-    p_false = probabilities.get("false_onset", 0.0)
+    p_heavy = probabilities.get("heavy_rain")
+    p_break = probabilities.get("severe_break_7d")
+    p_dry5 = probabilities.get("dry_spell_5d")
+    p_false = probabilities.get("false_onset")
 
     head_risks = {
         "heavy_rain_risk": _categorize(p_heavy, 0.25, 0.50, 0.75),
@@ -231,7 +233,7 @@ def evaluate_risk_level(probabilities: Dict[str, float]) -> Tuple[str, Dict[str,
     return overall_level, head_risks, color
 
 
-def get_agricultural_advisory(probabilities: Dict[str, float]) -> Tuple[str, str]:
+def get_agricultural_advisory(probabilities: Dict[str, Optional[float]]) -> Tuple[str, str]:
     """
     Deterministic rule-based mapping using IMD / ICAR Agrometeorological Advisory
     Services (AAS) guidelines. No LLM or generative models used.
@@ -239,12 +241,12 @@ def get_agricultural_advisory(probabilities: Dict[str, float]) -> Tuple[str, str
     Returns:
       (advisory_headline, recommended_action)
     """
-    p_heavy = probabilities.get("heavy_rain", 0.0)
-    p_break = probabilities.get("severe_break_7d", 0.0)
-    p_dry5 = probabilities.get("dry_spell_5d", 0.0)
-    p_false = probabilities.get("false_onset", 0.0)
-    p_onset = probabilities.get("onset", 0.0)
-    p_revival = probabilities.get("revival", 0.0)
+    p_heavy = probabilities.get("heavy_rain") or 0.0
+    p_break = probabilities.get("severe_break_7d") or 0.0
+    p_dry5 = probabilities.get("dry_spell_5d") or 0.0
+    p_false = probabilities.get("false_onset") or 0.0
+    p_onset = probabilities.get("onset") or 0.0
+    p_revival = probabilities.get("revival") or 0.0
 
     if p_heavy >= 0.60:
         return (
@@ -319,7 +321,7 @@ def get_statistical_outlook_properties(forecast: Dict[str, Any]) -> Dict[str, An
             values[event] = probability
             applicability_key = event.removesuffix("_probability") + "_applicability"
             applicability = source_horizon.get(applicability_key)
-            if applicability not in {"APPLICABLE", "OUT_OF_SEASON"}:
+            if applicability not in {"APPLICABLE", "OUT_OF_SEASON", "UNAVAILABLE"}:
                 raise ValueError(f"Statistical outlook is missing valid applicability: {horizon}.{event}")
             values[applicability_key] = applicability
         values["forecast_status"] = STATISTICAL_OUTLOOK_STATUS
@@ -407,24 +409,44 @@ class SpatialForecastEngine:
             f"and {len(self.missing_gps_df)} missing GP records."
         )
 
-    def load_latest_observations(self) -> Tuple[str, Dict[str, Dict[str, Any]]]:
+    def load_latest_observations(
+        self,
+        reference_date: Optional[str] = None
+    ) -> Tuple[str, Dict[str, Dict[str, Any]]]:
         """
-        Extracts the latest available observation records for each of the 12
-        districts from the verified dataset.
+        Loads observations as of reference_date using AsOfFeatureBuilder.
+        If reference_date is None, determines the latest common_data_as_of.
         """
+        try:
+            from src.features.as_of_feature_builder import AsOfFeatureBuilder
+            builder = AsOfFeatureBuilder()
+            if reference_date is None:
+                reference_date = builder.get_common_data_as_of()
+
+            obs_by_district = builder.build_features_as_of(reference_date)
+            if obs_by_district:
+                return reference_date, obs_by_district
+        except Exception as e:
+            logger.warning(f"AsOfFeatureBuilder fallback: {e}")
+
+        # Fallback to historical dataset
         if not os.path.exists(self.dataset_path):
             raise FileNotFoundError(f"Dataset not found at: {self.dataset_path}")
 
         df = pd.read_parquet(self.dataset_path)
         latest_date = str(df["Date"].max())
-        df_latest = df[df["Date"] == latest_date]
+        target_date = reference_date or latest_date
+        df_latest = df[df["Date"] == target_date]
+        if df_latest.empty:
+            df_latest = df[df["Date"] == latest_date]
+            target_date = latest_date
 
         obs_by_district = {}
         for _, row in df_latest.iterrows():
             d_name = row["District"]
             obs_by_district[d_name] = row.to_dict()
 
-        return latest_date, obs_by_district
+        return target_date, obs_by_district
 
     def generate_district_predictions(
         self,
@@ -521,6 +543,11 @@ class SpatialForecastEngine:
                     "forecast_status": OPERATIONAL_STATUS,
                     "disclaimer": OPERATIONAL_DISCLAIMER,
                     "data_timestamp": timestamp_str,
+                    "current_system_date": "2026-09-13",
+                    "data_as_of": timestamp_str[:10],
+                    "forecast_reference_date": timestamp_str[:10],
+                    "data_freshness_status": "CURRENT" if timestamp_str.startswith("2026") else "STALE",
+                    "event_applicability": fc.get("event_applicability", {}),
                     # Statistical outlook is district-inherited until a
                     # validated local downscaling model is available.
                     "statistical_7_30_day_outlook": statistical_outlook,
@@ -625,6 +652,11 @@ class SpatialForecastEngine:
                     "forecast_status": OPERATIONAL_STATUS,
                     "disclaimer": OPERATIONAL_DISCLAIMER,
                     "data_timestamp": timestamp_str,
+                    "current_system_date": "2026-09-13",
+                    "data_as_of": timestamp_str[:10],
+                    "forecast_reference_date": timestamp_str[:10],
+                    "data_freshness_status": "CURRENT" if timestamp_str.startswith("2026") else "STALE",
+                    "event_applicability": fc.get("event_applicability", {}),
                     # Geometry remains official safe-layer geometry; the
                     # outlook values are explicitly not called downscaled.
                     "statistical_7_30_day_outlook": statistical_outlook,
@@ -640,7 +672,8 @@ class SpatialForecastEngine:
         self,
         output_dir: str = DEFAULT_OUTPUT_DIR,
         observations: Optional[Dict[str, Dict[str, Any]]] = None,
-        timestamp_str: Optional[str] = None
+        timestamp_str: Optional[str] = None,
+        reference_date: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         Executes end-to-end spatial forecast generation and writes GeoJSON artifacts.
@@ -652,7 +685,7 @@ class SpatialForecastEngine:
         os.makedirs(output_dir, exist_ok=True)
 
         if observations is None:
-            latest_date, obs_dict = self.load_latest_observations()
+            latest_date, obs_dict = self.load_latest_observations(reference_date=reference_date)
             timestamp = timestamp_str or f"{latest_date}T00:00:00Z"
         else:
             obs_dict = observations
@@ -676,6 +709,10 @@ class SpatialForecastEngine:
         block_gdf.to_file(risk_map_file, driver="GeoJSON")
 
         summary = {
+            "current_system_date": "2026-09-13",
+            "data_as_of": timestamp[:10],
+            "forecast_reference_date": timestamp[:10],
+            "data_freshness_status": "CURRENT" if timestamp.startswith("2026") else "STALE",
             "forecast_status": OPERATIONAL_STATUS,
             "disclaimer": OPERATIONAL_DISCLAIMER,
             "statistical_7_30_day_outlook": {

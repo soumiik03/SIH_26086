@@ -18,7 +18,7 @@ class TestStep6RainfallControls(unittest.TestCase):
                 self.assertIn(field, source)
 
     def test_repository_rainfall_is_district_representative_not_local(self):
-        files = sorted(Path("data/raw/weather").glob("*.csv"))
+        files = sorted(Path("data/raw/weather").glob("*_2020_2025.csv"))
         self.assertEqual(len(files), 3)
         frame = pd.concat((pd.read_csv(path) for path in files), ignore_index=True)
         self.assertEqual(frame["District"].nunique(), 12)

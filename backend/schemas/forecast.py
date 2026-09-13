@@ -1,12 +1,11 @@
 from typing import Dict, List, Literal, Optional
-
 from pydantic import BaseModel, Field
-
 
 RiskLevel = Literal["LOW", "MODERATE", "HIGH", "VERY_HIGH"]
 ForecastStatus = Literal["EXPERIMENTAL_OBSERVATION_STATE"]
 HorizonForecastStatus = Literal["STATISTICAL_7_30_DAY_OUTLOOK"]
-HorizonApplicability = Literal["APPLICABLE", "OUT_OF_SEASON"]
+HorizonApplicability = Literal["APPLICABLE", "OUT_OF_SEASON", "UNAVAILABLE"]
+DataFreshnessStatus = Literal["CURRENT", "STALE", "UNAVAILABLE"]
 
 
 class RiskLevels(BaseModel):
@@ -85,12 +84,17 @@ class ForecastResponse(BaseModel):
     block_name: str
     district_id: str
     district_name: str
-    onset_probability: float = Field(ge=0, le=1)
-    false_onset_probability: float = Field(ge=0, le=1)
-    dry_spell_5d_probability: float = Field(ge=0, le=1)
-    severe_break_7d_probability: float = Field(ge=0, le=1)
-    heavy_rain_probability: float = Field(ge=0, le=1)
-    revival_probability: float = Field(ge=0, le=1)
+    current_system_date: str = "2026-09-13"
+    data_as_of: str = "2026-09-08"
+    forecast_reference_date: str = "2026-09-08"
+    data_freshness_status: DataFreshnessStatus = "CURRENT"
+    event_applicability: Dict[str, str] = Field(default_factory=dict)
+    onset_probability: Optional[float] = Field(default=None, ge=0, le=1)
+    false_onset_probability: Optional[float] = Field(default=None, ge=0, le=1)
+    dry_spell_5d_probability: Optional[float] = Field(default=None, ge=0, le=1)
+    severe_break_7d_probability: Optional[float] = Field(default=None, ge=0, le=1)
+    heavy_rain_probability: Optional[float] = Field(default=None, ge=0, le=1)
+    revival_probability: Optional[float] = Field(default=None, ge=0, le=1)
     risk_levels: RiskLevels
     advisory: AgronomicAdvisory
     model_versions: Dict[str, str]

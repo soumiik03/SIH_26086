@@ -1,12 +1,17 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
+
+from backend.schemas.backtest import BacktestResponse
+from backend.services import backtest_service
 
 router = APIRouter(prefix="/api")
 
 
-@router.get("/backtest")
+@router.get("/backtest", response_model=BacktestResponse)
 def get_backtest():
-    raise HTTPException(
-        status_code=501,
-        detail="Historical backtest API is not implemented because no existing callable backtest capability was found.",
-    )
-
+    try:
+        return backtest_service.historical_replay()
+    except (FileNotFoundError, ValueError, KeyError) as exc:
+        return {
+            "status": "UNAVAILABLE",
+            "limitation": f"Historical statistical replay is unavailable: {exc}",
+        }

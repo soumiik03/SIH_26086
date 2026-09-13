@@ -131,13 +131,17 @@ class TestSpatialForecastLayer(unittest.TestCase):
         for gdf in [self.block_gdf, self.panchayat_gdf]:
             for col in prob_heads + downscaled_heads:
                 self.assertIn(col, gdf.columns, f"Missing prob column: {col}")
-                self.assertTrue((gdf[col] >= 0.0).all(), f"Negative probability in {col}")
-                self.assertTrue((gdf[col] <= 1.0).all(), f"Probability > 1.0 in {col}")
+                valid_vals = gdf[col].dropna()
+                if len(valid_vals) > 0:
+                    self.assertTrue((valid_vals >= 0.0).all(), f"Negative probability in {col}")
+                    self.assertTrue((valid_vals <= 1.0).all(), f"Probability > 1.0 in {col}")
 
             for col in pct_heads:
                 self.assertIn(col, gdf.columns, f"Missing pct column: {col}")
-                self.assertTrue((gdf[col] >= 0.0).all(), f"Negative pct in {col}")
-                self.assertTrue((gdf[col] <= 100.0).all(), f"Pct > 100.0 in {col}")
+                valid_vals = gdf[col].dropna()
+                if len(valid_vals) > 0:
+                    self.assertTrue((valid_vals >= 0.0).all(), f"Negative pct in {col}")
+                    self.assertTrue((valid_vals <= 100.0).all(), f"Pct > 100.0 in {col}")
 
     def test_separation_of_probability_scales(self):
         """Verify district probabilities, downscaled probabilities, and downscaling metadata are distinct."""
@@ -255,7 +259,7 @@ class TestSpatialForecastLayer(unittest.TestCase):
                             self.assertLessEqual(probability, 1.0)
                         applicability = event.removesuffix("_probability") + "_applicability"
                         self.assertIn(applicability, outlook[horizon])
-                        self.assertIn(outlook[horizon][applicability], {"APPLICABLE", "OUT_OF_SEASON"})
+                        self.assertIn(outlook[horizon][applicability], {"APPLICABLE", "OUT_OF_SEASON", "UNAVAILABLE"})
 
     def test_forecast_metadata_records_outlook_and_coverage(self):
         metadata_path = os.path.join(self.output_dir, "forecast_run_metadata.json")

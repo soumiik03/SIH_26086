@@ -39,6 +39,7 @@ def risk_map() -> Dict[str, Any]:
 def _prop(feature: Dict[str, Any], key: str, default: Any = None) -> Any:
     return feature.get("properties", {}).get(key, default)
 
+
 def _canonical_block_id(block_id: Any) -> str:
     value = str(block_id)
     if value.startswith("blk_"):
@@ -46,6 +47,7 @@ def _canonical_block_id(block_id: Any) -> str:
         if numeric.isdigit():
             return f"blk_{int(numeric)}"
     return value
+
 
 def supported_districts() -> List[Dict[str, str]]:
     seen = {}
@@ -143,6 +145,16 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
     p = feature["properties"]
     probabilities = _forecast_probabilities(p)
     statistical_outlook = _statistical_outlook(p)
+    timestamp = str(p.get("data_timestamp", ""))
+    ref_date = str(p.get("forecast_reference_date", timestamp[:10] if timestamp else "2026-09-08"))
+    data_as_of = str(p.get("data_as_of", ref_date))
+    event_app = p.get("event_applicability", {})
+    if isinstance(event_app, str):
+        try:
+            event_app = json.loads(event_app)
+        except Exception:
+            event_app = {}
+
     return {
         "panchayat_id": str(p["panchayat_id"]),
         "panchayat_name": str(p["panchayat_name"]),
@@ -150,6 +162,11 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
         "block_name": str(p["block_name"]),
         "district_id": str(p["district_id"]),
         "district_name": str(p["district_name"]),
+        "current_system_date": str(p.get("current_system_date", "2026-09-13")),
+        "data_as_of": data_as_of,
+        "forecast_reference_date": ref_date,
+        "data_freshness_status": str(p.get("data_freshness_status", "CURRENT" if ref_date.startswith("2026") else "STALE")),
+        "event_applicability": event_app,
         "onset_probability": probabilities["onset_probability"],
         "false_onset_probability": probabilities["false_onset_probability"],
         "dry_spell_5d_probability": probabilities["dry_spell_5d_probability"],
@@ -171,20 +188,22 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
             "forecast_artifact": str(p.get("model_version", ENGINE_VERSION)),
         },
         "forecast_status": OPERATIONAL_STATUS,
-        "timestamp": str(p["data_timestamp"]),
+        "timestamp": timestamp,
         "disclaimer": OPERATIONAL_DISCLAIMER,
         "statistical_7_30_day_outlook": statistical_outlook,
     }
 
 
 def _forecast_probabilities(properties: Dict[str, Any]) -> Dict[str, Optional[float]]:
+    def _to_float(v: Any) -> Optional[float]:
+        return float(v) if v is not None else None
     return {
-        "onset_probability": float(properties["onset_prob"]),
-        "false_onset_probability": float(properties["false_onset_prob"]),
-        "dry_spell_5d_probability": float(properties["dry_spell_5d_prob"]),
-        "severe_break_7d_probability": float(properties["severe_break_7d_prob"]),
-        "heavy_rain_probability": float(properties["heavy_rain_prob"]),
-        "revival_probability": float(properties["revival_prob"]),
+        "onset_probability": _to_float(properties.get("onset_prob")),
+        "false_onset_probability": _to_float(properties.get("false_onset_prob")),
+        "dry_spell_5d_probability": _to_float(properties.get("dry_spell_5d_prob")),
+        "severe_break_7d_probability": _to_float(properties.get("severe_break_7d_prob")),
+        "heavy_rain_probability": _to_float(properties.get("heavy_rain_prob")),
+        "revival_probability": _to_float(properties.get("revival_prob")),
     }
 
 
@@ -208,7 +227,7 @@ def _expert_advisory(
     planned_sowing_date: Optional[str] = None,
 ) -> Dict[str, Any]:
     return evaluate_advisory({
-        "reference_date": properties["data_timestamp"],
+        "reference_date": properties.get("forecast_reference_date", properties.get("data_timestamp", "2026-09-08")),
         "crop": crop,
         "crop_stage": crop_stage,
         "planned_sowing_date": planned_sowing_date,

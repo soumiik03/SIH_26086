@@ -79,10 +79,15 @@ export interface HorizonModelVersion {
 }
 
 export interface HorizonForecast {
-  dry_spell_probability: number;
-  severe_break_probability: number;
-  heavy_rain_probability: number;
-  revival_probability: number;
+  dry_spell_probability: number | null;
+  dry_spell_applicability?: "APPLICABLE" | "OUT_OF_SEASON" | "UNAVAILABLE";
+  severe_break_probability: number | null;
+  severe_break_applicability?: "APPLICABLE" | "OUT_OF_SEASON" | "UNAVAILABLE";
+  heavy_rain_probability: number | null;
+  heavy_rain_applicability?: "APPLICABLE" | "OUT_OF_SEASON" | "UNAVAILABLE";
+  revival_probability: number | null;
+  revival_applicability?: "APPLICABLE" | "OUT_OF_SEASON" | "UNAVAILABLE";
+  forecast_status?: string;
   model_versions: Record<string, HorizonModelVersion>;
 }
 
@@ -100,19 +105,24 @@ export interface Forecast {
   block_name: string;
   district_id: string;
   district_name: string;
-  onset_probability: number;
-  false_onset_probability: number;
-  dry_spell_5d_probability: number;
-  severe_break_7d_probability: number;
-  heavy_rain_probability: number;
-  revival_probability: number;
+  current_system_date?: string;
+  data_as_of?: string;
+  forecast_reference_date?: string;
+  data_freshness_status?: "CURRENT" | "STALE" | "UNAVAILABLE";
+  event_applicability?: Record<string, "APPLICABLE" | "OUT_OF_SEASON" | "UNAVAILABLE">;
+  onset_probability: number | null;
+  false_onset_probability: number | null;
+  dry_spell_5d_probability: number | null;
+  severe_break_7d_probability: number | null;
+  heavy_rain_probability: number | null;
+  revival_probability: number | null;
   risk_levels: RiskLevels;
   advisory: AgronomicAdvisory;
   model_versions: Record<string, string>;
   forecast_status: ForecastStatus;
   timestamp: string;
   disclaimer: string;
-   statistical_7_30_day_outlook: Statistical730DayOutlook;
+  statistical_7_30_day_outlook: Statistical730DayOutlook;
 }
 
 export interface RiskMapFeature {

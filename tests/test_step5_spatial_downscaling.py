@@ -213,12 +213,16 @@ class TestStep5SpatialDownscaling(unittest.TestCase):
 
         for gdf in [self.block_gdf, self.panchayat_gdf]:
             for col in prob_cols:
-                self.assertTrue((gdf[col] >= 0.0).all(), f"Negative probability in {col}")
-                self.assertTrue((gdf[col] <= 1.0).all(), f"Probability > 1.0 in {col}")
+                valid_vals = gdf[col].dropna()
+                if len(valid_vals) > 0:
+                    self.assertTrue((valid_vals >= 0.0).all(), f"Negative probability in {col}")
+                    self.assertTrue((valid_vals <= 1.0).all(), f"Probability > 1.0 in {col}")
 
             for col in pct_cols:
-                self.assertTrue((gdf[col] >= 0.0).all(), f"Negative pct in {col}")
-                self.assertTrue((gdf[col] <= 100.0).all(), f"Pct > 100.0 in {col}")
+                valid_vals = gdf[col].dropna()
+                if len(valid_vals) > 0:
+                    self.assertTrue((valid_vals >= 0.0).all(), f"Negative pct in {col}")
+                    self.assertTrue((valid_vals <= 100.0).all(), f"Pct > 100.0 in {col}")
 
     # 12. OUT_OF_SEASON nullable behavior
     def test_12_out_of_season_nullable_behavior(self):
