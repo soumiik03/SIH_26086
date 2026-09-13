@@ -1,3 +1,5 @@
+"use client";
+
 import type { Block, District, PanchayatListItem } from "@/types/api";
 import { ChevronDown, MapPin } from "lucide-react";
 import { LoadingState } from "./LoadingState";
