@@ -1,0 +1,188 @@
+model_district,block_lgd,block_name,centroid_lat,centroid_lon,elevation_m
+Alipurduar,02171,Kalchini,26.60459,89.57345,94.0
+Alipurduar,02173,Alipurduar - I,26.5965,89.34453,73.0
+Alipurduar,2170,Madarihat,26.74195,89.20028,162.0
+Alipurduar,2171,Kalchini,26.69411,89.47528,126.0
+Alipurduar,2172,Kumargram,26.59925,89.77222,88.0
+Alipurduar,2173,Alipurduar - I,26.54761,89.37602,63.0
+Alipurduar,2174,Alipurduar - II,26.50964,89.63763,53.0
+Alipurduar,2175,Falakata,26.59713,89.16673,70.0
+Bankura,2356,Saltora,23.5343,86.97101,138.0
+Bankura,2357,Mejia,23.54442,87.1259,87.0
+Bankura,2358,Gangajalghati,23.41261,87.11782,114.0
+Bankura,2359,Chhatna,23.33856,86.89351,123.0
+Bankura,2360,Indpur,23.14249,86.888,134.0
+Bankura,2361,Bankura - I,23.22569,86.98574,97.0
+Bankura,2362,Bankura - II,23.27769,87.10312,92.0
+Bankura,2363,Bighorns,23.37775,87.27374,80.0
+Bankura,2364,Sonamukhi,23.30069,87.40302,60.0
+Bankura,2365,Patrasayer,23.20056,87.51434,68.0
+Bankura,2366,Indus,23.1112,87.64894,33.0
+Bankura,2367,Kotulpur,22.99189,87.59357,27.0
+Bankura,2368,Jaipur,23.02736,87.46682,48.0
+Bankura,2369,Bishnupur,23.08131,87.34285,59.0
+Bankura,2370,Onda,23.1251,87.16252,95.0
+Bankura,2371,Taldangra,22.99916,87.13673,84.0
+Bankura,2372,Simlapal,22.91739,87.07316,60.0
+Bankura,2373,Khatra,22.97846,86.87448,132.0
+Bankura,2374,Hirbandh,23.07335,86.80467,171.0
+Bankura,2375,Ranibandh,22.85101,86.75666,205.0
+Bankura,2376,Raipur,22.75801,86.8978,95.0
+Bankura,2377,Sarenga,22.79495,87.00451,86.0
+Birbhum_Suri,2249,Murarai - I,24.47714,87.84289,38.0
+Birbhum_Suri,2250,Murarai - II,24.42763,87.91921,34.0
+Birbhum_Suri,2251,Nalhati - I,24.29507,87.83626,48.0
+Birbhum_Suri,2252,Nalhati - II,24.27436,87.9725,34.0
+Birbhum_Suri,2253,Rampurhat - I,24.17664,87.73092,54.0
+Birbhum_Suri,2254,Rampurhat - II,24.15732,87.86776,30.0
+Birbhum_Suri,2255,Mayureswar - I,24.04211,87.76528,41.0
+Birbhum_Suri,2256,Mayureswar - II,23.94926,87.79235,41.0
+Birbhum_Suri,2257,Mohammad Bazar,24.03182,87.57584,68.0
+Birbhum_Suri,2258,Rajnagar,23.95991,87.34342,99.0
+Birbhum_Suri,2259,Suri - I,23.90482,87.50064,78.0
+Birbhum_Suri,2260,Suri - II,23.84443,87.5718,51.0
+Birbhum_Suri,2261,Sainthia,23.86356,87.67225,44.0
+Birbhum_Suri,2262,Labpur,23.8141,87.81976,42.0
+Birbhum_Suri,2263,Nanoor,23.66937,87.8708,24.0
+Birbhum_Suri,2264,Bolpur Sriniketan,23.67392,87.70349,51.0
+Birbhum_Suri,2265,Illambazar,23.67359,87.52764,56.0
+Birbhum_Suri,2266,Dubrajpur,23.79874,87.41172,72.0
+Birbhum_Suri,2267,Khoyrasol,23.79922,87.23932,88.0
+Cooch_Behar,2179,Haldibari,26.31759,88.82523,68.0
+Cooch_Behar,2180,Mekliganj,26.39155,88.96421,65.0
+Cooch_Behar,2181,Mathabhanga - I,26.37995,89.149,54.0
+Cooch_Behar,2182,Mathabhanga - II,26.41692,89.23756,54.0
+Cooch_Behar,2183,KOCH BIHAR - I,26.26214,89.41204,42.0
+Cooch_Behar,2184,KOCH BIHAR - II,26.40632,89.43496,54.0
+Cooch_Behar,2185,Tufanganj - I,26.30294,89.62213,39.0
+Cooch_Behar,2186,Tufanganj - II,26.37309,89.74938,38.0
+Cooch_Behar,2187,Dinhata - I,26.12417,89.44107,34.0
+Cooch_Behar,2188,Dinhata - II,26.10482,89.56365,36.0
+Cooch_Behar,2189,Sitai,26.08247,89.33804,40.0
+Cooch_Behar,2190,Sitalkuchi,26.19873,89.21306,47.0
+Hooghly,2338,Goghat - I,22.86897,87.72549,24.0
+Hooghly,2339,Goghat - II,22.90213,87.63359,19.0
+Hooghly,2340,Arambag,22.86192,87.84104,15.0
+Hooghly,2341,Pursura,22.85357,87.94435,11.0
+Hooghly,2342,Tarakeswar,22.85909,88.01331,11.0
+Hooghly,2343,Dhaniakhali,22.97405,88.09266,15.0
+Hooghly,2344,Pandua,23.07856,88.25291,14.0
+Hooghly,2345,Balagarh,23.11648,88.42385,6.0
+Hooghly,2346,Chinsurah - Magra,22.96772,88.37916,16.0
+Hooghly,2347,Polba - Dadpur,22.94169,88.26623,10.0
+Hooghly,2348,Haripal,22.83503,88.12216,13.0
+Hooghly,2349,Singur,22.82322,88.27267,15.0
+Hooghly,2350,Serampur Uttarpara,22.73071,88.32622,4.0
+Hooghly,2351,Chanditala - I,22.72143,88.18718,5.0
+Hooghly,2352,Chanditala - II,22.70759,88.26379,11.0
+Hooghly,2353,Jangipara,22.7393,88.06658,14.0
+Hooghly,2354,Khanakul - I,22.73283,87.84918,9.0
+Hooghly,2355,Khanakul - II,22.65389,87.8584,9.0
+Jalpaiguri,02167N003,Kranti,26.71485,88.688,104.0
+Jalpaiguri,02176N004,Banarhat,26.76332,89.01394,137.0
+Jalpaiguri,2166,Rajganj,26.66303,88.51767,107.0
+Jalpaiguri,2167,Mal,26.8474,88.65663,145.0
+Jalpaiguri,2168,Matiali,26.86896,88.79279,148.0
+Jalpaiguri,2169,Nagrakata,26.85263,88.91571,151.0
+Jalpaiguri,2176,Dhupguri,26.60273,88.98991,79.0
+Jalpaiguri,2177,Maynaguri,26.56478,88.83978,87.0
+Jalpaiguri,2178,Jalpaiguri,26.49029,88.69075,81.0
+Jhargram,2441,Binpur - II,22.65571,86.75316,149.0
+Jhargram,2442,Binpur - I,22.59063,87.0253,54.0
+Jhargram,2454,Jhargram,22.37931,87.04068,92.0
+Jhargram,2455,Jamboni,22.44665,86.8592,82.0
+Jhargram,2456,Gopiballavpur - II,22.24354,86.94001,48.0
+Jhargram,2457,Gopiballavpur - I,22.16388,86.86148,75.0
+Jhargram,2458,Nayagram,22.02617,87.07842,67.0
+Jhargram,2459,Sankrail,22.21881,87.12338,43.0
+Murshidabad,2223,Farakka,24.75757,87.9109,33.0
+Murshidabad,2224,Samserganj,24.64667,87.95177,24.0
+Murshidabad,2225,Suti - I,24.52845,87.99926,25.0
+Murshidabad,2226,Suti - II,24.59038,88.00065,25.0
+Murshidabad,2227,Raghunathganj - I,24.4263,88.04667,27.0
+Murshidabad,2228,Raghunathganj - II,24.46862,88.12823,22.0
+Murshidabad,2229,Lalgola,24.39194,88.23512,24.0
+Murshidabad,2230,Sagardighi,24.311,88.11079,42.0
+Murshidabad,2231,Bhagawangola - I,24.31902,88.31491,26.0
+Murshidabad,2232,Bhagawangola - II,24.30017,88.4067,20.0
+Murshidabad,2233,Raninagar - II,24.26871,88.57698,19.0
+Murshidabad,2234,Jalangi,24.18533,88.67477,16.0
+Murshidabad,2235,Domkal,24.0895,88.56424,19.0
+Murshidabad,2236,Raninagar - I,24.21765,88.46673,20.0
+Murshidabad,2237,Murshidabad Jiaganj,24.19348,88.30479,18.0
+Murshidabad,2238,Nabagram,24.18029,88.11207,33.0
+Murshidabad,2239,Khargram,24.08321,87.98564,25.0
+Murshidabad,2240,Kandi,24.0111,88.09998,17.0
+Murshidabad,2241,Berhampore,24.07848,88.28705,22.0
+Murshidabad,2242,Hariharpara,24.03039,88.40355,18.0
+Murshidabad,2243,Nawda,23.90187,88.41285,18.0
+Murshidabad,2244,Beldanga - I,23.95213,88.26329,21.0
+Murshidabad,2245,Beldanga - II,23.84623,88.24708,17.0
+Murshidabad,2246,Bharatpur - II,23.78937,88.10953,21.0
+Murshidabad,2247,Bharatpur - I,23.8838,88.08357,24.0
+Murshidabad,2248,Burwan,23.93081,87.92522,27.0
+Nadia,02314N002,Kalyani,23.0004,88.47313,6.0
+Nadia,2299,Karimpur - I,23.99726,88.68444,19.0
+Nadia,2300,Karimpur - II,23.92948,88.57584,18.0
+Nadia,2301,Tehatta - I,23.7702,88.5254,15.0
+Nadia,2302,Tehatta - II,23.76396,88.4175,15.0
+Nadia,2303,Kaliganj,23.70729,88.25664,17.0
+Nadia,2304,Nakashipara,23.6123,88.3989,17.0
+Nadia,2305,Chapra,23.5461,88.57959,12.0
+Nadia,2306,Krishnanagar - II,23.48446,88.45411,20.0
+Nadia,2307,Nabadwip,23.39963,88.37597,6.0
+Nadia,2308,Krishnanagar - I,23.39029,88.50374,19.0
+Nadia,2309,Krishnaganj,23.44381,88.71704,13.0
+Nadia,2310,Hanskhali,23.34301,88.6309,16.0
+Nadia,2311,Shantipur,23.26213,88.43743,13.0
+Nadia,2312,Ranaghat - I,23.20195,88.53271,12.0
+Nadia,2313,Ranaghat - II,23.19595,88.64357,21.0
+Nadia,2314,Chakdaha,23.06198,88.59497,8.0
+Nadia,2315,Haringhata,22.95757,88.59799,16.0
+Purba_Bardhaman,2276,Ausgram - II,23.50948,87.57715,50.0
+Purba_Bardhaman,2277,Ausgram - I,23.48744,87.69423,45.0
+Purba_Bardhaman,2278,Mangolkote,23.54141,87.93281,31.0
+Purba_Bardhaman,2279,Ketugram - I,23.73396,87.98038,27.0
+Purba_Bardhaman,2280,Ketugram - II,23.70212,88.09673,18.0
+Purba_Bardhaman,2281,Katwa - I,23.5756,88.09561,16.0
+Purba_Bardhaman,2282,Katwa - II,23.54688,88.17808,13.0
+Purba_Bardhaman,2283,Purbasthali - I,23.39114,88.28344,11.0
+Purba_Bardhaman,2284,Purbasthali - II,23.5064,88.28887,11.0
+Purba_Bardhaman,2285,Manteswar,23.39568,88.13512,18.0
+Purba_Bardhaman,2286,Bhatar,23.42181,87.88921,35.0
+Purba_Bardhaman,2287,Galsi - I,23.36486,87.57345,56.0
+Purba_Bardhaman,2288,Galsi - II,23.30482,87.71126,41.0
+Purba_Bardhaman,2289,Burdwan - I,23.29708,87.88835,31.0
+Purba_Bardhaman,2290,Burdwan - II,23.24488,87.97241,32.0
+Purba_Bardhaman,2291,Memari - I,23.17508,88.10186,27.0
+Purba_Bardhaman,2292,Memari - II,23.27143,88.12125,18.0
+Purba_Bardhaman,2293,Kalna - I,23.27596,88.2813,10.0
+Purba_Bardhaman,2294,Kalna - II,23.17967,88.29464,14.0
+Purba_Bardhaman,2295,Jamalpur,23.06881,88.02481,20.0
+Purba_Bardhaman,2296,Raina - I,23.11429,87.88001,28.0
+Purba_Bardhaman,2297,Khandaghosh,23.1628,87.74706,38.0
+Purba_Bardhaman,2298,Raina - II,22.99745,87.85359,26.0
+Purulia,2378,Jaipur,23.47492,86.13176,257.0
+Purulia,2379,Purulia - II,23.37231,86.42128,267.0
+Purulia,2380,Para,23.50907,86.47497,176.0
+Purulia,2381,Raghunathpur - II,23.59924,86.57296,155.0
+Purulia,2382,Raghunathpur - I,23.53865,86.69452,167.0
+Purulia,2383,Neturia,23.64697,86.7449,133.0
+Purulia,2384,Santuri,23.55508,86.84338,156.0
+Purulia,2385,Kashipur,23.40975,86.72088,153.0
+Purulia,2386,Hura,23.31039,86.60461,221.0
+Purulia,2387,Purulia - I,23.29456,86.34644,226.0
+Purulia,2388,Puncha,23.19356,86.60859,186.0
+Purulia,2389,Arsha,23.28661,86.20399,278.0
+Purulia,2390,Jhalda - I,23.3441,85.92323,261.0
+Purulia,2391,Jhalda - II,23.41347,86.04031,309.0
+Purulia,2392,Bagmundi,23.19917,86.03525,260.0
+Purulia,2393,Balarampur,23.11155,86.22168,263.0
+Purulia,2394,Barabazar,23.07215,86.38364,201.0
+Purulia,2395,Manbazar - I,23.08173,86.61564,188.0
+Purulia,2396,Manbazar - II,22.94845,86.60572,188.0
+Purulia,2397,Bundwan,22.82617,86.524,218.0
+Siliguri_Foothill,2162,Matigara,26.74013,88.39191,127.0
+Siliguri_Foothill,2163,Naxalbari,26.71009,88.2549,156.0
+Siliguri_Foothill,2164,Phansidewa,26.57865,88.29898,101.0
+Siliguri_Foothill,2165,Kharibari,26.59237,88.18279,104.0

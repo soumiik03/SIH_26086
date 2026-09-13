@@ -27,6 +27,14 @@
   "panchayat_count_definition": "safe_panchayats_forecasted counts unique GP LGD identifiers; safe_panchayat_polygons counts returned spatial features. The difference is caused by duplicated GP LGD identifiers across multiple source block polygons and is retained pending cadastral reconciliation.",
   "official_gps_intentionally_excluded": 85,
   "unsupported_blocks_deficit": 166,
+  "elevation_metadata": {
+    "source": "SRTM 90m (NASA/USGS via Open-Elevation API)",
+    "blocks_with_elevation": 187,
+    "panchayats_with_elevation": 1710,
+    "elevation_correlation_rainfall": -0.019,
+    "elevation_p_value": 0.952,
+    "downscaling_implication": "Zero empirical correlation with rainfall across West Bengal districts (r=-0.019, p=0.952). Intra-district downscaling cannot be scientifically validated without sub-district AWS data."
+  },
   "output_files": {
     "block_forecast": "data/processed/spatial_forecasts\\latest_block_forecast.geojson",
     "panchayat_forecast": "data/processed/spatial_forecasts\\latest_panchayat_forecast.geojson",

@@ -1,4 +1,4 @@
-from typing import Dict, Literal, Optional
+from typing import Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -20,6 +20,25 @@ class RiskLevels(BaseModel):
 class AgronomicAdvisory(BaseModel):
     headline: str
     recommended_action: str
+    action: Literal["SOW", "WAIT", "PREPARE_IRRIGATION"] = "WAIT"
+    rule_id: str = "AGRI-WAIT-CONTEXT-001"
+    crop: Optional[str] = None
+    crop_name: Optional[str] = None
+    headline_key: str = "advisory.wait"
+    reason_keys: List[str] = Field(default_factory=list)
+    reasons: List[str] = Field(default_factory=list)
+    risk_factors: Dict[str, Optional[float]] = Field(default_factory=dict)
+    validity: str = "UNKNOWN"
+    thresholds: Dict[str, float] = Field(default_factory=dict)
+
+
+class AgronomicAdvisoryLocation(BaseModel):
+    panchayat_id: str
+    panchayat_name: str
+    block_id: str
+    block_name: str
+    district_id: str
+    district_name: str
 
 
 class HorizonModelVersion(BaseModel):
@@ -49,6 +68,14 @@ class Statistical730DayOutlook(BaseModel):
     horizon_7_14d: HorizonForecast = Field(alias="7_14d")
     horizon_15_21d: HorizonForecast = Field(alias="15_21d")
     horizon_22_30d: HorizonForecast = Field(alias="22_30d")
+
+
+class AgronomicAdvisoryResponse(BaseModel):
+    location: AgronomicAdvisoryLocation
+    advisory: AgronomicAdvisory
+    supporting_outlook: Statistical730DayOutlook
+    crop_stage: Optional[str] = None
+    planned_sowing_date: Optional[str] = None
 
 
 class ForecastResponse(BaseModel):

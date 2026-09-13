@@ -4,9 +4,9 @@ import json
 import ast
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
+from src.agronomy.expert_system import evaluate_advisory, supported_crops
 from src.forecast_engine import ForecastEngine, ENGINE_VERSION
-from src.forecast_engine import ENGINE_VERSION
 from src.spatial_forecast import OPERATIONAL_DISCLAIMER, OPERATIONAL_STATUS
 
 
@@ -141,24 +141,8 @@ def to_panchayat_list_item(feature: Dict[str, Any]) -> Dict[str, Any]:
 
 def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
     p = feature["properties"]
-    probabilities = {
-        "onset": float(p["onset_prob"]),
-        "false_onset": float(p["false_onset_prob"]),
-        "dry_spell_5d": float(p["dry_spell_5d_prob"]),
-        "severe_break_7d": float(p["severe_break_7d_prob"]),
-        "heavy_rain": float(p["heavy_rain_prob"]),
-        "revival": float(p["revival_prob"]),
-        
-    }
-    statistical_outlook = p.get("statistical_7_30_day_outlook")
-    if isinstance(statistical_outlook, str):
-        try:
-            statistical_outlook = ast.literal_eval(statistical_outlook)
-        except Exception:
-            try:
-                statistical_outlook = json.loads(statistical_outlook)
-            except Exception:
-                pass
+    probabilities = _forecast_probabilities(p)
+    statistical_outlook = _statistical_outlook(p)
     return {
         "panchayat_id": str(p["panchayat_id"]),
         "panchayat_name": str(p["panchayat_name"]),
@@ -166,12 +150,12 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
         "block_name": str(p["block_name"]),
         "district_id": str(p["district_id"]),
         "district_name": str(p["district_name"]),
-        "onset_probability": probabilities["onset"],
-        "false_onset_probability": probabilities["false_onset"],
-        "dry_spell_5d_probability": probabilities["dry_spell_5d"],
-        "severe_break_7d_probability": probabilities["severe_break_7d"],
-        "heavy_rain_probability": probabilities["heavy_rain"],
-        "revival_probability": probabilities["revival"],
+        "onset_probability": probabilities["onset_probability"],
+        "false_onset_probability": probabilities["false_onset_probability"],
+        "dry_spell_5d_probability": probabilities["dry_spell_5d_probability"],
+        "severe_break_7d_probability": probabilities["severe_break_7d_probability"],
+        "heavy_rain_probability": probabilities["heavy_rain_probability"],
+        "revival_probability": probabilities["revival_probability"],
         "risk_levels": {
             "overall": p["risk_level"],
             "heavy_rain": p["heavy_rain_risk"],
@@ -180,8 +164,7 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
             "false_onset": p["false_onset_risk"],
         },
         "advisory": {
-            "headline": p["advisory_headline"],
-            "recommended_action": p["recommended_action"],
+            **_expert_advisory(p),
         },
         "model_versions": {
             "engine": str(p.get("model_version", ENGINE_VERSION)),
@@ -192,6 +175,81 @@ def to_forecast_response(feature: Dict[str, Any]) -> Dict[str, Any]:
         "disclaimer": OPERATIONAL_DISCLAIMER,
         "statistical_7_30_day_outlook": statistical_outlook,
     }
+
+
+def _forecast_probabilities(properties: Dict[str, Any]) -> Dict[str, Optional[float]]:
+    return {
+        "onset_probability": float(properties["onset_prob"]),
+        "false_onset_probability": float(properties["false_onset_prob"]),
+        "dry_spell_5d_probability": float(properties["dry_spell_5d_prob"]),
+        "severe_break_7d_probability": float(properties["severe_break_7d_prob"]),
+        "heavy_rain_probability": float(properties["heavy_rain_prob"]),
+        "revival_probability": float(properties["revival_prob"]),
+    }
+
+
+def _statistical_outlook(properties: Dict[str, Any]) -> Any:
+    statistical_outlook = properties.get("statistical_7_30_day_outlook")
+    if isinstance(statistical_outlook, str):
+        try:
+            return ast.literal_eval(statistical_outlook)
+        except Exception:
+            try:
+                return json.loads(statistical_outlook)
+            except Exception:
+                return statistical_outlook
+    return statistical_outlook
+
+
+def _expert_advisory(
+    properties: Dict[str, Any],
+    crop: Optional[str] = None,
+    crop_stage: Optional[str] = None,
+    planned_sowing_date: Optional[str] = None,
+) -> Dict[str, Any]:
+    return evaluate_advisory({
+        "reference_date": properties["data_timestamp"],
+        "crop": crop,
+        "crop_stage": crop_stage,
+        "planned_sowing_date": planned_sowing_date,
+        "probabilities": _forecast_probabilities(properties),
+        "statistical_7_30_day_outlook": _statistical_outlook(properties),
+    })
+
+
+def advisory_for_panchayat(
+    panchayat_id: str,
+    crop: str,
+    crop_stage: Optional[str] = None,
+    planned_sowing_date: Optional[str] = None,
+) -> Optional[Dict[str, Any]]:
+    feature = find_panchayat(panchayat_id)
+    if feature is None:
+        return None
+    p = feature["properties"]
+    return {
+        "location": {
+            "panchayat_id": str(p["panchayat_id"]),
+            "panchayat_name": str(p["panchayat_name"]),
+            "block_id": str(p["block_id"]),
+            "block_name": str(p["block_name"]),
+            "district_id": str(p["district_id"]),
+            "district_name": str(p["district_name"]),
+        },
+        "advisory": _expert_advisory(
+            p,
+            crop=crop,
+            crop_stage=crop_stage,
+            planned_sowing_date=planned_sowing_date,
+        ),
+        "supporting_outlook": _statistical_outlook(p),
+        "crop_stage": crop_stage,
+        "planned_sowing_date": planned_sowing_date,
+    }
+
+
+def advisory_crop_catalog() -> List[Dict[str, str]]:
+    return supported_crops()
 
 
 def health() -> Dict[str, Any]:
