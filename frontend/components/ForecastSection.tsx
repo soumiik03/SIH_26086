@@ -1,4 +1,4 @@
-import type { Forecast } from "@/types/api";
+import type { Forecast, Panchayat } from "@/types/api";
 import { CalendarDays, CheckCircle2 } from "lucide-react";
 import ProbabilityCard from "./probability";
 import ForecastPanel from "./forecastpanel";
@@ -26,8 +26,10 @@ const probabilityFields: Array<{
 
 export function ForecastSection({
   forecast,
+  panchayat,
 }: {
   forecast: Forecast;
+  panchayat: Panchayat;
 }) {
   return (
     <section className="animate-rise space-y-5">
@@ -47,6 +49,12 @@ export function ForecastSection({
           </p>
         </div>
 
+        <div className="mt-4 grid gap-2 text-xs text-slate-500 sm:grid-cols-3">
+          <div><span className="font-semibold text-slate-700">Panchayat LGD:</span>{" "}{panchayat.gp_lgd_code || "Unavailable"}</div>
+          <div><span className="font-semibold text-slate-700">Block LGD:</span>{" "}{panchayat.block_lgd_code || "Unavailable"}</div>
+          <div><span className="font-semibold text-slate-700">District LGD:</span>{" "}{panchayat.district_lgd_code || "Unavailable"}</div>
+        </div>
+
         <div className="flex items-center gap-2 text-xs text-slate-500">
           <CalendarDays className="h-4 w-4" />
           Updated {new Date(forecast.timestamp).toLocaleString()}
@@ -54,6 +62,14 @@ export function ForecastSection({
       </div>
 
       {/* Current forecast probabilities */}
+      <div className="border-t border-slate-200 pt-4">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h3 className="font-display text-lg font-semibold text-ink">MONSOON EVENT RISK</h3>
+          <span className="border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-[.12em] text-amber-800">
+            {forecast.forecast_status.replaceAll("_", " ")}
+          </span>
+        </div>
+      </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {probabilityFields.map(({ key, label }) => (
           <ProbabilityCard

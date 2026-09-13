@@ -171,7 +171,7 @@ export default function Home() {
         />
         {unsupportedLocationError && <UnsupportedLocationState message={unsupportedLocationError} />}
         {forecastError && <ErrorState message={forecastError} onRetry={() => void selectPanchayat(panchayatId)} />}
-        {panchayat && forecast && !forecastLoading && <ForecastSection forecast={forecast} />}
+        {panchayat && forecast && !forecastLoading && <ForecastSection forecast={forecast} panchayat={panchayat} />}
 
         {!panchayatId && !initialError && (
           <div className="grid gap-4 border-t border-slate-200 pt-2 sm:grid-cols-3">
